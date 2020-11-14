@@ -1,0 +1,16 @@
+<?php
+
+namespace pen;
+
+use Illuminate\Database\Eloquent\Model;
+use pen\departamento;
+
+class Profesor extends Model
+{
+    protected $primaryKey = 'id';
+    protected $fillable = ['codigo','nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
+
+    public function departamento() {
+    	return $this->hasOne(Departamento::class, 'id');
+    }
+}
