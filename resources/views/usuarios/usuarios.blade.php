@@ -44,10 +44,10 @@
                             <tr>
                                 <td>{{ $usuario->nombre }}</td>
                                 <td>{{ $usuario->email }}</td>
-                                <td>{{ $usuario->rol }}</td>
-                                <td><a href="{{ action('UsuarioController@edit', $usuario->id) }}" class="btn btn-success">Modificar</a></td>
+                                <td>{{ $usuario->perfil_id }}</td>
+                                <td><a href="{{ action('UsuarioController@edit', $usuario->user_id) }}" class="btn btn-success">Modificar</a></td>
                                 <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{ action('UsuarioController@destroy', $usuario->id)}}" method="post">
+                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{ action('UsuarioController@destroy', $usuario->user_id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger" type="submit">Eliminar</button>
