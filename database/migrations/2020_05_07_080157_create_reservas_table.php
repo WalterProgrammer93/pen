@@ -20,7 +20,7 @@ class CreateReservasTable extends Migration
             $table->integer('profesor_id')->unsigned();
             $table->integer('evento_id')->unsigned();
             $table->foreign('profesor_id')->references('profesor_id')->on('profesors');
-            $table->foreign('evento_id')->references('profesor_id')->on('aulas');
+            $table->foreign('evento_id')->references('evento_id')->on('eventos');
             $table->timestamps();
 
         });
