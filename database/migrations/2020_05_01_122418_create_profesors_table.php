@@ -23,7 +23,7 @@ class CreateProfesorsTable extends Migration
             $table->char('telefono',9)->unique();
             $table->string('disponibilidad',100);
             $table->integer('departamento_id')->unsigned();
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_id')->references('departamento_id')->on('departamentos');
             $table->timestamps();
         });
     }
