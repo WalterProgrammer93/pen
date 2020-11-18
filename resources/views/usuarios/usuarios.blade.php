@@ -35,7 +35,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Rol</th>
+                            <th>Perfil</th>
                             <th colspan="2">Acción</th>
                         </tr>
 
