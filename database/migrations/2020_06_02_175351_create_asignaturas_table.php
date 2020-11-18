@@ -14,9 +14,8 @@ class CreateAsignaturasTable extends Migration
     public function up()
     {
         Schema::create('asignaturas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('codigo',10)->unique();
-            $table->string('nombre',100);
+            $table->increments('asignatura_id');
+            $table->string('nombre',100)->unique();
             $table->string('descripcion',255)->nullable();
             $table->integer('curso_id')->unsigned();
             $table->integer('aula_id')->unsigned();
