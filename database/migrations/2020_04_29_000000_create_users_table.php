@@ -18,7 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('nombre',100);
             $table->string('email',100)->unique();
             $table->string('password');
-            $table->string('rol',100)->nullable();
+            //$table->string('rol',100)->nullable();
+            $table->integer('perfil_id')->unsigned();
+            $table->foreign('perfil_id')->references('perfil_id')->on('perfils');
             $table->timestamps();
         });
 
