@@ -19,8 +19,8 @@ class CreateAsignaturasTable extends Migration
             $table->string('descripcion',255)->nullable();
             $table->integer('curso_id')->unsigned();
             $table->integer('aula_id')->unsigned();
-            $table->foreign('curso_id')->references('id')->on('cursos');
-            $table->foreign('aula_id')->references('id')->on('aulas');
+            $table->foreign('curso_id')->references('curso_id')->on('cursos');
+            $table->foreign('aula_id')->references('aula_id')->on('aulas');
             $table->timestamps();
         });
     }
