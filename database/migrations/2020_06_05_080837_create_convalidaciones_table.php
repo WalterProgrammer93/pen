@@ -18,7 +18,7 @@ class CreateConvalidacionesTable extends Migration
             $table->integer('alumno_id')->unsigned();
             $table->integer('asignatura_id')->unsigned();
             $table->foreign('alumno_id')->references('alumno_id')->on('alumnos');
-            $table->foreign('asignatura_id')->references('alumno_id')->on('asignaturas');
+            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignaturas');
             $table->timestamps();
         });
     }
