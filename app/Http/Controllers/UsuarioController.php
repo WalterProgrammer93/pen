@@ -29,7 +29,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $roles = Perfil::pluck('rol', 'id');
+        $roles = Perfil::pluck('rol', 'perfil_id');
         return view("usuarios.create", compact('roles'));
     }
 
