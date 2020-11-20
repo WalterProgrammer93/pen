@@ -8,14 +8,14 @@ use pen\Profesor;
 
 class Clase extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','asignatura','profesor', 'horario'];
+    protected $primaryKey = 'clase_id';
+    protected $fillable = ['asignatura','profesor', 'horario'];
 
     public function asignatura() {
-    	return $this->hasMany(Asignaturas::class, 'id');
+    	return $this->hasMany(Asignaturas::class);
     }
 
     public function profesor() {
-    	return $this->hasMany(Evento::class, 'id');
+    	return $this->hasMany(Evento::class);
     }
 }
