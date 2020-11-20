@@ -8,10 +8,10 @@ use App\User;
 class Perfil extends Model
 {
 	protected $primaryKey = 'perfil_id';
-	protected $fillable = ['rol'];
+	protected $fillable = ['perfil', 'descripcion'];
 
 	public function users() {
-		return $this->hasMany(User::class, 'user_id');
+		return $this->belongsToMany(User::class)->withTimestamps();;
 	}
 
 }
