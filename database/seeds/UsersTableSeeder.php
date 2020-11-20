@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Perfil;
-use App\User;
+use pen\Perfil;
+use pen\User;
 
 class UsersTableSeeder extends Seeder
 {
