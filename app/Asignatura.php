@@ -8,14 +8,14 @@ use pen\Aula;
 
 class Asignatura extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','nombre','descripcion', 'curso', 'aula'];
+    protected $primaryKey = 'asignatura_id';
+    protected $fillable = ['nombre','descripcion', 'curso', 'aula'];
 
     public function curso() {
-    	return $this->hasOne(Curso::class, 'id');
+    	return $this->belongsTo(Curso::class);
     }
 
     public function aula() {
-    	return $this->hasOne(Aula::class, 'id');
+    	return $this->belongsTo(Aula::class);
     }
 }
