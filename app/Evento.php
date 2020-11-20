@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','nombre','descripcion'];
+    protected $primaryKey = 'evento_id';
+    protected $fillable = ['nombre','descripcion'];
 
 }
