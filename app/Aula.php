@@ -8,14 +8,14 @@ use pen\Eventos;
 
 class Aula extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','etiqueta','descripcion', 'disponibilidad'];
+    protected $primaryKey = 'aula_id';
+    protected $fillable = ['etiqueta','descripcion', 'disponibilidad'];
 
     public function asignatura() {
-    	return $this->hasMany(Asignaturas::class, 'id');
+    	return $this->hasMany(Asignaturas::class);
     }
 
     public function eventos() {
-    	return $this->hasMany(Evento::class, 'id');
+    	return $this->hasMany(Evento::class);
     }
 }
