@@ -7,10 +7,10 @@ use pen\departamento;
 
 class Profesor extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
+    protected $primaryKey = 'profesor_id';
+    protected $fillable = ['nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
 
     public function departamento() {
-    	return $this->hasOne(Departamento::class, 'id');
+    	return $this->hasOne(Departamento::class);
     }
 }
