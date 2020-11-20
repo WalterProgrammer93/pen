@@ -8,14 +8,14 @@ use pen\Asignatura;
 
 class Convalidacion extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','alumno','asignatura'];
+    protected $primaryKey = 'convalidacion_id';
+    protected $fillable = ['alumno','asignatura'];
 
     public function alumno() {
-    	return $this->hasMany(Alumno::class, 'id');
+    	return $this->hasMany(Alumno::class);
     }
 
     public function asignatura() {
-    	return $this->hasMany(Asignatura::class, 'id');
+    	return $this->hasMany(Asignatura::class);
     }
 }
