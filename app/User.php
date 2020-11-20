@@ -40,45 +40,35 @@ class User extends Authenticatable
     ];*/
 
     public function perfils() {
-      return $this->belongsTo(Perfil::class);
+      return $this->belongsToMany(Perfil::class)->withTimestamps();;
     }
 
-    public function administrador() {
+    public function authorizeRoles($roles) {
+      if ($this->hasAnyRole($roles)) {
+          return true;
+      }
+      abort(401, 'Esta acción no está autorizada.');
+    }
 
-        if ($this->perfil->rol == 'Administrador') {
-
-            return true;
+    public function hasAnyRole($roles) {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
         }
-
         return false;
     }
 
-    public function estudiante() {
-
-        if ($this->perfil->rol == 'Estudiante') {
+    public function hasRole($role) {
+        if ($this->roles()->where('perfil', $role)->first()) {
             return true;
         }
-
-        return false;
-    }
-
-    public function Profesor() {
-
-        if ($this->perfil->rol == 'Profesor') {
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public function Invitado() {
-
-        if ($this->perfil->rol == 'Invitado') {
-
-            return true;
-        }
-
         return false;
     }
 }
