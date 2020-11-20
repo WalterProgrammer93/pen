@@ -8,14 +8,14 @@ use pen\Evento;
 
 class Reserva extends Model
 {
-    protected $primaryKey = 'id';
-    protected $fillable = ['codigo','profesor','evento','descripcion','reservado'];
+    protected $primaryKey = 'reserva_id';
+    protected $fillable = ['profesor','evento','descripcion','reservado'];
 
     public function profesor() {
-    	return $this->hasMany(Profesor::class, 'id');
+    	return $this->hasMany(Profesor::class);
     }
 
     public function evento() {
-    	return $this->hasMany(Evento::class, 'id');
+    	return $this->hasMany(Evento::class);
     }
 }
