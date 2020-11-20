@@ -3,7 +3,7 @@
 namespace pen;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use pen\User;
 
 class Perfil extends Model
 {
