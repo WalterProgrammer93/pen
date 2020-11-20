@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Perfil;
+use pen\Perfil;
 
 class PerfilsTableSeeder extends Seeder
 {
