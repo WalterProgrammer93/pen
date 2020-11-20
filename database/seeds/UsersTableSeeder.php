@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       $role_admin = Perfil::where('perfil', 'admin')->first();
-      $role_student = Perfil::where('perfil', 'student')->first();
-      $role_teacher = Perfil::where('perfil', 'teacher')->first();
-      $role_user = Perfil::where('perfil', 'user')->first();
+      $role_student = Perfil::where('perfil', 'student');
+      $role_teacher = Perfil::where('perfil', 'teacher');
+      $role_user = Perfil::where('perfil', 'user');
 
       $user = new User();
       $user->nombre = 'Walter';
