@@ -14,11 +14,11 @@ class CreateConvalidacionesTable extends Migration
     public function up()
     {
         Schema::create('convalidaciones', function (Blueprint $table) {
-            $table->increments('convalidacion_id');
+            $table->increments('id');
             $table->integer('alumno_id')->unsigned();
             $table->integer('asignatura_id')->unsigned();
-            $table->foreign('alumno_id')->references('alumno_id')->on('alumnos');
-            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignaturas');
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->timestamps();
         });
     }
