@@ -56,5 +56,5 @@ class LoginController extends Controller
     	} else {
     		return back()->withErrors(['email' => trans('auth.failed')])->withInput(request(['email']));
     	}
-    }
+    }*/
 }
