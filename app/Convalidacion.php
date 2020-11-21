@@ -8,7 +8,7 @@ use pen\Asignatura;
 
 class Convalidacion extends Model
 {
-    protected $primaryKey = 'convalidacion_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['alumno','asignatura'];
 
     public function alumno() {
