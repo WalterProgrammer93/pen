@@ -8,7 +8,7 @@ use pen\Asignatura;
 
 class Asistencia extends Model
 {
-    protected $primaryKey = 'asistencia_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['numero_horas','curso','asignatura'];
 
     public function alumno() {
