@@ -8,7 +8,7 @@ use pen\Eventos;
 
 class Aula extends Model
 {
-    protected $primaryKey = 'aula_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['etiqueta','descripcion', 'disponibilidad'];
 
     public function asignatura() {
