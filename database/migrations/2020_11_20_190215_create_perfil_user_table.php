@@ -17,8 +17,8 @@ class CreatePerfilUserTable extends Migration
             $table->increments('id');
             $table->integer('perfil_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->foreign('perfil_id')->references('perfil_id')->on('perfils');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('perfil_id')->references('id')->on('perfils');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
