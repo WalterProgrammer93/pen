@@ -8,7 +8,7 @@ use pen\Aula;
 
 class Asignatura extends Model
 {
-    protected $primaryKey = 'asignatura_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['nombre','descripcion', 'curso', 'aula'];
 
     public function curso() {
