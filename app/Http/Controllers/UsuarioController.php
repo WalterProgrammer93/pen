@@ -45,7 +45,6 @@ class UsuarioController extends Controller
         $usuario->nombre = $request->nombre;
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request->password);
-        $usuario->perfil() = $request->perfil_id;
         $usuario->save();
         return redirect("/usuarios")->with('success', 'Información almacenada con éxito');
     }
