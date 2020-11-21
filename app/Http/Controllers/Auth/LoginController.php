@@ -45,7 +45,7 @@ class LoginController extends Controller
         ]);
     }
 
-    public function LoginUsuario() {
+    /*public function LoginUsuario() {
     	$credenciales = $this->validate(request(), [
     		'email' => 'email',
     		'password' => 'password',
