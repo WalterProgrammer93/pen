@@ -7,7 +7,7 @@ use pen\User;
 
 class Perfil extends Model
 {
-	protected $primaryKey = 'perfil_id';
+	protected $primaryKey = 'id';
 	protected $fillable = ['perfil', 'descripcion'];
 
 	public function users() {
