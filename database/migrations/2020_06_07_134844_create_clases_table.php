@@ -14,11 +14,11 @@ class CreateClasesTable extends Migration
     public function up()
     {
         Schema::create('clases', function (Blueprint $table) {
-            $table->increments('clase_id');
+            $table->increments('id');
             $table->integer('asignatura_id')->unsigned();
             $table->integer('profesor_id')->unsigned();
-            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignaturas');
-            $table->foreign('profesor_id')->references('profesor_id')->on('profesors');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+            $table->foreign('profesor_id')->references('id')->on('profesors');
             $table->string('horario',255);
             $table->timestamps();
         });
