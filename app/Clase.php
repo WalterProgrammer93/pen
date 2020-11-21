@@ -8,7 +8,7 @@ use pen\Profesor;
 
 class Clase extends Model
 {
-    protected $primaryKey = 'clase_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['asignatura','profesor', 'horario'];
 
     public function asignatura() {
