@@ -8,7 +8,7 @@ use pen\Asignatura;
 
 class Nota extends Model
 {
-    protected $primaryKey = 'nota_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['eva1','eva2','eva3','media','alumno','asignatura'];
 
     public function alumno() {
