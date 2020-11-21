@@ -8,7 +8,7 @@ use pen\Evento;
 
 class Reserva extends Model
 {
-    protected $primaryKey = 'reserva_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['profesor','evento','descripcion','reservado'];
 
     public function profesor() {
