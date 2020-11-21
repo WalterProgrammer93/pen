@@ -13,58 +13,7 @@
 */
 
 Route::get('/', function () {
-
     return view('auth.login');
-
-    /*$user = Auth::user();
-
-    if ($user->administrador()) {
-        return view('welcome');
-    } else {
-        return view('auth.login');
-    }
-
-    if ($user->estudiante()) {
-        echo 'eres estudiante';
-    } else {
-        return view('auth.login');
-    }
-
-    if ($user->profesor()) {
-        echo 'eres profesor';
-    } else {
-        return view('auth.login');
-    }
-
-    if ($user->invitado()) {
-        echo 'eres invitado';
-    } else {
-        return view('auth.login');
-    }
-
-    return view('auth.login');*/
-
-    /*if(!Auth::guest()) {
-
-        if(Auth::user()->perfil->rol == 'administrador') {
-
-            return view('home');
-        }
-        if(Auth::user()->perfil->rol == 'estudiante') {
-
-            return view('home_estudiante');
-        }
-        if(Auth::user()->perfil->rol == 'profesor') {
-
-            return view('home_profesor');
-        }
-        if(Auth::user()->perfil->rol == 'invitado') {
-
-            return view('home_invitado');
-        }
-
-    }else
-        return view('auth.login');*/
 });
 
 Auth::routes();
