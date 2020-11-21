@@ -14,12 +14,12 @@ class CreateAsistenciasTable extends Migration
     public function up()
     {
         Schema::create('asistencias', function (Blueprint $table) {
-            $table->increments('asistencia_id');
+            $table->increments('id');
             $table->integer('numero_horas')->lenght('2')->unsigned();
             $table->integer('alumno_id')->unsigned();
             $table->integer('asignatura_id')->unsigned();
-            $table->foreign('alumno_id')->references('alumno_id')->on('alumnos');
-            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignaturas');
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->timestamps();
         });
     }
