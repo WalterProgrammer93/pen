@@ -14,15 +14,15 @@ class CreateNotasTable extends Migration
     public function up()
     {
         Schema::create('notas', function (Blueprint $table) {
-            $table->increments('nota_id');
+            $table->increments('id');
             $table->integer('eva1')->length(2)->unsigned();
             $table->integer('eva2')->length(2)->unsigned();
             $table->integer('eva3')->length(2)->unsigned();
             $table->integer('media')->length(2)->unsigned();
             $table->integer('alumno_id')->unsigned();
             $table->integer('asignatura_id')->unsigned();
-            $table->foreign('alumno_id')->references('alumno_id')->on('alumnos');
-            $table->foreign('asignatura_id')->references('asignatura_id')->on('asignaturas');
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->timestamps();
         });
     }
