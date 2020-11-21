@@ -69,10 +69,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
-        $user->perfils()->attach(Perfil::where('perfil', 'admin')->first());
-        $user->perfils()->attach(Perfil::where('perfil', 'student'));
-        $user->perfils()->attach(Perfil::where('perfil', 'teacher'));
         $user->perfils()->attach(Perfil::where('perfil', 'user'));
         return $user;
     }
