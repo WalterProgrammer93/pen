@@ -34,7 +34,7 @@ class CreateAlumnosTable extends Migration
             $table->string('repite',2);
             $table->string('foto',255);
             $table->integer('curso_id')->unsigned();
-            $table->foreign('curso_id')->references('curso_id')->on('cursos');
+            $table->foreign('curso_id')->references('id')->on('cursos');
             $table->timestamps();
         });
     }
