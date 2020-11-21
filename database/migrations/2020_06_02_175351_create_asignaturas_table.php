@@ -14,13 +14,13 @@ class CreateAsignaturasTable extends Migration
     public function up()
     {
         Schema::create('asignaturas', function (Blueprint $table) {
-            $table->increments('asignatura_id');
+            $table->increments('id');
             $table->string('nombre',100)->unique();
             $table->string('descripcion',255)->nullable();
             $table->integer('curso_id')->unsigned();
             $table->integer('aula_id')->unsigned();
-            $table->foreign('curso_id')->references('curso_id')->on('cursos');
-            $table->foreign('aula_id')->references('aula_id')->on('aulas');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('aula_id')->references('id')->on('aulas');
             $table->timestamps();
         });
     }
