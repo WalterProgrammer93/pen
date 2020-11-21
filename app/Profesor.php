@@ -7,7 +7,7 @@ use pen\departamento;
 
 class Profesor extends Model
 {
-    protected $primaryKey = 'profesor_id';
+    protected $primaryKey = 'id';
     protected $fillable = ['nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
 
     public function departamento() {
