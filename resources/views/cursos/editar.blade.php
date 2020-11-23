@@ -22,13 +22,13 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ url('cursos') }}">Cursos</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Editar</li>
-            </ol>
-          </nav>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('cursos') }}">Cursos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar</li>
+              </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Modificar Curso</div>
                 <div class="card-body">
