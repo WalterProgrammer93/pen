@@ -46,6 +46,7 @@
                     <form method="POST" action="{{ route('clases/editar', $clase->id, $asignaturas, $profesores) }}" >
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="PATCH">
+                        @include('clases.index')
                     </form>
                 </div>
             </div>
