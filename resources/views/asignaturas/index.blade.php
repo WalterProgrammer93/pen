@@ -17,21 +17,6 @@
                       @if ( !empty ($asignatura->id) )
 
                         <div class="form-group row">
-                            <label for="codigo" class="col-md-4 col-form-label text-md-right">Codigo</label>
-
-                            <div class="col-md-6">
-                                <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror" name="codigo" value="{{ $asignatura->codigo }}" required autocomplete="codigo" autofocus>
-
-                                @error('codigo')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                             <div class="col-md-6">
@@ -99,21 +84,6 @@
                         </div>
 
                       @else
-
-                          <div class="form-group row">
-                              <label for="codigo" class="col-md-4 col-form-label text-md-right">Codigo</label>
-
-                              <div class="col-md-6">
-                                  <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror" name="codigo" value="{{ old('codigo') }}" required autocomplete="codigo" autofocus>
-
-                                  @error('codigo')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-
-                              </div>
-                          </div>
 
                           <div class="form-group row">
                               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
