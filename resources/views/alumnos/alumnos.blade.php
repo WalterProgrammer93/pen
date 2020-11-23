@@ -53,7 +53,6 @@
                         @foreach($alumnos as $alumno)
 
                             <tr>
-                                <td class="v-align-middle">{{ $alumno->codigo }}</td>
                                 <td class="v-align-middle">{{ $alumno->nombre_alumno }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido1 }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido2 }}</td>
