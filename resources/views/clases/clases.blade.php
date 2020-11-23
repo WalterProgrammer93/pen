@@ -22,29 +22,28 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Clases</li>
+             </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Clases</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <table class="table table-striped">
-
                         <tr>
-                            
-                            <th>Codigo</th>
                             <th>Asignatura</th>
                             <th>Profesor</th>
                             <th>Horario</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($clases as $clase)
-
                             <tr>
                                 <td>{{ $clase->codigo }}</td>
                                 <td>{{ $clase->asignatura }}</td>
@@ -61,11 +60,8 @@
                             </tr>
                         @endforeach
                     </table>
-
                     <form action="{{ url('añadirClase') }}" method="POST">
-
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
