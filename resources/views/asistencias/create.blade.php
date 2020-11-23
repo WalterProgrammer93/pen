@@ -14,12 +14,18 @@
             <div class="card">
                 <div class="card-header">Crear Asistencia</div>
                 <div class="card-body">
-                    @if (session('status'))
+                    <!--@if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-                    <form method="POST" action="{{ url('altaAsistencia', $alumnos, $asignaturas) }}">
+                    @endif-->
+
+                    <!-- Obtengo la sesión actual del usuario -->
+                    {{ $message=Session::get('message') }}
+
+                    <!-- Muestro el mensaje de validación -->
+                    @include('alerts.request')
+                    <form method="POST" action="{{ route('asistencias/store') }}">
                         @csrf
                         @include(asistencias.index)
                     </form>
