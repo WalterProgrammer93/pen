@@ -30,16 +30,13 @@
             </nav>
             <div class="card">
                 <div class="card-header">Asignaturas</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <table class="table table-striped table-bordered table-hover">
-
                         <tr>
                             <th>Nombre</th>
                             <th>Descripcion</th>
@@ -47,9 +44,7 @@
                             <th>Aula</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($asignaturas as $asignatura)
-
                             <tr>
                                 <td class="v-align-middle">{{ $asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $asignatura->descripcion }}</td>
@@ -57,20 +52,15 @@
                                 <td class="v-align-middle">{{ $asignatura->aula }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('asignaturas/eliminar', $asignatura->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <a href="{{ route('asignaturas/actualizar', $asignatura->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
-
                                   </form>
                                 </td>
                             </tr>
-
                         @endforeach
-
                     </table>
-
                     <form action="{{ route('asignaturas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
