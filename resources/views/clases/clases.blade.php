@@ -36,7 +36,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Asignatura</th>
                             <th>Profesor</th>
@@ -45,22 +45,21 @@
                         </tr>
                         @foreach($clases as $clase)
                             <tr>
-                                <td>{{ $clase->codigo }}</td>
-                                <td>{{ $clase->asignatura }}</td>
-                                <td>{{ $clase->profesor }}</td>
-                                <td>{{ $clase->horario }}</td>
-                                <td><a href="{{ action('ClaseController@edit', $clase['id']) }}" class="btn btn-success">Modificar</a></td>
-                                <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('ClaseController@destroy', $clase->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                <td class="v-align-middle">{{ $clase->asignatura }}</td>
+                                <td class="v-align-middle">{{ $clase->profesor }}</td>
+                                <td class="v-align-middle">{{ $clase->horario }}</td>
+                                <td class="v-align-middle">
+                                  <form action="{{ route('clases/eliminar', $clase->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('clases/actualizar', $clase->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-                    <form action="{{ url('añadirClase') }}" method="POST">
+                    <form action="{{ route('clases/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
