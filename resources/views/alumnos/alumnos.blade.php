@@ -30,16 +30,13 @@
             </nav>
             <div class="card">
                 <div class="card-header">Alumnos</div>
-
                 <div class="card-body">
                     @if (Session::has('message'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('message') }}
                         </div>
                     @endif
-
                     <table class="table table-striped table-bordered table-hover">
-
                         <tr>
                             <th>Nombre</th>
                             <th>Apellido1</th>
@@ -49,9 +46,7 @@
                             <th>Curso</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($alumnos as $alumno)
-
                             <tr>
                                 <td class="v-align-middle">{{ $alumno->nombre_alumno }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido1 }}</td>
@@ -61,22 +56,17 @@
                                 <td class="v-align-middle">{{ $alumno->cursos }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
-
                                   </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-
                     <form action="{{ route('alumnos/crear') }}" method="POST">
-
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
@@ -91,12 +81,9 @@
                 </div>
             </div>
         </div>
-
         <!-- Bootstrap JS -->
         <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-
         <script type="text/javascript">
-
              function confirmarEliminar()
              {
              var x = confirm("Estas seguro de Eliminar?");
@@ -105,11 +92,7 @@
              else
                return false;
              }
-
         </script>
     </div>
-
-
-
 </div>
 @endsection
