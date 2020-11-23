@@ -22,50 +22,46 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Eventos</li>
+             </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Eventos</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table class="table-responsive">
-
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            
-                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Disponibilidad</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($eventos as $evento)
-
                             <tr>
-                                <td>{{ $evento->codigo }}</td>
-                                <td>{{ $evento->nombre }}</td>
-                                <td>{{ $evento->descripcion }}</td>
-                                <td>{{ $evento->disponibilidad }}</td>
-                                <td><a href="{{ action('EventoController@edit', $evento['id']) }}" class="btn btn-success">Modificar</a></td>
+                                <td class="v-align-middle">{{ $evento->codigo }}</td>
+                                <td class="v-align-middle">{{ $evento->nombre }}</td>
+                                <td class="v-align-middle">{{ $evento->descripcion }}</td>
+                                <td class="v-align-middle">{{ $evento->disponibilidad }}</td>
                                 <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('EventoController@destroy', $evento->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                  <form action="{{ route('eventos/eliminar', $evento->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('eventos/actualizar', $evento->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-
-                    <form action="{{ url('añadirEvento') }}" method="POST">
-
+                    <form action="{{ route('eventos/crear') }}" method="POST">
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
