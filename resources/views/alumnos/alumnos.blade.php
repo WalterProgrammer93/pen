@@ -41,7 +41,6 @@
                     <table class="table table-striped table-bordered table-hover">
 
                         <tr>
-                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Apellido1</th>
                             <th>Apellido2</th>
