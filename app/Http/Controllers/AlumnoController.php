@@ -68,6 +68,7 @@ class AlumnoController extends Controller
         $alumnos->letra = $request->letra;
         $alumnos->repite = $request->repite;
         $alumnos->foto = $request->file('foto')->storage('/');
+        // ME DA UN ERROR
         $alumnos->curso() = $request->cursos;
         $alumnos->save();
         return redirect("/alumnos")->with('message', 'Información almacenada con éxito');
