@@ -22,29 +22,29 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('cursos') }}">Cursos</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Editar</li>
+            </ol>
+          </nav>
             <div class="card">
                 <div class="card-header">Modificar Curso</div>
-
                 <div class="card-body">
-                    @if (session('status'))
+                    <!--@if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-
+                    @endif-->
                     <!-- Obtengo la sesión actual del usuario -->
                     {{ $message=Session::get('message') }}
-
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-
-                    <form method="POST" action="{{ route('cursos'/update', $curso->id) }}" role="form">
-
-                      <input type="hidden" name="_method" value="PUT">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                      @include('cursos.index')
-
+                    <form method="POST" action="{{ route('cursos/update', $curso->id) }}" role="form">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @include('cursos.index')
                     </form>
                 </div>
             </div>
