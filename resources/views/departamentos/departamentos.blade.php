@@ -22,51 +22,45 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Departamentos</li>
+             </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Departamentos</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table class="table table-striped">
-
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Estado</th>
-                            <th colspan="2">Acción</th>           
+                            <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($departamentos as $departamento)
-
                             <tr>
-
-                                <td>{{ $departamento->codigo }}</td>
-                                <td>{{ $departamento->nombre }}</td>
-                                <td>{{ $departamento->descripcion }}</td>
-                                <td>{{ $departamento->estado }}</td>
-                                <td><a href="{{ action('DepartamentoController@edit', $departamento['id']) }}" class="btn btn-success">Modificar</a></td>
-
-                                <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('DepartamentoController@destroy', $departamento->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                <td class="v-align-middle">{{ $departamento->nombre }}</td>
+                                <td class="v-align-middle">{{ $departamento->descripcion }}</td>
+                                <td class="v-align-middle">{{ $departamento->estado }}</td>
+                                <td class="v-align-middle">
+                                  <form action="{{ route('departamentos/eliminar', $departamento->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-
-                    <form method="POST" action="{{ url('añadirDepartamento') }}" >
-
+                    <form method="POST" action="{{ route('departamentos/crear') }}" >
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
