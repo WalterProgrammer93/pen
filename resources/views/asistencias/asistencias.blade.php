@@ -37,21 +37,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <table class="table table-striped table-bordered table-hover">
-
                         <tr>
-                            <th>Codigo</th>
                             <th>Numero horas</th>
                             <th>Alumno</th>
                             <th>Asignatura</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($asistencias as $asistencia)
-
                             <tr>
-                                <td>{{ $asistencia->codigo }}</td>
                                 <td>{{ $asistencia->numero_horas }}</td>
                                 <td>{{ $asistencia->alumno }}</td>
                                 <td>{{ $asistencia->asignatura }}</td>
@@ -66,11 +60,8 @@
                             </tr>
                         @endforeach
                     </table>
-
                     <form action="{{ url('añadirAsistencia') }}" method="POST">
-
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
