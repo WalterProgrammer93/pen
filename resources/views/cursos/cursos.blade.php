@@ -36,7 +36,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Nombre</th>
                             <th>Descripcion</th>
