@@ -21,50 +21,44 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-25">
+        <div class="col-md-20">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Cursos</li>
+             </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Cursos</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <table class="table table-striped">
-
                         <tr>
-                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($cursos as $curso)
-
                             <tr>
-                                <td class="v-align-middle">{{ $curso->codigo }}</td>
                                 <td class="v-align-middle">{{ $curso->nombre }}</td>
                                 <td class="v-align-middle">{{ $curso->descripcion }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('cursos/eliminar', $curso->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <a href="{{ route('cursos/actualizar', $curso->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
-
                                   </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-
                     <form  method="POST" action="{{ route('cursos/crear') }}">
-
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
