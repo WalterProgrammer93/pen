@@ -14,6 +14,7 @@
                     @endif
 
                     @if(Auth::check())
+
                       @if(Auth::user()->hasRole('admin'))
                           <p><a href="{{ url('alumnos')}}" class="alumnos"><img src="https://img.icons8.com/material/30/000000/scroll.png" alt="alumnos">&nbsp; Alumnos</a></p>
                           <p><a href="{{ url('cursos') }}" class="cursos"><img src="https://img.icons8.com/ios-glyphs/30/000000/graduation-cap--v1.png" alt="cursos">&nbsp; Cursos</a></p>
