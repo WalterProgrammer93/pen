@@ -41,7 +41,6 @@
                     <table class="table table-striped table-bordered table-hover">
 
                         <tr>
-                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Curso</th>
