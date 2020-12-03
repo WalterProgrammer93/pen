@@ -15,13 +15,13 @@ class CreateProfesorsTable extends Migration
     {
         Schema::create('profesors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',100);
-            $table->string('apellido1',100);
-            $table->string('apellido2',100)->nullable();
+            $table->string('nombre',10);
+            $table->string('apellido1',10);
+            $table->string('apellido2',10)->nullable();
             $table->char('dni',9)->unique();
-            $table->string('email',100)->unique();
+            $table->string('email',50)->unique();
             $table->char('telefono',9)->unique();
-            $table->string('disponibilidad',100);
+            $table->string('disponibilidad',13);
             $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->timestamps();

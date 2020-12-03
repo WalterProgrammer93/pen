@@ -17,7 +17,7 @@ class CreateAulasTable extends Migration
             $table->increments('id');
             $table->char('etiqueta',3)->unique();
             $table->string('descripcion',100)->nullable();
-            $table->string('disponibilidad',100);
+            $table->string('disponibilidad',13);
             $table->timestamps();
         });
     }
