@@ -3,8 +3,8 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use pen\Curso;
+use Session;
 
 class CursoController extends Controller
 {
@@ -15,9 +15,25 @@ class CursoController extends Controller
      */
     protected $redirectTo = '/cursos';
 
-    public function index()
+    public function index(Request $request)
     {
         $cursos = Curso::all();
+        $resp_nombre = $request->nombre;
+        $cont_cursos = count([Curso::all()]);
+        try {
+          foreach($cursos as $cursos){
+            if ($cursos->nombre == $request->nombre){
+
+              Session::flash('info', 'Se encontraron'.' '.$cont_cursos.' '.'registros insertados.');
+              return view('cursos.cursos')->with('nombre', $cursos)->with('',$resp_nombre);
+
+            }
+          }
+        } catch (\Illuminate\Database\QueryException $e) {
+           // ESTA VEZ SE DEJARÁ EL CATCH VACÍO PORQUE NO MUESTRA EL ERROR
+           // QUE DEBE MOSTRAR PARA LOS CASOS QUE LA BÚSQUEDA NO COINCIDA
+          }
+        Session::flash('error', 'Lo sentimos. Su búsqueda no coincide con nuestros registros');
         return view("cursos.cursos", compact("cursos"));
     }
 
@@ -40,7 +56,6 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $cursos = new Curso;
-        $cursos->codigo = $request->codigo;
         $cursos->nombre = $request->nombre;
         $cursos->descripcion = $request->descripcion;
         $cursos->save();
