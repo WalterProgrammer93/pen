@@ -49,7 +49,7 @@
                                 <td class="v-align-middle">{{ $evento->nombre }}</td>
                                 <td class="v-align-middle">{{ $evento->descripcion }}</td>
                                 <td class="v-align-middle">{{ $evento->disponibilidad }}</td>
-                                <td>
+                                <td class="v-align-middle">
                                   <form action="{{ route('eventos/eliminar', $evento->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
