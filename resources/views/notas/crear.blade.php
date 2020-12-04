@@ -4,22 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ url('notas') }}">Notas</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Crear</li>
-            </ol>
-          </nav>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('notas') }}">Notas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear</li>
+              </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Crear Nota</div>
                 <div class="card-body">
-                    <!--@if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif-->
-
                     <!-- Obtengo la sesión actual del usuario -->
                     {{ $message=Session::get('message') }}
                     <!-- Muestro el mensaje de validación -->
