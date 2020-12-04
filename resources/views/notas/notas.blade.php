@@ -22,20 +22,22 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Notas</li>
+             </ol>
+            </nav>
             <div class="card">
                 <div class="card-header">Notas</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table class="table table-striped">
-
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Codigo</th>
                             <th>EVA1</th>
                             <th>EVA2</th>
                             <th>EVA3</th>
@@ -44,33 +46,27 @@
                             <th>Asignatura</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($notas as $nota)
-
                             <tr>
-                                <td>{{ $nota->codigo }}</td>
-                                <td>{{ $nota->eva1 }}</td>
-                                <td>{{ $nota->eva2 }}</td>
-                                <td>{{ $nota->eva3 }}</td>
-                                <td>{{ $nota->media }}</td>
-                                <td>{{ $nota->alumno }}</td>
-                                <td>{{ $nota->asignatura }}</td>
-                                <td><a href="{{ action('NotaController@edit', $nota['id']) }}" class="btn btn-success">Modificar</a></td>
-                                <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('NotaController@destroy', $nota->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                <td class="v-align-middle">{{ $nota->eva1 }}</td>
+                                <td class="v-align-middle">{{ $nota->eva2 }}</td>
+                                <td class="v-align-middle">{{ $nota->eva3 }}</td>
+                                <td class="v-align-middle">{{ $nota->media }}</td>
+                                <td class="v-align-middle">{{ $nota->alumno }}</td>
+                                <td class="v-align-middle">{{ $nota->asignatura }}</td>
+                                <td class="v-align-middle">
+                                  <form action="{{ route('notas/eliminar', $nota->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('notas/actualizar', $nota->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
-
-                    <form action="{{ url('añadirNota') }}" method="POST">
-
+                    <form action="{{ route('notas/crear') }}" method="POST">
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
