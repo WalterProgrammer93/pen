@@ -622,16 +622,16 @@ Route::get('perfiles/actualizar/{id}', [
     'before' => 'crsf',
     'uses' => 'PerfilController@actualizar'])->name('perfiles/actualizar');
 
-Route::put('prefiles/update/{id}', [
+Route::put('perfiles/update/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'PerfilController@update'])->name('prefiles/update');
+    'uses' => 'PerfilController@update'])->name('perfiles/update');
 
 /* Eliminar */
-Route::put('prefiles/eliminar/{id}', [
+Route::put('perfiles/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'PerfilController@eliminar'])->name('prefiles/eliminar');
+    'uses' => 'PerfilController@eliminar'])->name('perfiles/eliminar');
 
 /* Buscar */
 Route::post('perfiles/buscar/{nombre}', [
