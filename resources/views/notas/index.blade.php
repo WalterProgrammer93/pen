@@ -181,7 +181,7 @@
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-success">Añadir</button>
-                              <a href="{{ route('cursos') }}" class="btn btn-primary">Cancelar</a>
+                              <a href="{{ route('notas') }}" class="btn btn-primary">Cancelar</a>
                           </div>
                       </div>
                   </div>
