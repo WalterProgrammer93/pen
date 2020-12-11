@@ -63,12 +63,11 @@
                 margin-bottom: 100%;
                 margin-left: -50%;
             }
-            .
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
+
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -95,7 +94,7 @@
                                 @endif
 
                                 @yield('contenedor-nav-top')
-                    
+
                             </div>
                         </div>
                     </div>
@@ -116,7 +115,7 @@
                                             @endif
 
                                             @yield('contenedor-nav-left')
-                        
+
                                         </div>
                                     </div>
                                 </div>
