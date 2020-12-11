@@ -69,7 +69,7 @@ class AlumnoController extends Controller
         $alumnos->repite = $request->repite;
         $alumnos->foto = $request->file('foto')->storage('/');
         // ME DA UN ERROR
-        $alumnos->curso() = $request->cursos;
+        $alumnos->curso()->associate($alumnos);
         $alumnos->save();
         return redirect("/alumnos")->with('message', 'Información almacenada con éxito');
     }
