@@ -59,7 +59,8 @@
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
-                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                      @include('alerts.dialogos')
                                   </form>
                                 </td>
                             </tr>
