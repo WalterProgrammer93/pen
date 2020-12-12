@@ -34,9 +34,9 @@
                     {{ $message=Session::get('message') }}
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('profesores/update', $profesor->id, $departamento->id) }}">
+                    <form method="POST" action="{{ route('profesores/update', $profesor->id) }}">
                         <input type="hidden" name="_method" value="PATCH">
-                        <input type="hidden" name="_method" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('profesores.index')
                     </form>
                 </div>
