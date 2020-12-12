@@ -18,8 +18,7 @@
                     {{ $message=Session::get('message') }}
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('reservas/store', $profesor->id, $evento->id)}}" >
-                        @csrf
+                    <form method="POST" action="{{ route('reservas/store', $profesor->id, $evento->id)}}">
                         <input type="hidden" method="_method" value="PUT">
                         <input type="hidden" method="_token" value="{{ csrf_token() }}">
                         @include('reservas.index')
