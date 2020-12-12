@@ -22,55 +22,39 @@
         <div class="col-md-20">
             <div class="card">
                 <div class="card-header">Reservas</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table class="table table-striped">
-
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Nombre Profesor</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Etiqueta Aula</th>
                             <th>Descripcion</th>
                             <th>Reservado</th>
+                            <th>Profesor</th>
+                            <th>Evento</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($reservas as $reserva)
-
                             <tr>
-
-                                <td>{{ $reserva->nombre_profesor }}</td>
-                                <td>{{ $reserva->apellido1_profesor }}</td>
-                                <td>{{ $reserva->apellido2_profesor }}</td>
-                                <td>{{ $reserva->etiqueta_aula }}</td>
-                                <td>{{ $reserva->descripcion }}</td>
-                                <td>{{ $reserva->reservado }}</td>
-                                <td><a href="{{ action('ReservaController@edit', $reserva['id']) }}" class="btn btn-success">Modificar</a></td>
-                                <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('ReservaController@destroy', $reserva->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                <td class="v-align-middle">{{ $reserva->descripcion }}</td>
+                                <td class="v-align-middle">{{ $reserva->reservado }}</td>
+                                <td class="v-align-middle">{{ $reserva->profesor }}</td>
+                                <td class="v-align-middle">{{ $reserva->evento }}</td>
+                                <td class="v-align-middle">
+                                  <form action="{{ route('reservas/eliminar', $reserva->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('reservas/actualizar', $reserva->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
-
                             </tr>
-
                         @endforeach
-
                     </table>
-
-                    <form action="{{ url('añadirReserva') }}" method="POST">
-
+                    <form action="{{ route('reservas/crear') }}" method="POST">
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
