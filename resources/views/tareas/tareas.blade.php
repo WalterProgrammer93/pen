@@ -22,18 +22,14 @@
         <div class="col-md-20">
             <div class="card">
                 <div class="card-header">Tareas</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <table class="table-responsive">
-
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Codigo</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
                             <th>Autor</th>
@@ -46,40 +42,32 @@
                             <th>Tema</th>
                             <th colspan="2">Acción</th>
                         </tr>
-
                         @foreach($tareas as $tarea)
-
                             <tr>
-                                <td>{{ $tarea->codigo }}</td>
-                                <td>{{ $tarea->titulo }}</td>
-                                <td>{{ $tarea->descripcion }}</td>
-                                <td>{{ $tarea->autor }}</td>
-                                <td>{{ $tarea->fecha_envio }}</td>
-                                <td>{{ $tarea->fecha_entrega }}</td>
-                                <td>{{ $tarea->hora_entrega }}</td>
-                                <td>{{ $tarea->archivo_tarea }}</td>
-                                <td>{{ $tarea->calificacion }}</td>
-                                <td>{{ $tarea->asignatura }}</td>
-                                <td>{{ $tarea->tema }}</td>
-                                <td><a href="{{ action('TareaController@edit', $tarea['id']) }}" class="btn btn-success">Modificar</a></td>
-                                <td>
-                                    <form  onsubmit="return confirm('Do you really want to delete?');" action="{{action('TareaController@destroy', $tarea->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                                     </form>
+                                <td class="v-align-middle">{{ $tarea->titulo }}</td>
+                                <td class="v-align-middle">{{ $tarea->descripcion }}</td>
+                                <td class="v-align-middle">{{ $tarea->autor }}</td>
+                                <td class="v-align-middle">{{ $tarea->fecha_envio }}</td>
+                                <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
+                                <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
+                                <td class="v-align-middle">{{ $tarea->archivo_tarea }}</td>
+                                <td class="v-align-middle">{{ $tarea->calificacion }}</td>
+                                <td class="v-align-middle">{{ $tarea->asignatura }}</td>
+                                <td class="v-align-middle">{{ $tarea->tema }}</td>
+                                <td class="v-align-middle">
+                                  <form action="{{ route('tareas/eliminar', $tarea->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <a href="{{ route('tareas/actualizar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
+                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
                                 </td>
 
                             </tr>
-
                         @endforeach
-
                     </table>
-
-                    <form action="{{ url('añadirTarea') }}" method="POST">
-
+                    <form action="{{ route('tareas/crear') }}" method="POST">
                         @csrf
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
                                 <button type="submit" class="btn btn-success">
