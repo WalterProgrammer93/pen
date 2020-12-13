@@ -30,7 +30,7 @@ class ProfesorController extends Controller
     public function create()
     {
         $departamento = Departamento::pluck('nombre', 'id');
-        return view("profesores.añadirprofesor", compact("departamento"));
+        return view("profesores.crear", compact("departamento"));
     }
 
     /**
@@ -42,7 +42,6 @@ class ProfesorController extends Controller
     public function store(Request $request)
     {
         $profesor = new Profesor;
-        $profesor->codigo = $request->codigo;
         $profesor->nombre = $request->nombre;
         $profesor->apellido1 = $request->apellido1;
         $profesor->apellido2 = $request->apellido2;
@@ -50,7 +49,7 @@ class ProfesorController extends Controller
         $profesor->email = $request->email;
         $profesor->telefono = $request->telefono;
         $profesor->disponibilidad = $request->disponibilidad;
-        $profesor->departamento_id = $request->departamento_id;
+        $profesor->departamentos()->associate($profesor);
         $profesor->save();
         return redirect("/profesores")->with('success', 'Información almacenada con éxito');
     }
