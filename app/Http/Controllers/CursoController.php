@@ -39,10 +39,10 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        $cursos = new Curso;
-        $cursos->nombre = $request->nombre;
-        $cursos->descripcion = $request->descripcion;
-        $cursos->save();
+        $curso = new Curso;
+        $curso->nombre = $request->nombre;
+        $curso->descripcion = $request->descripcion;
+        $curso->save();
         return redirect("/cursos")->with('success', 'Información almacenada con éxito');;
     }
 
