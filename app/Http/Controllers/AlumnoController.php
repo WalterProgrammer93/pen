@@ -49,7 +49,6 @@ class AlumnoController extends Controller
     public function store(ItemCreateRequest $request)
     {
         $alumnos = new Alumno;
-        $alumnos->codigo = $request->codigo;
         $alumnos->nombre = $request->nombre;
         $alumnos->apellido1 = $request->apellido1;
         $alumnos->apellido2 = $request->apellido2;
