@@ -7,12 +7,12 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ url('profesores') }}">Profesores</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('tareas') }}">Tareas</a></li>
               <li class="breadcrumb-item active" aria-current="page">Crear</li>
             </ol>
           </nav>
           <div class="card">
-              <div class="card-header">Crear Curso</div>
+              <div class="card-header">Crear Tarea</div>
                 <div class="card-body">
                     @if (Session('status'))
                         <div class="alert alert-success" role="alert">
