@@ -43,7 +43,7 @@ class CursoController extends Controller
         $curso->nombre = $request->nombre;
         $curso->descripcion = $request->descripcion;
         $curso->save();
-        return redirect("/cursos")->with('success', 'Información almacenada con éxito');;
+        return redirect("cursos.cursos")->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -67,7 +67,7 @@ class CursoController extends Controller
     public function edit($id)
     {
       $cursos = Curso::find($id);
-      return view("cursos.edit", ['cursos' => $cursos]);
+      return view("cursos.editar", ['cursos' => $cursos]);
     }
 
     // Actualizar un registro (Update)
@@ -88,7 +88,7 @@ class CursoController extends Controller
         $cursos = Curso::findOrFail($id);
         $cursos->update($request->all());
         $cursos->save();
-        return redirect("/cursos")->with('success', 'Información actualizada con éxito');
+        return redirect("cursos")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -101,7 +101,7 @@ class CursoController extends Controller
     {
         $cursos = Curso::findOrFail($id);
         $cursos->delete();
-        return redirect("/cursos")->with('success', 'Información eliminada con éxito');
+        return redirect("cursos")->with('success', 'Información eliminada con éxito');
     }
 
     public function buscar(Request $request) {
