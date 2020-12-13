@@ -14,11 +14,6 @@
             <div class="card">
                 <div class="card-header">Crear Curso</div>
                 <div class="card-body">
-                    <!--@if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif-->
                     <!-- Obtengo la sesión actual del usuario -->
                     {{ $message=Session::get('message') }}
                     <!-- Muestro el mensaje de validación -->
