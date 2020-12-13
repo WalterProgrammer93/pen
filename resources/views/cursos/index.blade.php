@@ -42,6 +42,12 @@
                                   @enderror
                               </div>
                           </div>
+                          <div class="form-group row mb-0">
+                              <div class="col-md-6 offset-md-4">
+                                  <button type="submit" class="btn btn-success">Actualizar</button>
+                                  <a href="{{ route('cursos') }}" class="btn btn-primary">Cancelar</a>
+                              </div>
+                          </div>
                       @else
                           <div class="form-group row">
                               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
@@ -65,13 +71,13 @@
                                   @enderror
                               </div>
                           </div>
-                      @endif
-                      <div class="form-group row mb-0">
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-success">Añadir</button>
-                              <a href="{{ route('cursos') }}" class="btn btn-primary">Cancelar</a>
+                          <div class="form-group row mb-0">
+                              <div class="col-md-6 offset-md-4">
+                                  <button type="submit" class="btn btn-success">Añadir</button>
+                                  <a href="{{ route('cursos') }}" class="btn btn-primary">Cancelar</a>
+                              </div>
                           </div>
-                      </div>
+                      @endif
                   </div>
               </div>
           </div>
