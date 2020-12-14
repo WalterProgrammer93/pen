@@ -4,7 +4,6 @@ namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
 use pen\Curso;
-use Session;
 
 class CursoController extends Controller
 {
@@ -39,11 +38,11 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        $curso = new Curso;
-        $curso->nombre = $request->nombre;
-        $curso->descripcion = $request->descripcion;
-        $curso->save();
-        return redirect("cursos.cursos")->with('success', 'Información almacenada con éxito');
+        $cursos = new Curso;
+        $cursos->nombre = $request->nombre;
+        $cursos->descripcion = $request->descripcion;
+        $cursos->save();
+        return redirect('cursos')->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -73,7 +72,7 @@ class CursoController extends Controller
     // Actualizar un registro (Update)
 	   public function actualizar($id) {
 		    $cursos = Curso::find($id);
-		    return view('cursos.actualizar', ['cursos' => $cursos]);
+		    return view('cursos.editar', ['cursos' => $cursos]);
 	   }
 
     /**
