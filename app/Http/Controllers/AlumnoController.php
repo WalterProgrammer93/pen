@@ -3,14 +3,10 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
-use Redirect;
 use App\Http\Requests\ItemCreateRequest;
 use App\Http\Requests\ItemUpdateRequest;
 use Illuminate\Support\Facades\Validator;
-use DB;
-use Input;
-use Storage;
+use Illuminate\Support\Storage;
 use pen\Alumno;
 use pen\Curso;
 
@@ -67,10 +63,9 @@ class AlumnoController extends Controller
         $alumnos->letra = $request->letra;
         $alumnos->repite = $request->repite;
         $alumnos->foto = $request->file('foto')->storage('/');
-        // ME DA UN ERROR
         $alumnos->curso()->associate($alumnos);
         $alumnos->save();
-        return redirect("/alumnos")->with('message', 'Información almacenada con éxito');
+        return redirect("alumnos")->with('message', 'Información almacenada con éxito');
     }
 
     /**
@@ -88,7 +83,7 @@ class AlumnoController extends Controller
     // Actualizar un registro (Update)
 	   public function actualizar($id) {
 		    $alumnos = Alumno::find($id);
-		    return view('alumnos.actualizar', ['alumnos' => $alumnos]);
+		    return view('alumnos.editar', ['alumnos' => $alumnos]);
 	   }
 
     /**
@@ -100,7 +95,7 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumnos = Alumno::find($id);
-        return view("alumnos.edit", ['alumnos' => $alumnos]);
+        return view("alumnos.editar", ['alumnos' => $alumnos]);
     }
 
     /**
@@ -113,8 +108,6 @@ class AlumnoController extends Controller
     public function update(ItemUpdateRequest $request, $id)
     {
         $alumnos = Alumno::find($id);
-        $cursos = Curso::find($id);
-        $alumnos->codigo = $request->codigo;
         $alumnos->nombre = $request->nombre;
         $alumnos->apellido1 = $request->apellido1;
         $alumnos->apellido2 = $request->apellido2;
@@ -135,11 +128,9 @@ class AlumnoController extends Controller
         if ($request->hasFile('foto')) {
           $alumnos->foto = $request->file('foto')->storage('/');
         }
-        $alumnos->curso()->$request($cursos);
+        $alumnos->curso()->associate($alumnos);
         $alumnos->save();
-        Session::flash('message', 'Editado Satisfactoriamente !');
-        return Redirect::to('/alumnos');
-        //return redirect("/alumnos")->with('message', 'Información actualizada con éxito');
+        return redirect("alumnos")->with('message', 'Información actualizada con éxito');
     }
 
     /**
@@ -154,9 +145,7 @@ class AlumnoController extends Controller
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
-        Session::flash('message', 'Eliminado Satisfactoriamente');
-        return Redirect::to('/alumnos');
-        //return redirect("/alumnos")->with('success','Información eliminada con éxito');
+        return redirect("alumnos")->with('success','Información eliminada con éxito');
     }
 
     public function buscar(Request $request) {
