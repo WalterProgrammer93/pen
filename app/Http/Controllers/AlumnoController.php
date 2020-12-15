@@ -3,10 +3,8 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ItemCreateRequest;
-use App\Http\Requests\ItemUpdateRequest;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Storage;
+use Storage;
 use pen\Alumno;
 use pen\Curso;
 
@@ -42,7 +40,7 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ItemCreateRequest $request)
+    public function store(Request $request)
     {
         $alumnos = new Alumno;
         $alumnos->nombre = $request->nombre;
@@ -62,8 +60,12 @@ class AlumnoController extends Controller
         $alumnos->piso = $request->piso;
         $alumnos->letra = $request->letra;
         $alumnos->repite = $request->repite;
-        $alumnos->foto = $request->file('foto')->storage('/');
-        $alumnos->curso()->associate($alumnos);
+        if($request->file('foto')){
+          $path = Storage::disk('local')->put('fotos', $request->file('foto'));
+          $alumnos->foto = $path;
+        }
+        $cursos = Curso::find(1);
+        $alumnos->curso()->associate($cursos);
         $alumnos->save();
         return redirect("alumnos")->with('message', 'Información almacenada con éxito');
     }
@@ -105,7 +107,7 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $alumnos = Alumno::find($id);
         $alumnos->nombre = $request->nombre;
