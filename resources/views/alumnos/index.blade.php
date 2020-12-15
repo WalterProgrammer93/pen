@@ -231,7 +231,9 @@
                                       <div class="col-md-6">
                                           <select id="curso" class="form-control" name="curso" required>
                                               <option value="">Seleccione un Curso</option>
-                                              <option value="{{ $alumnos->curso }}">{{ $alumnos->curso }}</option>
+                                              @foreach($alumnos as $alumno)
+                                                <option value="{{ $alumno->cursos->id }}">{{ $alumno->cursos->nombre }}</option>
+                                              @endforeach
                                           </select>
                                           @error('curso')
                                               <span class="invalid-feedback" role="alert">
@@ -458,7 +460,7 @@
                                                   <select id="curso" class="form-control" name="curso" required>
                                                       <option value="">Seleccione un Curso</option>
                                                       @foreach($cursos as $nombre => $id)
-                                                          <option value="{{ $nombre }}" @if($nombre === $id) selected='selected' @endif>{{ $id }}</option>
+                                                          <option value="{{ $id }}">{{ $nombre }}</option>
                                                       @endforeach
                                                   </select>
                                                   @error('curso')
@@ -475,19 +477,21 @@
                                               </div>
                                           </div>
                                     </form>
+
+                                @endif
+                            @else
+                                @if(Auth::user()->hasRole('student'))
+                                    <div>No tiene permisos</div>
                                 @else
-                                    @if(Auth::user()->hasRole('student'))
-                                        <div>No tiene permisos</div>
+                                    @if(Auth::user()->hasRole('teacher'))
+                                        <div>Tiene permisos</div>
                                     @else
-                                        @if(Auth::user()->hasRole('teacher'))
-                                            <div>Tiene permisos</div>
-                                        @else
-                                          @if(Auth::user()->hasRole('user'))
-                                              <div>No tiene permisos</div>
-                                          @endif
+                                        @if(Auth::user()->hasRole('user'))
+                                            <div>No tiene permisos</div>
+                                        @endif
                                     @endif
-                              @endif
-                          @endif
+                                @endif
+                            @endif
                       @endif
                   </div>
               </div>
