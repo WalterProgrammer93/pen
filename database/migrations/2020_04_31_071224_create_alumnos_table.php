@@ -28,8 +28,8 @@ class CreateAlumnosTable extends Migration
             $table->string('nacionalidad',12);
             $table->char('codigo_postal',5);
             $table->string('direccion',20);
-            $table->integer('portal')->length('2')->unsigned();
-            $table->integer('piso')->length('2')->unsigned();
+            $table->char('portal',2);
+            $table->char('piso'2);
             $table->char('letra',1);
             $table->string('repite',2);
             $table->string('foto');
