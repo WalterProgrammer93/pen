@@ -29,7 +29,7 @@ class CreateAlumnosTable extends Migration
             $table->char('codigo_postal',5);
             $table->string('direccion',20);
             $table->char('portal',2);
-            $table->char('piso'2);
+            $table->char('piso',2);
             $table->char('letra',1);
             $table->string('repite',2);
             $table->string('foto');
