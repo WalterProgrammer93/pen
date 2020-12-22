@@ -53,11 +53,7 @@
                                 <td class="v-align-middle">{{ $alumno->apellido2 }}</td>
                                 <td class="v-align-middle">{{ $alumno->repite }}</td>
                                 <td class="v-align-middle"><img src="{{!! asset('fotos/$alumno->foto') !!}}"  class="img-responsive" width="50"/>{{ $alumno->foto }}</td>
-                                <td class="v-align-middle">
-                                    @foreach ($cursos as $curso => id)
-                                        {{ $curso->cursos->nombre }}
-                                    @endforeach
-                                </td>
+                                <td class="v-align-middle">{{ $alumno->cursos }}</td>
                                 <td class="v-align-middle">
                                   @if(Auth::check())
                                       @if(Auth::user()->hasRole('admin'))
