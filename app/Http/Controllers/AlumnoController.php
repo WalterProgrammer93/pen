@@ -64,8 +64,8 @@ class AlumnoController extends Controller
           $path = Storage::disk('local')->put('fotos', $request->file('foto'));
           $alumnos->foto = $path;
         }
-        $cursos = Curso::find($request->curso_id);
-        $alumnos->curso()->associate($cursos);
+        $cursos = Curso::find(1);
+        $alumnos->curso()->associate($cursos->id);
         $alumnos->save();
         return redirect("alumnos")->with('message', 'Información almacenada con éxito');
     }

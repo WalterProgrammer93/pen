@@ -227,15 +227,15 @@
                                       </div>
                                   </div>
                                   <div class="form-group row">
-                                      <label for="curso" class="col-md-4 col-form-label text-md-right">Curso</label>
+                                      <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                       <div class="col-md-6">
-                                          <select id="curso" class="form-control" name="curso" required>
-                                              <option value="">Seleccione un Curso</option>
-                                              @foreach($alumnos as $alumno)
-                                                <option value="{{ $alumno->cursos->id }}">{{ $alumno->cursos->nombre }}</option>
+                                          <select id="curso_id" class="form-control" name="curso_id" required>
+                                              <option value="" disabled selected>Seleccione un Curso</option>
+                                              @foreach($cursos as $nombre => $id)
+                                                <option value="{{ $nombre }}" @if($nombre=='$nombre')selected @endif>{{ $id }}</option>
                                               @endforeach
                                           </select>
-                                          @error('curso')
+                                          @error('curso_id')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>

@@ -32,7 +32,7 @@ class CreateAlumnosTable extends Migration
             $table->char('piso',2);
             $table->char('letra',1);
             $table->string('repite',2);
-            $table->string('foto');
+            $table->binary('foto')->nullable();
             $table->integer('curso_id')->unsigned();
             $table->foreign('curso_id')->references('id')->on('cursos');
             $table->timestamps();
