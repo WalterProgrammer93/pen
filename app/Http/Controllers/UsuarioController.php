@@ -45,7 +45,7 @@ class UsuarioController extends Controller
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request->password);
         $usuario->save();
-        return redirect("/usuarios")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('usuarios')->with('success', 'Información almacenada con éxito');
     }
 
     /**
