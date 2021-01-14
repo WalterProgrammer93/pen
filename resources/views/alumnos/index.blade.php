@@ -231,8 +231,8 @@
                                       <div class="col-md-6">
                                           <select id="curso_id" class="form-control" name="curso_id" required>
                                               <option value="" disabled selected>Seleccione un Curso</option>
-                                              @foreach($cursos as $nombre => $id)
-                                                <option value="{{ $nombre }}" @if($nombre=='$nombre')selected @endif>{{ $id }}</option>
+                                              @foreach($alumnos as $alumno)
+                                                <option value="{{ $alumno->curso_id }}" @if($nombre=='$nombre')selected @endif>{{ $alumno->curso_id }}</option>
                                               @endforeach
                                           </select>
                                           @error('curso_id')
