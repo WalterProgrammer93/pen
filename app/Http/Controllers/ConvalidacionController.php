@@ -27,9 +27,9 @@ class ConvalidacionController extends Controller
      */
     public function create()
     {
-        $alumnos = Alumno::pluck('nombre', 'id');
-        $asignaturas = Asignatura::pluck('nombre', 'id');
-        return view("convalidaciones.añadirConvalidacion", compact('alumnos', 'asignaturas'));
+        $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view("convalidaciones.crear", compact('alumnos', 'asignaturas'));
     }
 
     /**
@@ -41,11 +41,10 @@ class ConvalidacionController extends Controller
     public function store(Request $request)
     {
         $convalidacion = new Convalidacion;
-        $convalidacion->codigo = $request->codigo;
-        $convalidacion->alumno = $request->alumno;
-        $convalidacion->asignatura = $request->asignatura;
+        $convalidacion->alumno()->associate($request->alumno_id);
+        $convalidacion->asignatura()->associate($request->asignatura_id);
         $convalidacion->save();
-        return redirect("/convalidaciones")->with('success', 'Información almacenada con éxito');
+        return redirect()-route('convalidaciones')->with('success', 'Información almacenada con éxito');
     }
 
     /**
