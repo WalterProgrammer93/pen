@@ -27,13 +27,9 @@ class ReservaController extends Controller
      */
     public function create()
     {
-        $profesor = Profesor::pluck('id', 'nombre');
-        $profesor = Profesor::pluck('id', 'apellido1_profesor');
-        $profesor = Profesor::pluck('id', 'apellido2_profesor');
-        $aula = Aula::pluck('id', 'etiqueta_aula');
-        $profesor = Profesor::pluck('id', 'id');
-        $aula = Aula::pluck('id', 'id');
-        return view("reservas.añadirReserva")->with('profesor')->with('aula');
+        $profesores = Profesor::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
+        return view("reservas.crear", compact('profesores', 'aulas'));
     }
 
     /**
@@ -52,10 +48,10 @@ class ReservaController extends Controller
         $reserva->etiqueta_aula = $request->etiqueta_aula;
         $reserva->descripcion = $request->descripcion;
         $reserva->reservado = $request->reservado;
-        $reserva->profesor_id = $request->profesor_id;
-        $reserva->aula_id = $request->aula_id;
+        $reserva->profesor()->associate($request->profesor_id);
+        $reserva->aula()->associate($request->aula_id);
         $reserva->save();
-        return redirect("/reservas")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('reservas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
