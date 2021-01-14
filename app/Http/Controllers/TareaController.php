@@ -27,7 +27,9 @@ class TareaController extends Controller
      */
     public function create()
     {
-        return view("tareas.añadirTarea");
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $temas = Tema::orderBy('id')->pluck('etiqueta', 'id')->toArray();
+        return view("tareas.crear", compact('asignaturas', 'temas'));
     }
 
     /**
@@ -48,10 +50,10 @@ class TareaController extends Controller
         $tarea->hora_entrega = $request->hora_entrega;
         $tarea->archivo_tarea = $request->archivo_tarea;
         $tarea->calificacion = $request->calificacion;
-        $tarea->asignatura = $request->asignatura;
-        $tarea->tema = $request->tema;
+        $tarea->asignatura()->associate($request->asignatura_id);
+        $tarea->tema()->associate($request->tema_id);
         $tarea->save();
-        return redirect("/tareas")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('tareas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -117,7 +119,7 @@ class TareaController extends Controller
             ->orWhere('fecha_envio','LIKE',"%$texto%")
             ->paginate(2);
             return view('tareas.tareas',array('lista'=>$lista));
-            
+
         } else {
             $lista = Tarea::paginate(3);
             return view('tareas.tareas',array('lista'=>$lista));
