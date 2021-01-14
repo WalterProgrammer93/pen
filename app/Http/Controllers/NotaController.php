@@ -29,9 +29,9 @@ class NotaController extends Controller
      */
     public function create()
     {
-        $alumno = Alumno::pluck('nombre', 'id');
-        $asignatura = Asignatura::pluck('nombre', 'id');
-        return view('notas.añadirNota', compact("alumno", "asignatura"));
+        $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view('notas.crear', compact("alumnos", "asignaturas"));
     }
 
     /**
@@ -43,15 +43,14 @@ class NotaController extends Controller
     public function store(Request $request)
     {
         $nota = new Nota;
-        $nota->codigo = $request->codigo;
-        $nota->alumno = $request->alumno;
-        $nota->asignatura = $request->asignatura;
         $nota->eva1 = $request->eva1;
         $nota->eva2 = $request->eva2;
         $nota->eva3 = $request->eva3;
         $nota->media = $request->media;
+        $nota->alumno()->associate($request->alumno_id);
+        $nota->asignatura()->associate($request->asignatura_id);
         $nota->save();
-        return redirect("/notas")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('notas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
