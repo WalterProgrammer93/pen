@@ -29,8 +29,8 @@ class AsignaturaController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::pluck('nombre','id');
-        $aulas = Aula::pluck('etiqueta','id');
+        $cursos = Curso::orderBy('id')->pluck('nombre','id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
         return view("asignaturas.crear", compact('cursos', 'aulas'));
     }
 
@@ -46,10 +46,10 @@ class AsignaturaController extends Controller
         $asignaturas->codigo = $request->codigo;
         $asignaturas->nombre = $request->nombre;
         $asignaturas->descripcion = $request->descripcion;
-        $asignaturas->curso = $request->curso;
-        $asignaturas->aula = $request->aula;
+        $asignaturas->curso()->associate($request->curso_id);
+        $asignaturas->aula()->associate($request->aula_id);
         $asignaturas->save();
-        return redirect("/asignaturas")->with('success', 'Información almacenada con éxito');
+        return redirect()route('asignaturas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
