@@ -26,9 +26,9 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        $asignaturas = Asignatura::pluck('nombre','id');
-        $profesor = Profesor::pluck('nombre','id');
-        return view("clases.añadirClase");
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        $profesor = Profesor::orderBy('id')->pluck('nombre','id')->toArray();
+        return view("clases.crear", compact('asignaturas', 'profesores'));
     }
 
     /**
@@ -41,11 +41,11 @@ class ClaseController extends Controller
     {
         $clase = new Clase;
         $clase->codigo = $request->codigo;
-        $clase->asignatura = $request->asignatura;
-        $clase->profesor = $request->profesor;
+        $clase->asignatura()->associate($request->asignatura_id);
+        $clase->profesor()->associate($request->profesor_id);
         $clase->horario = $request->horario;
         $clase->save();
-        return redirect("/clases")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('clases')->with('success', 'Información almacenada con éxito');
     }
 
     /**
