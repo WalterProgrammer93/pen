@@ -27,7 +27,7 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        return view("departamentos.añadirDepartamento");
+        return view("departamentos.crear");
     }
 
     /**
@@ -44,7 +44,7 @@ class DepartamentoController extends Controller
         $departamento->descripcion = $request->descripcion;
         $departamento->estado = $request->estado;
         $departamento->save();
-        return redirect("/departamentos")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('departamentos')->with('success', 'Información almacenada con éxito');
     }
 
     /**
