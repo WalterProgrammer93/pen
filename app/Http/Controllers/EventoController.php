@@ -28,8 +28,8 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $aula = Aula::pluck('id', 'id');
-        return view("eventos.añadirEvento")->with('aula');
+        $aulas = Aula::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view("eventos.crear")->with('aula');
     }
 
     /**
@@ -45,9 +45,9 @@ class EventoController extends Controller
         $evento->nombre = $request->nombre;
         $evento->descripcion = $request->descripcion;
         $evento->disponibilidad = $request->disponibilidad;
-        $evento->aula_id = $request->aula_id;
+        $evento->aula()->associate($request->aula_id);
         $evento->save();
-        return redirect("/eventos")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('eventos')->with('success', 'Información almacenada con éxito');
     }
 
     /**
