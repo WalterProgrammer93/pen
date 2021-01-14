@@ -27,7 +27,7 @@ class TemaController extends Controller
      */
     public function create()
     {
-        return view("temas.añadirTema");
+        return view("temas.crear");
     }
 
     /**
@@ -39,13 +39,11 @@ class TemaController extends Controller
     public function store(Request $request)
     {
         $tema = new Tema;
-        $tema->codigo = $request->codigo;
         $tema->nombre = $request->nombre;
         $tema->contenido = $request->contenido;
-        $tema->documento = $request->documento;
-        $tema->asignatura_id = $request->asignatura_id;
+        $tema->documento_tema = $request->documento_tema;
         $tema->save();
-        return redirect("/temas")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('temas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
