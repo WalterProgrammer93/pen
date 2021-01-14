@@ -27,7 +27,7 @@ class AulaController extends Controller
      */
     public function create()
     {
-        return view("aulas.añadirAula");
+        return view("aulas.crear");
     }
 
     /**
@@ -39,12 +39,11 @@ class AulaController extends Controller
     public function store(Request $request)
     {
         $aula = new Aula;
-        $aula->codigo = $request->codigo;
         $aula->etiqueta = $request->etiqueta;
         $aula->descripcion = $request->descripcion;
         $aula->disponibilidad = $request->disponibilidad;
         $aula->save();
-        return redirect("/aulas")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('aulas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
