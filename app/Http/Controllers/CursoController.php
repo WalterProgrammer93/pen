@@ -42,7 +42,7 @@ class CursoController extends Controller
         $cursos->nombre = $request->nombre;
         $cursos->descripcion = $request->descripcion;
         $cursos->save();
-        return redirect('cursos')->with('success', 'Información almacenada con éxito');
+        return redirect()->route('cursos')->with('success', 'Información almacenada con éxito');
     }
 
     /**
