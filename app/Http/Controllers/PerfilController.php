@@ -25,7 +25,7 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        return view('perfiles.añadirPerfil');
+        return view('perfiles.crear');
     }
 
     /**
@@ -37,10 +37,10 @@ class PerfilController extends Controller
     public function store(Request $request)
     {
         $perfil = new Perfil;
-        $perfil->codigo = $request->codigo;
-        $perfil->rol = $request->rol;
+        $perfil->perfil = $request->perfil;
+        $prefil->descripcion = $request->descripcion;
         $perfil->save();
-        return redirect("/perfiles")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
     }
 
     /**
