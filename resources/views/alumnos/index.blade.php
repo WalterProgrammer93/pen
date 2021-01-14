@@ -229,10 +229,10 @@
                                   <div class="form-group row">
                                       <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                       <div class="col-md-6">
-                                          <select id="curso_id" class="form-control" name="curso_id" required>
+                                          <select id="curso_id" class="form-control" name="curso_id[]" required>
                                               <option value="" disabled selected>Seleccione un Curso</option>
-                                              @foreach($alumnos as $alumno)
-                                                <option value="{{ $alumno->curso_id }}" @if($nombre=='$nombre')selected @endif>{{ $alumno->curso_id }}</option>
+                                              @foreach($cursos as $id => $nombre)
+                                                <option value="{{ $id }}" @if($id=='$id')selected @endif>{{ $nombre }}</option>
                                               @endforeach
                                           </select>
                                           @error('curso_id')
