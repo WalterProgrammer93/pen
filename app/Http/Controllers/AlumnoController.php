@@ -30,7 +30,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::pluck('nombre', 'id');
+        $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
         return view('alumnos.crear', compact('cursos'));
     }
 
@@ -64,10 +64,9 @@ class AlumnoController extends Controller
           $path = Storage::disk('local')->put('fotos', $request->file('foto'));
           $alumnos->foto = $path;
         }
-        $cursos = Curso::find(1);
-        $alumnos->curso()->associate($cursos->id);
+         $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
-        return redirect("alumnos")->with('message', 'Información almacenada con éxito');
+        return redirect()->route('alumnos')->with('message', 'Información almacenada con éxito');
     }
 
     /**
