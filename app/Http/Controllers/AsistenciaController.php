@@ -30,9 +30,9 @@ class AsistenciaController extends Controller
      */
     public function create()
     {
-        $alumnos = Alumno::pluck('nombre', 'id');
-        $asignaturas = Asignatura::pluck('nombre', 'id');
-        return view('asistencias.añadirAsistencia', compact('alumnos', 'asignaturas'));
+        $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view('asistencias.crear', compact('alumnos', 'asignaturas'));
     }
 
     /**
@@ -44,12 +44,11 @@ class AsistenciaController extends Controller
     public function store(Request $request)
     {
         $asistencia = new Asistencia;
-        $asistencia->codigo = $request->codigo;
-        $asistencia->alumno = $request->alumno;
-        $asistencia->asignatura = $request->asignatura;
         $asistencia->numero_horas = $request->numero_horas;
+        $asistencia->alumno()->associate($request->alumno_id);
+        $asistencia->asignatura()->associate($request->asignatura_id);
         $asistencia->save();
-        return redirect("/asistencias")->with('success', 'Información almacenada con éxito');
+        return redirect()->route('asistencias')->with('success', 'Información almacenada con éxito');
     }
 
     /**
