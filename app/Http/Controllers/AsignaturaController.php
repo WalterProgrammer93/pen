@@ -43,13 +43,12 @@ class AsignaturaController extends Controller
     public function store(Request $request)
     {
         $asignaturas = new Asignatura;
-        $asignaturas->codigo = $request->codigo;
         $asignaturas->nombre = $request->nombre;
         $asignaturas->descripcion = $request->descripcion;
         $asignaturas->curso()->associate($request->curso_id);
         $asignaturas->aula()->associate($request->aula_id);
         $asignaturas->save();
-        return redirect()route('asignaturas')->with('success', 'Información almacenada con éxito');
+        return redirect()->route('asignaturas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
