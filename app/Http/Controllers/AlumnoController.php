@@ -129,7 +129,7 @@ class AlumnoController extends Controller
         if ($request->hasFile('foto')) {
           $alumnos->foto = $request->file('foto')->storage('/');
         }
-        $alumnos->curso()->associate($alumnos);
+        $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
         return redirect("alumnos")->with('message', 'Información actualizada con éxito');
     }
