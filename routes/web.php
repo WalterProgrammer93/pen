@@ -80,7 +80,7 @@ Route::put('cursos/guardar', [
 Route::get('cursos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CursoController@actualizar'])->name('cursos/editar');
+    'uses' => 'CursoController@edit'])->name('cursos/editar');
 
 Route::put('cursos/actualizar/{id}', [
     'middleware' => 'auth',
@@ -97,7 +97,7 @@ Route::put('cursos/eliminar/{id}', [
 Route::post('cursos/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CursoController@buscar'])->name('cursos/buscar');
+    'uses' => 'CursoController@search'])->name('cursos/buscar');
 
 // ACCESO A LAS RUTAS DE ASIGNATURAS
 /* Leer */
@@ -109,33 +109,33 @@ Route::post('asignaturas/crear', [
     'before' => 'crsf',
     'uses' => 'AsignaturaController@create'])->name('asignaturas/crear');
 
-Route::put('asignaturas/store', [
+Route::put('asignaturas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsignaturaController@store'])->name('asignaturas/store');
+    'uses' => 'AsignaturaController@store'])->name('asignaturas/guardar');
 
 /* Actualizar */
-Route::get('asignatura/actualizar/{id}', [
+Route::get('asignatura/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsignaturaController@actualizar'])->name('asignaturas/actualizar');
+    'uses' => 'AsignaturaController@edit'])->name('asignaturas/editar');
 
-Route::put('asignatura/update/{id}', [
+Route::put('asignatura/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AsignaturaController@update'])->name('asignaturas/update');
+    'uses' => 'AsignaturaController@update'])->name('asignaturas/actualizar');
 
 /* Eliminar */
 Route::put('asignaturas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AsignaturaController@eliminar'])->name('asignaturas/eliminar');
+    'uses' => 'AsignaturaController@delete'])->name('asignaturas/eliminar');
 
 /* Buscar */
 Route::post('asignaturas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsignaturaController@buscar'])->name('asignaturas/buscar');
+    'uses' => 'AsignaturaController@search'])->name('asignaturas/buscar');
 
 
 // ACCESO A LAS RUTAS DE ASISTENCIAS
@@ -148,33 +148,33 @@ Route::post('asistencias/crear', [
     'before' => 'crsf',
     'uses' => 'AsistenciaController@create'])->name('asistencias/crear');
 
-Route::put('asistencias/store', [
+Route::put('asistencias/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsistenciaController@store'])->name('asistencias/store');
+    'uses' => 'AsistenciaController@store'])->name('asistencias/guardar');
 
 /* Actualizar */
-Route::get('asistencias/actualizar/{id}', [
+Route::get('asistencias/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsistenciaController@actualizar'])->name('asistencias/actualizar');
+    'uses' => 'AsistenciaController@edit'])->name('asistencias/editar');
 
-Route::put('asistencias/update/{id}', [
+Route::put('asistencias/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AsistenciaController@update'])->name('asistencias/update');
+    'uses' => 'AsistenciaController@update'])->name('asistencias/actualizar');
 
 /* Eliminar */
 Route::put('asistencias/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AsistenciaController@eliminar'])->name('asistencias/eliminar');
+    'uses' => 'AsistenciaController@delete'])->name('asistencias/eliminar');
 
 /* Buscar */
 Route::post('asistencias/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AsistenciaController@buscar'])->name('asistencias/buscar');
+    'uses' => 'AsistenciaController@search'])->name('asistencias/buscar');
 
 
 // ACCESO A LAS RUTAS DE PROFESORES
@@ -187,33 +187,33 @@ Route::post('profesores/crear', [
     'before' => 'crsf',
     'uses' => 'ProfesorController@create'])->name('profesores/crear');
 
-Route::put('profesores/store', [
+Route::put('profesores/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ProfesorController@store'])->name('profesores/store');
+    'uses' => 'ProfesorController@store'])->name('profesores/guardar');
 
 /* Actualizar */
-Route::get('profesores/actualizar/{id}', [
+Route::get('profesores/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ProfesorController@actualizar'])->name('profesores/actualizar');
+    'uses' => 'ProfesorController@edit'])->name('profesores/editar');
 
-Route::put('profesores/update/{id}', [
+Route::put('profesores/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ProfesorController@update'])->name('profesores/update');
+    'uses' => 'ProfesorController@update'])->name('profesores/actualizar');
 
 /* Eliminar */
 Route::put('profesores/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ProfesorController@eliminar'])->name('profesores/eliminar');
+    'uses' => 'ProfesorController@delete'])->name('profesores/eliminar');
 
 /* Buscar */
 Route::post('profesores/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ProfesorController@buscar'])->name('profesores/buscar');
+    'uses' => 'ProfesorController@search'])->name('profesores/buscar');
 
 // ACCESO A LAS RUTAS DE USUARIOS
 
@@ -226,33 +226,33 @@ Route::post('usuarios/crear', [
     'before' => 'crsf',
     'uses' => 'UsuarioController@create'])->name('usuarios/crear');
 
-Route::put('usuarios/store', [
+Route::put('usuarios/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'UsuarioController@store'])->name('usuarios/store');
 
 /* Actualizar */
-Route::get('usuarios/actualizar/{id}', [
+Route::get('usuarios/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'UsuarioController@actualizar'])->name('usuarios/actualizar');
+    'uses' => 'UsuarioController@edit'])->name('usuarios/editar');
 
-Route::put('usuarios/update/{id}', [
+Route::put('usuarios/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'UsuarioController@update'])->name('usuarios/update');
+    'uses' => 'UsuarioController@update'])->name('usuarios/actualizar');
 
 /* Eliminar */
 Route::put('usuarios/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'UsuarioController@eliminar'])->name('usuarios/eliminar');
+    'uses' => 'UsuarioController@delete'])->name('usuarios/eliminar');
 
 /* Buscar */
 Route::post('usuarios/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'UsuarioController@buscar'])->name('usuarios/buscar');
+    'uses' => 'UsuarioController@search'])->name('usuarios/buscar');
 
 // ACCESSO A RUTAS DE NOTAS
 /* Leer */
@@ -264,33 +264,33 @@ Route::post('notas/crear', [
     'before' => 'crsf',
     'uses' => 'NotaController@create'])->name('notas/crear');
 
-Route::put('notas/store', [
+Route::put('notas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'NotaController@store'])->name('notas/store');
+    'uses' => 'NotaController@store'])->name('notas/guardar');
 
 /* Actualizar */
-Route::get('notas/actualizar/{id}', [
+Route::get('notas/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'NotaController@actualizar'])->name('notas/actualizar');
+    'uses' => 'NotaController@edit'])->name('notas/editar');
 
-Route::put('notas/update/{id}', [
+Route::put('notas/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'NotaController@update'])->name('notas/update');
+    'uses' => 'NotaController@update'])->name('notas/actualizar');
 
 /* Eliminar */
 Route::put('notas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'NotaController@eliminar'])->name('notas/eliminar');
+    'uses' => 'NotaController@delete'])->name('notas/eliminar');
 
 /* Buscar */
 Route::post('notas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'NotaController@buscar'])->name('notas/buscar');
+    'uses' => 'NotaController@search'])->name('notas/buscar');
 
 // ACCESO A LAS RUTAS DE DEPARTAMENTOS
 /* Leer */
@@ -302,33 +302,33 @@ Route::post('departamentos/crear', [
     'before' => 'crsf',
     'uses' => 'DepartamentoController@create'])->name('departamentos/crear');
 
-Route::put('departamentos/store', [
+Route::put('departamentos/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'DepartamentoController@store'])->name('departamentos/store');
+    'uses' => 'DepartamentoController@store'])->name('departamentos/guardar');
 
 /* Actualizar */
-Route::get('departamentos/actualizar/{id}', [
+Route::get('departamentos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'DepartamentoController@actualizar'])->name('departamentos/actualizar');
+    'uses' => 'DepartamentoController@edit'])->name('departamentos/editar');
 
-Route::put('departamentos/update/{id}', [
+Route::put('departamentos/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'DepartamentoController@update'])->name('departamentos/update');
+    'uses' => 'DepartamentoController@update'])->name('departamentos/actualizar');
 
 /* Eliminar */
 Route::put('departamentos/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'DepartamentoController@eliminar'])->name('departamentos/eliminar');
+    'uses' => 'DepartamentoController@delete'])->name('departamentos/eliminar');
 
 /* Buscar */
 Route::post('departamentos/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'DepartamentoController@buscar'])->name('departamentos/buscar');
+    'uses' => 'DepartamentoController@search'])->name('departamentos/buscar');
 
 
 // ACCESO A LAS RUTAS DE AULAS
@@ -341,33 +341,33 @@ Route::post('aulas/crear', [
     'before' => 'crsf',
     'uses' => 'AulaController@create'])->name('aulas/crear');
 
-Route::put('aulas/store', [
+Route::put('aulas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AulaController@store'])->name('aulas/store');
+    'uses' => 'AulaController@store'])->name('aulas/guardar');
 
 /* Actualizar */
-Route::get('aulas/actualizar/{id}', [
+Route::get('aulas/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AulaController@actualizar'])->name('aulas/actualizar');
+    'uses' => 'AulaController@edit'])->name('aulas/editar');
 
-Route::put('aulas/update/{id}', [
+Route::put('aulas/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AulaController@update'])->name('aulas/update');
+    'uses' => 'AulaController@update'])->name('aulas/actualizar');
 
 /* Eliminar */
 Route::put('aulas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AulaController@eliminar'])->name('aulas/eliminar');
+    'uses' => 'AulaController@delete'])->name('aulas/eliminar');
 
 /* Buscar */
 Route::post('aulas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AulaController@buscar'])->name('aulas/buscar');
+    'uses' => 'AulaController@search'])->name('aulas/buscar');
 
 // ACCESO A LAS RUTAS DE EVENTOS
 /* Leer */
@@ -379,33 +379,33 @@ Route::post('eventos/crear', [
     'before' => 'crsf',
     'uses' => 'EventoController@create'])->name('eventos/crear');
 
-Route::put('eventos/store', [
+Route::put('eventos/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'EventoController@store'])->name('eventos/store');
+    'uses' => 'EventoController@guardar'])->name('eventos/guardar');
 
 /* Actualizar */
-Route::get('eventos/actualizar/{id}', [
+Route::get('eventos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'EventoController@actualizar'])->name('eventos/actualizar');
+    'uses' => 'EventoController@edit'])->name('eventos/editar');
 
-Route::put('eventos/update/{id}', [
+Route::put('eventos/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'EventoController@update'])->name('eventos/update');
+    'uses' => 'EventoController@update'])->name('eventos/actualizar');
 
 /* Eliminar */
 Route::put('eventos/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'EventoController@eliminar'])->name('eventos/eliminar');
+    'uses' => 'EventoController@delete'])->name('eventos/eliminar');
 
 /* Buscar */
 Route::post('eventos/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'EventoController@buscar'])->name('eventos/buscar');
+    'uses' => 'EventoController@search'])->name('eventos/buscar');
 
 // ACCESO A LAS RUTAS DE TAREAS
 /* Leer */
@@ -417,33 +417,33 @@ Route::post('tareas/crear', [
     'before' => 'crsf',
     'uses' => 'TareaController@create'])->name('tareas/crear');
 
-Route::put('tareas/store', [
+Route::put('tareas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TareaController@store'])->name('tareas/store');
+    'uses' => 'TareaController@store'])->name('tareas/guardar');
 
 /* Actualizar */
-Route::get('tareas/actualizar/{id}', [
+Route::get('tareas/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TareaController@actualizar'])->name('tareas/actualizar');
+    'uses' => 'TareaController@edit'])->name('tareas/editar');
 
-Route::put('tareas/update/{id}', [
+Route::put('tareas/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'TareaController@update'])->name('tareas/update');
+    'uses' => 'TareaController@update'])->name('tareas/actualizar');
 
 /* Eliminar */
 Route::put('tareas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'TareaController@eliminar'])->name('tareas/eliminar');
+    'uses' => 'TareaController@delete'])->name('tareas/eliminar');
 
 /* Buscar */
 Route::post('tareas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TareaController@buscar'])->name('tareas/buscar');
+    'uses' => 'TareaController@search'])->name('tareas/buscar');
 
 
 // ACCESO A LAS RUTAS DE TEMAS
@@ -456,33 +456,33 @@ Route::post('temas/crear', [
     'before' => 'crsf',
     'uses' => 'TemaController@create'])->name('temas/crear');
 
-Route::put('temas/store', [
+Route::put('temas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TemaController@store'])->name('temas/store');
+    'uses' => 'TemaController@store'])->name('temas/guardar');
 
 /* Actualizar */
-Route::get('temas/actualizar/{id}', [
+Route::get('temas/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TemaController@actualizar'])->name('temas/actualizar');
+    'uses' => 'TemaController@edit'])->name('temas/editar');
 
-Route::put('temas/update/{id}', [
+Route::put('temas/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'TemaController@update'])->name('temas/update');
+    'uses' => 'TemaController@update'])->name('temas/actualizar');
 
 /* Eliminar */
 Route::put('temas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'TemaController@eliminar'])->name('temas/eliminar');
+    'uses' => 'TemaController@delete'])->name('temas/eliminar');
 
 /* Buscar */
 Route::post('temas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TemaController@buscar'])->name('temas/buscar');
+    'uses' => 'TemaController@search'])->name('temas/buscar');
 
 // ACCESO A LAS RUTAS DE RESERVAS
 /* Leer */
@@ -494,33 +494,33 @@ Route::post('reservas/crear', [
     'before' => 'crsf',
     'uses' => 'ReservaController@create'])->name('reservas/crear');
 
-Route::put('reservas/store', [
+Route::put('reservas/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ReservaController@store'])->name('reservas/store');
+    'uses' => 'ReservaController@store'])->name('reservas/guardar');
 
 /* Actualizar */
-Route::get('reservas/actualizar/{id}', [
+Route::get('reservas/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ReservaController@actualizar'])->name('reservas/actualizar');
+    'uses' => 'ReservaController@edit'])->name('reservas/editar');
 
-Route::put('reservas/update/{id}', [
+Route::put('reservas/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ReservaController@update'])->name('reservas/update');
+    'uses' => 'ReservaController@update'])->name('reservas/actualizar');
 
 /* Eliminar */
 Route::put('reservas/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ReservaController@eliminar'])->name('reservas/eliminar');
+    'uses' => 'ReservaController@delete'])->name('reservas/eliminar');
 
 /* Buscar */
 Route::post('reservas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ReservaController@buscar'])->name('reservas/buscar');
+    'uses' => 'ReservaController@search'])->name('reservas/buscar');
 
 
 // ACCESO A LAS RUTAS DE CONVALIDACIONES
@@ -533,35 +533,35 @@ Route::post('convalidaciones/crear', [
     'before' => 'crsf',
     'uses' => 'ConvalidacionController@create'])->name('convalidaciones/crear');
 
-Route::put('convalidaciones/store', [
+Route::put('convalidaciones/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ConvalidacionController@store'])->name('convalidaciones/store');
+    'uses' => 'ConvalidacionController@store'])->name('convalidaciones/guardar');
 
 /* Actualizar */
-Route::get('convalidaciones/actualizar/{id}', [
+Route::get('convalidaciones/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ConvalidacionController@actualizar'])->name('convalidaciones/actualizar');
+    'uses' => 'ConvalidacionController@editar'])->name('convalidaciones/editar');
 
-Route::put('convalidaciones/update/{id}', [
+Route::put('convalidaciones/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ConvalidacionController@update'])->name('convalidaciones/update');
+    'uses' => 'ConvalidacionController@update'])->name('convalidaciones/actualizar');
 
 /* Eliminar */
 Route::put('convalidaciones/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ConvalidacionController@eliminar'])->name('convalidaciones/eliminar');
+    'uses' => 'ConvalidacionController@delete'])->name('convalidaciones/eliminar');
 
 /* Buscar */
 Route::post('convalidaciones/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ConvalidacionController@buscar'])->name('convalidaciones/buscar');
+    'uses' => 'ConvalidacionController@search'])->name('convalidaciones/buscar');
 
-// RUTAS DE ACCESO A DESARROLLOS
+// RUTAS DE ACCESO A CLASES
 
 /* Leer */
 Route::get('clases', 'ClaseController@index')->name('clases');
@@ -572,33 +572,33 @@ Route::post('clases/crear', [
     'before' => 'crsf',
     'uses' => 'ClaseController@create'])->name('clases/crear');
 
-Route::put('clases/store', [
+Route::put('clases/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ClaseController@store'])->name('clases/store');
+    'uses' => 'ClaseController@store'])->name('clases/guardar');
 
 /* Actualizar */
-Route::get('clases/actualizar/{id}', [
+Route::get('clases/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ClaseController@actualizar'])->name('clases/actualizar');
+    'uses' => 'ClaseController@edit'])->name('clases/editar');
 
-Route::put('clases/update/{id}', [
+Route::put('clases/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ClaseController@update'])->name('clases/update');
+    'uses' => 'ClaseController@update'])->name('clases/actualizar');
 
 /* Eliminar */
 Route::put('clases/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'ClaseController@eliminar'])->name('clases/eliminar');
+    'uses' => 'ClaseController@delete'])->name('clases/eliminar');
 
 /* Buscar */
 Route::post('clases/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'ClaseController@buscar'])->name('clases/buscar');
+    'uses' => 'ClaseController@search'])->name('clases/buscar');
 
 // ACCESO A RUTAS DE PERFILES
 
@@ -611,33 +611,33 @@ Route::post('perfiles/crear', [
     'before' => 'crsf',
     'uses' => 'PerfilController@create'])->name('perfiles/crear');
 
-Route::put('perfiles/store', [
+Route::put('perfiles/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'PerfilController@store'])->name('perfiles/store');
+    'uses' => 'PerfilController@store'])->name('perfiles/guardar');
 
 /* Actualizar */
-Route::get('perfiles/actualizar/{id}', [
+Route::get('perfiles/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'PerfilController@actualizar'])->name('perfiles/actualizar');
+    'uses' => 'PerfilController@edit'])->name('perfiles/editar');
 
-Route::put('perfiles/update/{id}', [
+Route::put('perfiles/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'PerfilController@update'])->name('perfiles/update');
+    'uses' => 'PerfilController@update'])->name('perfiles/actualizar');
 
 /* Eliminar */
 Route::put('perfiles/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'PerfilController@eliminar'])->name('perfiles/eliminar');
+    'uses' => 'PerfilController@delete'])->name('perfiles/eliminar');
 
 /* Buscar */
 Route::post('perfiles/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'PerfilController@buscar'])->name('perfiles/buscar');
+    'uses' => 'PerfilController@search'])->name('perfiles/buscar');
 
 // RUTA DE ENVIO DE EMAL PARA RESTAURAR LA CONTRASEÑA DE USUARIO
 
