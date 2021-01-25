@@ -64,7 +64,7 @@ class AlumnoController extends Controller
           $path = Storage::disk('local')->put('fotos', $request->file('foto'));
           $alumnos->foto = $path;
         }
-         $alumnos->curso()->associate($request->curso_id);
+        $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
         return redirect()->route('alumnos')->with('message', 'Información almacenada con éxito');
     }
@@ -80,13 +80,6 @@ class AlumnoController extends Controller
         $alumnos = Alumno::findOrFail($id);
         return view("alumnos.alumnos", compact('alumnos'));
     }
-
-    // Actualizar un registro (Update)
-	   public function actualizar($id) {
-		    $alumnos = Alumno::find($id);
-		    return view('alumnos.editar', ['alumnos' => $alumnos]);
-	   }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -96,7 +89,9 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumnos = Alumno::find($id);
-        return view("alumnos.editar", ['alumnos' => $alumnos]);
+        $cursos = Curso::find($id);
+        $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view("alumnos.editar", ['alumnos' => $alumnos], ['cursos' => $cursos]);
     }
 
     /**
@@ -126,12 +121,14 @@ class AlumnoController extends Controller
         $alumnos->piso = $request->piso;
         $alumnos->letra = $request->letra;
         $alumnos->repite = $request->repite;
-        if ($request->hasFile('foto')) {
-          $alumnos->foto = $request->file('foto')->storage('/');
+        if($request->hasFile('foto')){
+          $path = Storage::disk('local')->put('fotos', $request->file('foto'));
+          $alumnos->foto = $path;
         }
+        $alumnos->curso_id = $request->curso_id;
         $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
-        return redirect("alumnos")->with('message', 'Información actualizada con éxito');
+        return redirect()->route('alumnos.alumnos')->with('message', 'Información actualizada con éxito');
     }
 
     /**
@@ -140,16 +137,16 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function delete($id)
     {
         $alumnos = Alumno::find($id);
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
-        return redirect("alumnos")->with('success','Información eliminada con éxito');
+        return redirect()->route('alumnos.alumnos')->with('success','Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
