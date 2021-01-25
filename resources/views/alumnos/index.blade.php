@@ -200,7 +200,8 @@
                                   <div class="form-group row">
                                       <label for="repite" class="col-md-4 col-form-label text-md-right">Repite</label>
                                       <div class="col-md-6">
-                                          Si &nbsp;<input id="repite" type="radio" name="repite" value="{{ $alumnos->repite }}">&nbsp; No &nbsp;<input id="repite" type="radio" name="repite" value="{{ $alumnos->repite }}">
+                                          Si &nbsp;<input id="repite" type="radio" name="repite" value="Si" @if(@$alumnos->repite == "Si") checked @endif>
+                                          No &nbsp;<input id="repite" type="radio" name="repite" value="No" @if(@$alumnos->repite == "No") checked @endif>
                                           @error('repite')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
@@ -214,7 +215,7 @@
                                         <input name="foto" type="file" id="foto">
                                         @if (!empty($alumnos->foto))
                                           <span>Foto actual: </span>
-                                          <img src="../../../fotos/{{ $alumnos->foto }}" width="200" class="img-fluid">
+                                          <img src="/public/fotos/{{ $alumnos->foto }}" width="200" class="img-fluid">
                                         @else
                                           Aún no se ha cargado la foto del alumno
                                         @endif
@@ -231,7 +232,7 @@
                                           <select id="curso_id" class="form-control" name="curso_id[]" required>
                                               <option value="" disabled>Seleccione un Curso</option>
                                               @foreach($cursos as $id => $nombre)
-                                                <option value="{{ $id }}" @if($id=='$id')selected @endif>{{ $nombre }}</option>
+                                                <option value="{{ $id }}" {{ $id == $alumnos->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                               @endforeach
                                           </select>
                                           @error('curso_id')
@@ -457,7 +458,7 @@
                                               <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                               <div class="col-md-6">
                                                   <select id="curso_id" class="form-control" name="curso_id" required>
-                                                      <option value="" disabled selected>Seleccione un Curso</option>
+                                                      <option value="" disabled>Seleccione un Curso</option>
                                                       @foreach($cursos as $id => $nombre)
                                                           <option value="{{ $id }}" @if($id=='$id')selected @endif >{{ $nombre }}</option>
                                                       @endforeach
