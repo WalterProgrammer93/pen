@@ -33,33 +33,33 @@ Route::post('alumnos/crear', [
     'before' => 'crsf',
     'uses' => 'AlumnoController@create'])->name('alumnos/crear');
 
-Route::put('alumnos/store', [
+Route::put('alumnos/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AlumnoController@store'])->name('alumnos/store');
+    'uses' => 'AlumnoController@store'])->name('alumnos/guardar');
 
 /* Actualizar */
-Route::get('alumnos/actualizar/{id}', [
+Route::get('alumnos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AlumnoController@actualizar'])->name('alumnos/actualizar');
+    'uses' => 'AlumnoController@edit'])->name('alumnos/editar');
 
-Route::put('alumnos/update/{id}', [
+Route::put('alumnos/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AlumnoController@update'])->name('alumnos/update');
+    'uses' => 'AlumnoController@update'])->name('alumnos/actualizar');
 
 /* Eliminar */
 Route::put('alumnos/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'AlumnoController@eliminar'])->name('alumnos/eliminar');
+    'uses' => 'AlumnoController@delete'])->name('alumnos/eliminar');
 
 /* Buscar */
 Route::post('alumnos/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'AlumnoController@buscar'])->name('alumnos/buscar');
+    'uses' => 'AlumnoController@search'])->name('alumnos/buscar');
 
 // ACCESO A LAS RUTAS DE CURSOS
 /* Leer */
@@ -71,27 +71,27 @@ Route::post('cursos/crear', [
     'before' => 'crsf',
     'uses' => 'CursoController@create'])->name('cursos/crear');
 
-Route::put('cursos/store', [
+Route::put('cursos/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CursoController@store'])->name('cursos/store');
+    'uses' => 'CursoController@store'])->name('cursos/guardar');
 
 /* Actualizar */
-Route::get('cursos/actualizar/{id}', [
+Route::get('cursos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CursoController@actualizar'])->name('cursos/actualizar');
+    'uses' => 'CursoController@actualizar'])->name('cursos/editar');
 
-Route::put('cursos/update/{id}', [
+Route::put('cursos/actualizar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'CursoController@update'])->name('cursos/update');
+    'uses' => 'CursoController@update'])->name('cursos/actualizar');
 
 /* Eliminar */
 Route::put('cursos/eliminar/{id}', [
     'middleware' => 'auth',
     'before' => 'auth',
-    'uses' => 'CursoController@eliminar'])->name('cursos/eliminar');
+    'uses' => 'CursoController@delete'])->name('cursos/eliminar');
 
 /* Buscar */
 Route::post('cursos/buscar/{nombre}', [
