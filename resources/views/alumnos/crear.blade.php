@@ -15,10 +15,14 @@
                 <div class="card-header">Crear Alumno</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    {{ $message=Session::get('message') }}
+                    @if (Session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('alumnos/store') }}" role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('alumnos/guardar') }}" role="form" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('alumnos.index')
