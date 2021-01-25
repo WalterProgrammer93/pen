@@ -15,7 +15,7 @@
                       @if(Auth::check())
                           @if(Auth::user()->hasRole('admin'))
                             @if(!empty($alumnos->id))
-                                <form method="POST" action="{{ route('alumnos/update', $alumnos->id) }}" role="form">
+                                <form method="POST" action="{{ route('alumnos/actualizar', $alumnos->id) }}" role="form">
                                   @csrf
                                   <input type="hidden" name="_method" value="PUT">
                                   <div class="form-group row">
@@ -200,8 +200,7 @@
                                   <div class="form-group row">
                                       <label for="repite" class="col-md-4 col-form-label text-md-right">Repite</label>
                                       <div class="col-md-6">
-                                          <input id="repite" type="checkbox" class="form-control" name="repite" value="{{ $alumnos->repite }}" required>
-                                          <input id="repite" type="checkbox" class="form-control" name="repite" value="{{ $alumnos->repite }}" required>
+                                          Si &nbsp;<input id="repite" type="radio" name="repite" value="{{ $alumnos->repite }}">&nbsp; No &nbsp;<input id="repite" type="radio" name="repite" value="{{ $alumnos->repite }}">
                                           @error('repite')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
@@ -230,7 +229,7 @@
                                       <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                       <div class="col-md-6">
                                           <select id="curso_id" class="form-control" name="curso_id[]" required>
-                                              <option value="" disabled selected>Seleccione un Curso</option>
+                                              <option value="" disabled>Seleccione un Curso</option>
                                               @foreach($cursos as $id => $nombre)
                                                 <option value="{{ $id }}" @if($id=='$id')selected @endif>{{ $nombre }}</option>
                                               @endforeach
@@ -250,9 +249,9 @@
                                   </div>
                                 </form>
                               @else
-                                  <form method="POST" action="{{ route('alumnos/store') }}">
+                                  <form method="POST" action="{{ route('alumnos/guardar') }}">
                                       @csrf
-                                      <input type="hidden" name="_method" value="PUT">
+                                    <input type="hidden" name="_method" value="PUT">
                                     <div class="form-group row">
                                         <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre alumno</label>
                                             <div class="col-md-6">
