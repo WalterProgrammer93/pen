@@ -125,7 +125,6 @@ class AlumnoController extends Controller
           $path = Storage::disk('local')->put('fotos', $request->file('foto'));
           $alumnos->foto = $path;
         }
-        $alumnos->curso_id = $request->curso_id;
         $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
         return redirect()->route('alumnos.alumnos')->with('message', 'Información actualizada con éxito');
