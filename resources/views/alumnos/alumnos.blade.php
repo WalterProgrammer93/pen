@@ -60,7 +60,7 @@
                                         <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                             <input type="hidden" name="_method" value="PUT">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
+                                            <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                             <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                             @include('alerts.dialogos')
                                         </form>
@@ -69,7 +69,7 @@
                                               <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                                   <input type="hidden" name="_method" value="PUT">
                                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                  <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
+                                                  <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
                                                   <button type="submit" class="btn btn-danger disabled" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                               </form>
                                           @else
@@ -77,7 +77,7 @@
                                                   <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                                       <input type="hidden" name="_method" value="PUT">
                                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                      <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
+                                                      <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                                       <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                                       @include('alerts.dialogos')
                                                   </form>
@@ -86,7 +86,7 @@
                                                   <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                                       <input type="hidden" name="_method" value="PUT">
                                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                      <a href="{{ route('alumnos/actualizar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
+                                                      <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
                                                       <button type="submit" class="btn btn-danger disabled" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                                   </form>
                                                   @endif
