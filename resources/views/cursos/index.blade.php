@@ -22,7 +22,7 @@
                       @if(Auth::check())
                         @if(Auth::user()->hasRole('admin'))
                           @if (!empty($cursos->id))
-                              <form method="POST" action="{{ route('cursos/update', $cursos->id) }}" role="form">
+                              <form method="POST" action="{{ route('cursos/actualizar', $cursos->id) }}" role="form">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="form-group row">
@@ -55,7 +55,7 @@
                                 </div>
                             </form>
                           @else
-                              <form method="POST" action="{{ route('cursos/store') }}">
+                              <form method="POST" action="{{ route('cursos/guardar') }}">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="form-group row">
