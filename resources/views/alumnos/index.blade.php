@@ -99,8 +99,9 @@
                                       <label for="sexo" class="col-md-4 col-form-label text-md-right">Sexo</label>
                                       <div class="col-md-6">
                                           <select id="sexo" class="form-control" name="sexo" required>
-                                              <option value="{{ $alumnos->sexo }}">Femenino</option>
-                                              <option value="{{ $alumnos->sexo }}">Masculino</option>
+                                              <option value="" disabled>Seleccione el sexo</option>
+                                              <option value="F" @if(@$alumnos->sexo == "F") selected @endif>Femenino</option>
+                                              <option value="M" @if(@$alumnos->sexo == "M") selected @endif>Masculino</option>
                                           </select>
                                           @error('sexo')
                                               <span class="invalid-feedback" role="alert">
@@ -215,7 +216,7 @@
                                         <input name="foto" type="file" id="foto">
                                         @if (!empty($alumnos->foto))
                                           <span>Foto actual: </span>
-                                          <img src="/public/fotos/{{ $alumnos->foto }}" width="200" class="img-fluid">
+                                          <img src="/fotos/{{ $alumnos->foto }}" width="200" class="img-fluid">
                                         @else
                                           Aún no se ha cargado la foto del alumno
                                         @endif
