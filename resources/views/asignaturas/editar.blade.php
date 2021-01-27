@@ -33,26 +33,18 @@
                 <div class="card-header">Crear Asignatura</div>
 
                 <div class="card-body">
-                    <!--@if (session('status'))
+                  <!-- Obtengo la sesión actual del usuario -->
+                    @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif-->
-
-                    <!-- Obtengo la sesión actual del usuario -->
-                    {{ $message=Session::get('message') }}
-
+                    @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-
-
-                    <form method="POST" action="{{ route('asignaturas/update', $asignatura->id) }}" role="form">
-
+                    <form method="POST" action="{{ route('asignaturas/actualizar', $asignatura->id) }}" role="form">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                         @include('asignaturas.index')
-
                     </form>
                 </div>
             </div>
