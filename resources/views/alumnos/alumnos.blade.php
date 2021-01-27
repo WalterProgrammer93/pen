@@ -55,45 +55,36 @@
                                 <td class="v-align-middle"><img src="{{!! asset('fotos/$alumno->foto') !!}}"  class="img-responsive" width="50"/>{{ $alumno->foto }}</td>
                                 <td class="v-align-middle">{{ $alumno->curso_id }}</td>
                                 <td class="v-align-middle">
-                                  @if(Auth::check())
-                                      @if(Auth::user()->hasRole('admin'))
-                                        <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                            <input type="hidden" name="_method" value="PUT">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      @if(Auth::check())
+                                          @if(Auth::user()->hasRole('admin'))
                                             <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                             <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                             @include('alerts.dialogos')
-                                        </form>
-                                      @else
-                                          @if(Auth::user()->hasRole('student'))
-                                              <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                                  <input type="hidden" name="_method" value="PUT">
-                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                  <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
-                                                  <button type="submit" class="btn btn-danger disabled" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                              </form>
                                           @else
+                                            @if(Auth::user()->hasRole('student'))
+                                              <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
+                                              @include('alerts.dialogos')
+                                            @else
                                               @if(Auth::user()->hasRole('teacher'))
-                                                  <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                                      <input type="hidden" name="_method" value="PUT">
-                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                      <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
-                                                      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                                      @include('alerts.dialogos')
-                                                  </form>
+                                                <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
+                                                @include('alerts.dialogos')
                                               @else
-                                                  @if(Auth::user()->hasRole('user'))
-                                                  <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                                      <input type="hidden" name="_method" value="PUT">
-                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                      <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary disabled">Modificar</a>
-                                                      <button type="submit" class="btn btn-danger disabled" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                                  </form>
-                                                  @endif
+                                                @if(Auth::user()->hasRole('user'))
+                                                  <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                  <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
+                                                  @include('alerts.dialogos')
+                                                @endif
                                               @endif
+                                            @endif
                                           @endif
                                       @endif
-                                  @endif
+
+                                  </form>
                                 </td>
                             </tr>
                         @endforeach
