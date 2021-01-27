@@ -64,7 +64,6 @@ class AlumnoController extends Controller
           $path = Storage::disk('local')->put('fotos', $request->file('foto'));
           $alumnos->foto = $path;
         }
-
         $alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
         return redirect()->route('alumnos')->with('message', 'Información almacenada con éxito');
@@ -89,8 +88,8 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        $alumnos = Alumno::find($id);
-        $cursos = Curso::find($id);
+        $alumnos = Alumno::findOrFail($id);
+        $cursos = Curso::findOrFail($id);
         $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
         return view("alumnos.editar", ['alumnos' => $alumnos], ['cursos' => $cursos]);
     }
@@ -104,28 +103,8 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $alumnos = Alumno::find($id);
-        $alumnos->nombre = $request->nombre;
-        $alumnos->apellido1 = $request->apellido1;
-        $alumnos->apellido2 = $request->apellido2;
-        $alumnos->dni = $request->dni;
-        $alumnos->fecha_nacimiento = $request->fecha_nacimiento;
-        $alumnos->telefono = $request->telefono;
-        $alumnos->correo = $request->correo;
-        $alumnos->sexo = $request->sexo;
-        $alumnos->ciudad = $request->ciudad;
-        $alumnos->provincia = $request->provincia;
-        $alumnos->nacionalidad = $request->nacionalidad;
-        $alumnos->codigo_postal = $request->codigo_postal;
-        $alumnos->direccion = $request->direccion;
-        $alumnos->portal = $request->portal;
-        $alumnos->piso = $request->piso;
-        $alumnos->letra = $request->letra;
-        $alumnos->repite = $request->repite;
-        if($request->hasFile('foto')){
-          $path = Storage::disk('local')->put('fotos', $request->file('foto'));
-          $alumnos->foto = $path;
-        }
+        $alumnos = Alumno::findOrFail($id);
+        $alumnos->update($request->all());
         $arrayCurso = array('curso_id' => $id);
         $curso = implode(',', $arrayCurso);
         $alumnos->curso()->associate($curso);
@@ -141,7 +120,7 @@ class AlumnoController extends Controller
      */
     public function delete($id)
     {
-        $alumnos = Alumno::find($id);
+        $alumnos = Alumno::findOrFail($id);
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
