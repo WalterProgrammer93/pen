@@ -133,7 +133,7 @@
                                         <select id="aula_id" class="form-control" name="aula_id" required>
                                             <option value="" disabled>Seleccione una aula</option>
                                             @foreach($aulas as $id => $etiqueta)
-                                                <option value="{{ $id }}" @if($id=='$id') 'selected' @endif>{{ $etiqueta }}</option>
+                                                <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $etiqueta }}</option>
                                             @endforeach
                                         </select>
                                         @error('aula_id')

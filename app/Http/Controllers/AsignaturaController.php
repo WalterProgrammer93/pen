@@ -73,8 +73,8 @@ class AsignaturaController extends Controller
         $asignaturas = Asignatura::findOrFail($id);
         $cursos = Curso::findOrFail($id);
         $aulas = Aula::findOrFail($id);
-        $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
+        /*$cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();*/
         return view("asignaturas.editar", ['asignaturas' => $asignaturas], ['cursos' => $cursos], ['aulas' => $aulas]);
     }
 
