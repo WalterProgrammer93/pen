@@ -13,7 +13,6 @@
                           </div>
                       @endif
                       @if(Auth::check())
-                          @if(Auth::user()->hasRole('admin'))
                             @if(!empty($alumnos->id))
                                 <form method="POST" action="{{ route('alumnos/actualizar', $alumnos->id) }}" role="form">
                                   @csrf
@@ -478,20 +477,6 @@
                                               </div>
                                           </div>
                                     </form>
-
-                                @endif
-                            @else
-                                @if(Auth::user()->hasRole('student'))
-                                    <div>No tiene permisos</div>
-                                @else
-                                    @if(Auth::user()->hasRole('teacher'))
-                                        <div>Tiene permisos</div>
-                                    @else
-                                        @if(Auth::user()->hasRole('user'))
-                                            <div>No tiene permisos</div>
-                                        @endif
-                                    @endif
-                                @endif
                             @endif
                       @endif
                   </div>
