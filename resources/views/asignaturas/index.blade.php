@@ -20,6 +20,9 @@
                           </div>
                       @endif
                       @if (!empty($asignatura->id))
+                      <form method="POST" action="{{ route('asignaturas/actualizar', $asignatura->id) }}">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
                             <div class="col-md-6">
@@ -43,14 +46,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="curso" class="col-md-4 col-form-label text-md-right">Curso</label>
+                            <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                             <div class="col-md-6">
-                                <select id="curso" class="form-control" name="curso" required>
-                                    @foreach($asignaturas as $asignatura)
-                                        <option value="{{ $asignatura->curso }}">{{ $asignatura->curso }}</option>
+                                <select id="curso_id" class="form-control" name="curso_id[]" required>
+                                    <option value="" disabled>Seleccione un curso</option>
+                                    @foreach($cursos as $id => $nombre)
+                                        <option value="{{ $id }}" {{ $id == $cursos->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                     @endforeach
                                 </select>
-                                @error('curso')
+                                @error('curso_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -58,85 +62,94 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="aula" class="col-md-4 col-form-label text-md-right">Aula</label>
+                            <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
                             <div class="col-md-6">
-                                <select id="aula" class="form-control" name="aula" required>
-                                    <option value="">Seleccione una aula</option>
-                                    @foreach($asignaturas as $asignatura)
-                                        <option value="{{ $asignatura->aula }}">{{ $asignatura->aula }}</option>
+                                <select id="aula_id" class="form-control" name="aula_id[]" required>
+                                    <option value="" disabled>Seleccione una aula</option>
+                                    @foreach($aulas as $id => $etiqueta)
+                                        <option value="{{ $id }}" {{ $id == $aulas->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                     @endforeach
                                 </select>
-                                @error('curso')
+                                @error('aula_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                      @else
-                          <div class="form-group row">
-                              <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
-                              <div class="col-md-6">
-                                  <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
-                                  @error('nombre')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
-                              <div class="col-md-6">
-                                  <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" rows="4" cols="50" required autocomplete="descripcion"></textarea>
-                                  @error('descripcion')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label for="curso" class="col-md-4 col-form-label text-md-right">Curso</label>
-                              <div class="col-md-6">
-                                  <select id="curso" class="form-control" name="curso" required>
-                                      <option value="">Seleccione un curso</option>
-                                      @foreach($cursos as $nombre => $id)
-                                          <option value="{{ $nombre }}">{{ $id }}</option>
-                                      @endforeach
-                                  </select>
-                                  @error('curso')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label for="aula" class="col-md-4 col-form-label text-md-right">Aula</label>
-                              <div class="col-md-6">
-                                  <select id="aula" class="form-control" name="aula" required>
-                                      <option value="">Seleccione una aula</option>
-                                      @foreach($aulas as $etiqueta => $id)
-                                          <option value="{{ $etiqueta }}">{{ $id }}</option>
-                                      @endforeach
-                                  </select>
-                                  @error('curso')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-                      @endif
-                      <form method="POST" action="{{ route('asignaturas') }}">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-success">Añadir</button>
+                                <button type="submit" class="btn btn-success">Actualizar</button>
                                 <a href="{{ route('asignaturas') }}" class="btn btn-primary">Cancelar</a>
                             </div>
                         </div>
                       </form>
+                      @else
+                        <form method="POST" action="{{ route('asignaturas/guardar') }}">
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT">
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
+                                <div class="col-md-6">
+                                    <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+                                    @error('nombre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
+                                <div class="col-md-6">
+                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" rows="4" cols="50" required autocomplete="descripcion"></textarea>
+                                    @error('descripcion')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
+                                <div class="col-md-6">
+                                    <select id="curso_id" class="form-control" name="curso_id" required>
+                                        <option value="" disabled>Seleccione un curso</option>
+                                        @foreach($cursos as $id => $nombre)
+                                            <option value="{{ $id }}">{{ $nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('curso_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
+                                <div class="col-md-6">
+                                    <select id="aula_id" class="form-control" name="aula_id" required>
+                                        <option value="" disabled>Seleccione una aula</option>
+                                        @foreach($aulas as $id => $etiqueta)
+                                            <option value="{{ $id }}" @if($id=='$id')selected @endif>{{ $etiqueta }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('aula_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-success">Añadir</button>
+                                    <a href="{{ route('asignaturas') }}" class="btn btn-primary">Cancelar</a>
+                                </div>
+                            </div>
+                        </form>
+                      @endif
                   </div>
               </div>
           </div>
