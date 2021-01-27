@@ -71,11 +71,11 @@ class AsignaturaController extends Controller
     public function edit($id)
     {
         $asignaturas = Asignatura::findOrFail($id);
-        $cursos = Curso::find($id);
+        $cursos = Curso::findOrFail($id);
         $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $aulas = Aula::find($id);
+        $aulas = Aula::findOrFail($id);
         $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
-        return view("asignaturas.edit", ['asignaturas' => $asignaturas], ['cursos' => $cursos], ['aulas' => $aulas]);
+        return view("asignaturas.editar", ['asignaturas' => $asignaturas], ['cursos' => $cursos], ['aulas' => $aulas]);
     }
 
     /**
@@ -101,7 +101,7 @@ class AsignaturaController extends Controller
      */
     public function eliminar($id)
     {
-      $asignaturas = Asignatura::find($id);
+      $asignaturas = Asignatura::findOrFail($id);
       $asignaturas->delete();
       Session::flash('message', 'Eliminado Satisfactoriamente');
       return Redirect::to('/asignaturas');
