@@ -20,7 +20,7 @@
                           </div>
                       @endif
                       @if(Auth::check())
-                        @if (!empty($asignatura->id))
+                        @if(!empty($asignatura->id))
                           <form method="POST" action="{{ route('asignaturas/actualizar', $asignatura->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
