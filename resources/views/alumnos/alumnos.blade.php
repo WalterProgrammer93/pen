@@ -66,24 +66,20 @@
                                           @else
                                             @if(Auth::user()->hasRole('student'))
                                               <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
-                                              @include('alerts.dialogos')
+                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('teacher'))
                                                 <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
-                                                @include('alerts.dialogos')
+                                                <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @else
                                                 @if(Auth::user()->hasRole('user'))
                                                   <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                                  <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" disabled>Eliminar</button>
-                                                  @include('alerts.dialogos')
+                                                  <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                                 @endif
                                               @endif
                                             @endif
                                           @endif
                                       @endif
-
                                   </form>
                                 </td>
                             </tr>
