@@ -52,7 +52,7 @@
                                   <form action="{{ route('aulas/eliminar', $aula->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('aulas/actualizar', $aula->id) }}" class="btn btn-primary">Modificar</a>
+                                      <a href="{{ route('aulas/editar', $aula->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
                                   </form>
                                 </td>
