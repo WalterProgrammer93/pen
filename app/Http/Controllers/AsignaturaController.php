@@ -62,13 +62,6 @@ class AsignaturaController extends Controller
         $asignaturas = Asignatura::findOrFail($id);
         return view("asignaturas.asignaturas", compact('asignaturas'));
     }
-
-    // Actualizar un registro (Update)
-	   public function actualizar($id) {
-		    $asignaturas = Asignatura::find($id);
-		    return view('asignaturas.actualizar', ['asignaturas' => $asignaturas]);
-	   }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -78,7 +71,11 @@ class AsignaturaController extends Controller
     public function edit($id)
     {
         $asignaturas = Asignatura::findOrFail($id);
-        return view("asignaturas.edit", compact("asignatura"));
+        $cursos = Curso::find($id);
+        $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::find($id);
+        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
+        return view("asignaturas.edit", ['asignaturas' => $asignaturas], ['cursos' => $cursos], ['aulas' => $aulas]);
     }
 
     /**
