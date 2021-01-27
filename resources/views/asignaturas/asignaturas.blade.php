@@ -48,13 +48,13 @@
                             <tr>
                                 <td class="v-align-middle">{{ $asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $asignatura->descripcion }}</td>
-                                <td class="v-align-middle">{{ $asignatura->curso }}</td>
-                                <td class="v-align-middle">{{ $asignatura->aula }}</td>
+                                <td class="v-align-middle">{{ $asignatura->curso_id }}</td>
+                                <td class="v-align-middle">{{ $asignatura->aula_id }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('asignaturas/eliminar', $asignatura->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('asignaturas/actualizar', $asignatura->id) }}" class="btn btn-primary">Modificar</a>
+                                      <a href="{{ route('asignaturas/editar', $asignatura->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
                                   </form>
                                 </td>
