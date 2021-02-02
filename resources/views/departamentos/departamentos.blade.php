@@ -52,8 +52,28 @@
                                   <form action="{{ route('departamentos/eliminar', $departamento->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary">Modificar</a>
-                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      @if(Auth::check())
+                                          @if(Auth::user()->hasRole('admin'))
+                                            <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary">Modificar</a>
+                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                            @include('alerts.dialogos')
+                                          @else
+                                            @if(Auth::user()->hasRole('student'))
+                                              <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                            @else
+                                              @if(Auth::user()->hasRole('teacher'))
+                                                <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                              @else
+                                                @if(Auth::user()->hasRole('user'))
+                                                  <a href="{{ route('departamentos/actualizar', $departamento->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                  <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                @endif
+                                              @endif
+                                            @endif
+                                          @endif
+                                      @endif
                                   </form>
                                 </td>
                             </tr>
