@@ -20,14 +20,14 @@
                           </div>
                       @endif
                       @if(Auth::check())
-                        @if(!empty($asignatura->id))
-                          <form method="POST" action="{{ route('asignaturas/actualizar', $asignatura->id) }}">
+                        @if(!empty($asignaturas->id))
+                          <form method="POST" action="{{ route('asignaturas/actualizar', $asignaturas->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
                                 <div class="col-md-6">
-                                    <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ $asignatura->nombre }}" required autocomplete="nombre" autofocus>
+                                    <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ $asignaturas->nombre }}" required autocomplete="nombre" autofocus>
                                     @error('nombre')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
                                 <div class="col-md-6">
-                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $asignatura->descripcion }}" rows="4" cols="50" required autocomplete="descripcion"/>
+                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $asignaturas->descripcion }}" rows="4" cols="50" required autocomplete="descripcion"/>
                                     @error('descripcion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
