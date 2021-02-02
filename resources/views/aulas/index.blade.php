@@ -21,13 +21,13 @@
                     @endif
                     @if(Auth::check())
                       @if(!empty($aula->id))
-                        <form method="POST" action="{{ route('aulas/actualizar', $aula->id) }}">
+                        <form method="POST" action="{{ route('aulas/actualizar', $aulas->id) }}">
                           @csrf
                           <input type="hidden" name="_method" value="PUT">
                           <div class="form-group row">
                               <label for="etiqueta" class="col-md-4 col-form-label text-md-right">Etiqueta</label>
                               <div class="col-md-6">
-                                  <input id="etiqueta" type="text" class="form-control @error('etiqueta') is-invalid @enderror" name="etiqueta" value="{{ $aula->etiqueta }}" required autocomplete="etiqueta" autofocus>
+                                  <input id="etiqueta" type="text" class="form-control @error('etiqueta') is-invalid @enderror" name="etiqueta" value="{{ $aulas->etiqueta }}" required autocomplete="etiqueta" autofocus>
                                   @error('etiqueta')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                           <div class="form-group row">
                               <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
                               <div class="col-md-6">
-                                  <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $aula->descripcion }}" rows="4" cols="50" autocomplete="descripcion"></textarea>
+                                  <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $aulas->descripcion }}" rows="4" cols="50" autocomplete="descripcion"></textarea>
                                   @error('descripcion')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
@@ -50,8 +50,9 @@
                               <label for="disponibilidad" class="col-md-4 col-form-label text-md-right">Disponibilidad</label>
                               <div class="col-md-6">
                                   <select id="disponibilidad" class="form-control" name="disponibilidad" required>
-                                      <option value="{{ $aula->disponibilidad }}">{{ $aula->disponibilidad }}</option>
-                                      <option value="No Disponible">No Disponible</option>
+                                      <option value="" disabled>Seleccionar disponibilidad</option>
+                                      <option value="Disponible" @if(@$aulas->disponibilidad == "Disponible") selected @endif>Disponible</option>
+                                      <option value="No Disponible" @if(@$aulas->disponibilidad == "No Disponible") selected @endif>No Disponible</option>
                                   </select>
                                   @error('disponibilidad')
                                       <span class="invalid-feedback" role="alert">
@@ -96,6 +97,7 @@
                               <label for="disponibilidad" class="col-md-4 col-form-label text-md-right">Disponibilidad</label>
                               <div class="col-md-6">
                                   <select id="disponibilidad" class="form-control" name="disponibilidad" required>
+                                      <option value="" disabled>Seleccionar disponibilidad</option>
                                       <option value="Disponible">Disponible</option>
                                       <option value="No Disponible">No Disponible</option>
                                   </select>
