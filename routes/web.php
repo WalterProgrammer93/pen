@@ -308,7 +308,7 @@ Route::put('departamentos/guardar', [
     'uses' => 'DepartamentoController@store'])->name('departamentos/guardar');
 
 /* Actualizar */
-Route::put('departamentos/editar/{id}', [
+Route::get('departamentos/editar/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'DepartamentoController@edit'])->name('departamentos/editar');
