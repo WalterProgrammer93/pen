@@ -38,12 +38,11 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
-        $departamento = new Departamento;
-        $departamento->codigo = $request->codigo;
-        $departamento->nombre = $request->nombre;
-        $departamento->descripcion = $request->descripcion;
-        $departamento->estado = $request->estado;
-        $departamento->save();
+        $departamentos = new Departamento;
+        $departamentos->nombre = $request->nombre;
+        $departamentos->descripcion = $request->descripcion;
+        $departamentos->estado = $request->estado;
+        $departamentos->save();
         return redirect()->route('departamentos')->with('success', 'Información almacenada con éxito');
     }
 
@@ -67,8 +66,8 @@ class DepartamentoController extends Controller
      */
     public function edit($id)
     {
-        $departamento = Departamento::findOrFail($id);
-        return view("departamentos.editarDepartamento", compact("departamento"));
+        $departamentos = Departamento::findOrFail($id);
+        return view("departamentos.editar", compact("departamento"));
     }
 
     /**
@@ -80,10 +79,10 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $departamento = Departamento::findOrFail($id);
-        $departamento->update($request->all());
-        $departamento->save();
-        return redirect("/departamentos")->with('success', 'Información actualizada con éxito');
+        $departamentos = Departamento::findOrFail($id);
+        $departamentos->update($request->all());
+        $departamentos->save();
+        return redirect()->route("departamentos")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -92,11 +91,11 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $departamento = Departamento::findOrFail($id);
         $departamento->delete();
-        return redirect("/departamentos")->with('success', 'Información eliminada con éxito');
+        return redirect()->route("departamentos")->with('success', 'Información eliminada con éxito');
     }
 
     public function buscar(Request $request) {
