@@ -66,8 +66,8 @@ class AulaController extends Controller
      */
     public function edit($id)
     {
-        $aula = Aula::findOrFail($id);
-        return view("aulas.editarAula", compact("aula", "id"));
+        $aulas = Aula::findOrFail($id);
+        return view("aulas.editar", compact("aulas"));
     }
 
     /**
