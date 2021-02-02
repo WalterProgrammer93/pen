@@ -39,8 +39,6 @@
                           @else
                               @if (Auth::user()->hasRole('student'))
                                   <div class="row">
-                                      <div class="col-sm"><p><a href="{{ url('cursos') }}" class="cursos"><img src="https://img.icons8.com/ios-glyphs/30/000000/graduation-cap--v1.png" alt="cursos">&nbsp; Cursos</a></p></div>
-                                      <div class="col-sm"><p><a href="{{ url('asignaturas') }}" class="asignaturas"><img src="https://img.icons8.com/ios-glyphs/30/000000/courses.png" alt="asignaturas">&nbsp; Asignaturas</a></p></div>
                                       <div class="col-sm"><p><a href="{{ url('notas') }}" class="notas"><img src="https://img.icons8.com/ios-filled/30/000000/report-card.png" alt="notas">&nbsp; Notas</a></p></div>
                                       <div class="col-sm"><p><a href="{{ url('tareas') }}" class="tareas"><img src="https://img.icons8.com/ios-filled/30/000000/classroom.png" alt="tareas">&nbsp; Tareas</a></p></div>
                                       <div class="col-sm"><p><a href="{{ url('temas') }}" class="temas"><img src="https://img.icons8.com/ios-glyphs/30/000000/courses.png" alt="temas">&nbsp; Temas</a></p></div>
@@ -60,9 +58,6 @@
                               @endif
                           @endif
                       @endif
-                    @else
-                        <!--<script type="text/javascript" src="{{ asset('jas/alerts.js')}}" defer></script>-->
-                        <div id="noAutorizado"></div>
                     @endif
                 </div>
             </div>

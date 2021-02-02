@@ -87,7 +87,7 @@ class CursoController extends Controller
         $cursos = Curso::findOrFail($id);
         $cursos->update($request->all());
         $cursos->save();
-        return redirect("cursos")->with('success', 'Información actualizada con éxito');
+        return redirect()->route("cursos")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -96,11 +96,11 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function delete($id)
     {
         $cursos = Curso::findOrFail($id);
         $cursos->delete();
-        return redirect("cursos")->with('success', 'Información eliminada con éxito');
+        return redirect()->route("cursos")->with('success', 'Información eliminada con éxito');
     }
 
     public function buscar(Request $request) {
