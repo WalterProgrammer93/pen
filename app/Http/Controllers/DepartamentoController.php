@@ -67,7 +67,7 @@ class DepartamentoController extends Controller
     public function edit($id)
     {
         $departamentos = Departamento::findOrFail($id);
-        return view("departamentos.editar", compact("departamento"));
+        return view("departamentos.editar", ['departamentos' => $departamentos]);
     }
 
     /**
