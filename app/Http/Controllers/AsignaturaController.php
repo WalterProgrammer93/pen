@@ -90,7 +90,7 @@ class AsignaturaController extends Controller
         $asignaturas = Asignatura::findOrFail($id);
         $asignaturas->update($request->all());
         $asignaturas->save();
-        return redirect("/asignaturas")->with('success', 'Información actualizada con éxito');
+        return redirect()->route("asignaturas")->with('success', 'Información actualizada con éxito');
     }
 
     /**
