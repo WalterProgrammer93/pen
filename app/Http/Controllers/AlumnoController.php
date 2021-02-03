@@ -31,7 +31,7 @@ class AlumnoController extends Controller
     public function create()
     {
         $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view('alumnos.crear', compact('cursos'));
+        return view('alumnos.crear', ['cursos' => $cursos]);
     }
 
     /**
@@ -77,7 +77,7 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        $alumnos = Alumno::findOrFail($id);
+        $alumnos = Alumno::find($id);
         return view("alumnos.alumnos", compact('alumnos'));
     }
     /**
@@ -88,8 +88,8 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        $alumnos = Alumno::findOrFail($id);
-        $cursos = Curso::findOrFail($id);
+        $alumnos = Alumno::find($id);
+        $cursos = Curso::find($id);
         $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
         return view("alumnos.editar", ['alumnos' => $alumnos], ['cursos' => $cursos]);
     }
@@ -103,11 +103,11 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $alumnos = Alumno::findOrFail($id);
+        $alumnos = Alumno::find($id);
         $alumnos->update($request->all());
-        /*$arrayCurso = array('curso_id' => $id);
+        $arrayCurso = array('curso_id' => $id);
         $curso = implode(',', $arrayCurso);
-        $alumnos->curso()->associate($curso);*/
+        $alumnos->curso()->associate($curso);
         $alumnos->save();
         return redirect()->route('alumnos')->with('message', 'Información actualizada con éxito');
     }
@@ -120,11 +120,11 @@ class AlumnoController extends Controller
      */
     public function delete($id)
     {
-        $alumnos = Alumno::findOrFail($id);
+        $alumnos = Alumno::find($id);
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
-        return redirect()->route('alumnos.alumnos')->with('success','Información eliminada con éxito');
+        return redirect()->route('alumnos')->with('success','Información eliminada con éxito');
     }
 
     public function search(Request $request) {
