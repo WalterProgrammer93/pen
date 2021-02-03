@@ -52,7 +52,7 @@
                                     <select id="curso_id" class="form-control" name="curso_id[]" required>
                                         <option value="" disabled>Seleccione un curso</option>
                                         @foreach($cursos as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $cursos->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('curso_id')
@@ -68,7 +68,7 @@
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
                                         <option value="" disabled>Seleccione una aula</option>
                                         @foreach($aulas as $id => $etiqueta)
-                                            <option value="{{ $id }}" {{ $id == $aulas->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
+                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
                                     @error('aula_id')
