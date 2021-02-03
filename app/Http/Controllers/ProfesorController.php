@@ -41,16 +41,16 @@ class ProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        $profesor = new Profesor;
-        $profesor->nombre = $request->nombre;
-        $profesor->apellido1 = $request->apellido1;
-        $profesor->apellido2 = $request->apellido2;
-        $profesor->dni = $request->dni;
-        $profesor->email = $request->email;
-        $profesor->telefono = $request->telefono;
-        $profesor->disponibilidad = $request->disponibilidad;
-        $profesor->departamentos()->associate($request->departamento_id);
-        $profesor->save();
+        $profesores = new Profesor;
+        $profesores->nombre = $request->nombre;
+        $profesores->apellido1 = $request->apellido1;
+        $profesores->apellido2 = $request->apellido2;
+        $profesores->dni = $request->dni;
+        $profesores->email = $request->email;
+        $profesores->telefono = $request->telefono;
+        $profesores->disponibilidad = $request->disponibilidad;
+        $profesores->departamentos()->associate($request->departamento_id);
+        $profesores->save();
         return redirect()->route('profesores')->with('success', 'Información almacenada con éxito');
     }
 
@@ -62,7 +62,7 @@ class ProfesorController extends Controller
      */
     public function show($id)
     {
-        $profesores = Profesor::findOrFail($id);
+        $profesores = Profesor::find($id);
         return view("profesores.profesores", compact('profesores'));
     }
 
@@ -74,8 +74,9 @@ class ProfesorController extends Controller
      */
     public function edit($id)
     {
-        $profesor = Profesor::findOrFail($id);
-        return view("profesores.editarProfesor", compact("profesor"));
+        $profesores = Profesor::find($id);
+        $departamentos = Departamento::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view("profesores.editar", ['profesores' => $profesores], ['departamentos' => $departamentos]);
     }
 
     /**
@@ -87,10 +88,10 @@ class ProfesorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $profesor = Profesor::findOrFail($id);
-        $profesor->update($request->all());
-        $profesor->save();
-        return redirect("/profesores")->with('success', 'Información actualizada con éxito');
+        $profesores = Profesor::find($id);
+        $profesores->update($request->all());
+        $profesores->save();
+        return redirect()->route("profesores")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -99,14 +100,14 @@ class ProfesorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $profesor = Profesor::findOrFail($id);
-        $profesor->delete();
-        return redirect("/profesores")->with('success', 'Información eliminada con éxito');
+        $profesores = Profesor::find($id);
+        $profesores->delete();
+        return redirect()->route("profesores")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
