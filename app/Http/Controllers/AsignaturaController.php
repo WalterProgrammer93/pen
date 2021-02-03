@@ -31,7 +31,7 @@ class AsignaturaController extends Controller
     {
         $cursos = Curso::orderBy('id')->pluck('nombre','id')->toArray();
         $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
-        return view("asignaturas.crear", compact('cursos', 'aulas'));
+        return view("asignaturas.crear", ['cursos' => $cursos], ['aulas' => $aulas]);
     }
 
     /**
@@ -59,7 +59,7 @@ class AsignaturaController extends Controller
      */
     public function show($id)
     {
-        $asignaturas = Asignatura::findOrFail($id);
+        $asignaturas = Asignatura::find($id);
         return view("asignaturas.asignaturas", compact('asignaturas'));
     }
     /**
@@ -70,11 +70,11 @@ class AsignaturaController extends Controller
      */
     public function edit($id)
     {
-        $asignaturas = Asignatura::findOrFail($id);
-        $cursos = Curso::findOrFail($id);
-        $aulas = Aula::findOrFail($id);
-        /*$cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();*/
+        $asignaturas = Asignatura::find($id);
+        $cursos = Curso::find($id);
+        $aulas = Aula::find($id);
+        $cursos = Curso::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
         return view("asignaturas.editar", ['asignaturas' => $asignaturas], ['cursos' => $cursos], ['aulas' => $aulas]);
     }
 
@@ -87,7 +87,7 @@ class AsignaturaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $asignaturas = Asignatura::findOrFail($id);
+        $asignaturas = Asignatura::find($id);
         $asignaturas->update($request->all());
         $asignaturas->save();
         return redirect()->route("asignaturas")->with('success', 'Información actualizada con éxito');
@@ -99,15 +99,14 @@ class AsignaturaController extends Controller
      * @param  int  pasa como parametro un entero $id
      * @return \Illuminate\Http\Response devuelve una vista pasando la ruta
      */
-    public function eliminar($id)
+    public function delete($id)
     {
-      $asignaturas = Asignatura::findOrFail($id);
+      $asignaturas = Asignatura::find($id);
       $asignaturas->delete();
-      Session::flash('message', 'Eliminado Satisfactoriamente');
-      return Redirect::to('/asignaturas');
+      return redirect()->route("asignaturas")->with('success', 'Información eliminada con éxito');;
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
