@@ -115,9 +115,9 @@
                                     <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                     <div class="col-md-6">
                                         <select id="curso_id" class="form-control" name="curso_id" required>
-                                            <option value="" disabled>Seleccione un curso</option>
+                                            <option value="" disabled selected>Seleccione un curso</option>
                                             @foreach($cursos as $id => $nombre)
-                                                <option value="{{ $id }}">{{ $nombre }}</option>
+                                                <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $nombre }}</option>
                                             @endforeach
                                         </select>
                                         @error('curso_id')
@@ -131,7 +131,7 @@
                                     <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
                                     <div class="col-md-6">
                                         <select id="aula_id" class="form-control" name="aula_id" required>
-                                            <option value="" disabled>Seleccione una aula</option>
+                                            <option value="" disabled selected>Seleccione una aula</option>
                                             @foreach($aulas as $id => $etiqueta)
                                                 <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $etiqueta }}</option>
                                             @endforeach
