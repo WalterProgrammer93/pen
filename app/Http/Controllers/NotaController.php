@@ -42,14 +42,14 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        $nota = new Nota;
-        $nota->eva1 = $request->eva1;
-        $nota->eva2 = $request->eva2;
-        $nota->eva3 = $request->eva3;
-        $nota->media = $request->media;
-        $nota->alumno()->associate($request->alumno_id);
-        $nota->asignatura()->associate($request->asignatura_id);
-        $nota->save();
+        $notas = new Nota;
+        $notas->eva1 = $request->eva1;
+        $notas->eva2 = $request->eva2;
+        $notas->eva3 = $request->eva3;
+        $notas->media = $request->media;
+        $notas->alumno()->associate($request->alumno_id);
+        $notas->asignatura()->associate($request->asignatura_id);
+        $notas->save();
         return redirect()->route('notas')->with('success', 'Información almacenada con éxito');
     }
 
@@ -73,8 +73,9 @@ class NotaController extends Controller
      */
     public function edit($id)
     {
-        $nota = Nota::findOrFail($id);
-        return view("notas.editarNota", compact("nota", "id"));
+        $notas = Nota::findOrFail($id);
+
+        return view("notas.editar", compact("notas"));
     }
 
     /**
@@ -89,7 +90,7 @@ class NotaController extends Controller
         $nota = Nota::findOrFail($id);
         $nota->update($request->all());
         $nota->save();
-        return redirect("/notas")->with('success', 'Información actualizada con éxito');
+        return redirect()->route("notas")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -98,14 +99,14 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $nota = Nota::findOrFail($id);
         $nota->delete();
-        return redirect("/notas")->with('success','Información eliminada con éxito');
+        return redirect()->route("notas")->with('success','Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
