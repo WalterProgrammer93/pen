@@ -74,7 +74,6 @@ class NotaController extends Controller
     public function edit($id)
     {
         $notas = Nota::findOrFail($id);
-
         return view("notas.editar", compact("notas"));
     }
 
