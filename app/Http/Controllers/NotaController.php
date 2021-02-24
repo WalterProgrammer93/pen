@@ -61,7 +61,7 @@ class NotaController extends Controller
      */
     public function show($id)
     {
-        $notas = Nota::findOrFail($id);
+        $notas = Nota::find($id);
         return view("notas.notas", compact('notas'));
     }
 
@@ -73,7 +73,7 @@ class NotaController extends Controller
      */
     public function edit($id)
     {
-        $notas = Nota::findOrFail($id);
+        $notas = Nota::find($id);
         return view("notas.editar", compact("notas"));
     }
 
@@ -86,7 +86,7 @@ class NotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nota = Nota::findOrFail($id);
+        $nota = Nota::find($id);
         $nota->update($request->all());
         $nota->save();
         return redirect()->route("notas")->with('success', 'Información actualizada con éxito');
@@ -100,7 +100,7 @@ class NotaController extends Controller
      */
     public function delete($id)
     {
-        $nota = Nota::findOrFail($id);
+        $nota = Nota::find($id);
         $nota->delete();
         return redirect()->route("notas")->with('success','Información eliminada con éxito');
     }

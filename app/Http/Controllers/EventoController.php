@@ -94,14 +94,14 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $eventos = Evento::findOrFail($id);
         $eventos->delete();
         return redirect("/eventos")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
