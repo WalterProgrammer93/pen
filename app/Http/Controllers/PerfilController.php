@@ -36,10 +36,10 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
-        $perfil = new Perfil;
-        $perfil->perfil = $request->perfil;
-        $prefil->descripcion = $request->descripcion;
-        $perfil->save();
+        $perfiles = new Perfil;
+        $perfiles->perfil = $request->perfil;
+        $prefiles->descripcion = $request->descripcion;
+        $perfiles->save();
         return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
     }
 
@@ -51,7 +51,7 @@ class PerfilController extends Controller
      */
     public function show($id)
     {
-        $perfiles = Perfil::findOrFail($id);
+        $perfiles = Perfil::find($id);
         return view("perfiles.perfiles", compact('perfiles'));
     }
 
@@ -63,8 +63,8 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        $perfil = Perfil::findOrFail($id);
-        return view("perfiles.editarPerfil", compact("perfil"));
+        $perfiles = Perfil::find($id);
+        return view("perfiles.editar", compact("perfiles"));
     }
 
     /**
@@ -76,9 +76,9 @@ class PerfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $perfil = Perfil::findOrFail($id);
-        $perfil->update($request->all());
-        $perfil->save();
+        $perfiles = Perfil::find($id);
+        $perfiles->update($request->all());
+        $perfiles->save();
         return redirect("/perfiles")->with('success', 'Información actualizada con éxito');
     }
 
@@ -90,12 +90,12 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        $perfil = Perfil::findOrFail($id);
-        $perfil->delete();
+        $perfiles = Perfil::find($id);
+        $perfiles->delete();
         return redirect("/perfiles")->with('success','Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 

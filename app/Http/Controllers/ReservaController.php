@@ -40,17 +40,16 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        $reserva = new Reserva;
-        $reserva->codigo = $request->codigo;
-        $reserva->nombre_profesor = $request->nombre_profesor;
-        $reserva->apellido1_profesor = $request->apellido1_profesor;
-        $reserva->apellido2_profesor = $request->apellido2_profesor;
-        $reserva->etiqueta_aula = $request->etiqueta_aula;
-        $reserva->descripcion = $request->descripcion;
-        $reserva->reservado = $request->reservado;
-        $reserva->profesor()->associate($request->profesor_id);
-        $reserva->aula()->associate($request->aula_id);
-        $reserva->save();
+        $reservas = new Reserva;
+        $reservas->nombre_profesor = $request->nombre_profesor;
+        $reservas->apellido1_profesor = $request->apellido1_profesor;
+        $reservas->apellido2_profesor = $request->apellido2_profesor;
+        $reservas->etiqueta_aula = $request->etiqueta_aula;
+        $reservas->descripcion = $request->descripcion;
+        $reservas->reservado = $request->reservado;
+        $reservas->profesor()->associate($request->profesor_id);
+        $reservas->aula()->associate($request->aula_id);
+        $reservas->save();
         return redirect()->route('reservas')->with('success', 'Información almacenada con éxito');
     }
 
@@ -62,7 +61,7 @@ class ReservaController extends Controller
      */
     public function show($id)
     {
-        $reservas = Reserva::findOrFail($id);
+        $reservas = Reserva::find($id);
         return view("reservas.reservas", compact('reservas'));
     }
 
@@ -74,8 +73,8 @@ class ReservaController extends Controller
      */
     public function edit($id)
     {
-        $reserva = Reserva::findOrFail($id);
-        return view("reserva.editarReserva", compact("reserva"));
+        $reservas = Reserva::find($id);
+        return view("reserva.editarReserva", compact("reservas"));
     }
 
     /**
@@ -87,9 +86,9 @@ class ReservaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $reserva = Reserva::findOrFail($id);
-        $reserva->update($request->all());
-        $reserva->save();
+        $reservas = Reserva::find($id);
+        $reservas->update($request->all());
+        $reservas->save();
         return redirect("/reservas")->with('success', 'Información actualizada con éxito');
     }
 
@@ -101,12 +100,12 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        $reserva = Reserva::findOrFail($id);
-        $reserva->delete();
+        $reservas = Reserva::find($id);
+        $reservas->delete();
         return redirect("/reservas")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
