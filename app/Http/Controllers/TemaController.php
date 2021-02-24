@@ -38,11 +38,15 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        $tema = new Tema;
-        $tema->nombre = $request->nombre;
-        $tema->contenido = $request->contenido;
-        $tema->documento_tema = $request->documento_tema;
-        $tema->save();
+        $temas = new Tema;
+        $temas->nombre = $request->nombre;
+        $temas->contenido = $request->contenido;
+        $temas->documento_tema = $request->documento_tema;
+        if($request->hasFile('archivo_tema')){
+          $path = Storage::disk('local')->put('archivos', $request->file('archivos'));
+          $temas->documento_tema = $path;
+        }
+        $temas->save();
         return redirect()->route('temas')->with('success', 'Información almacenada con éxito');
     }
 
@@ -54,7 +58,7 @@ class TemaController extends Controller
      */
     public function show($id)
     {
-        $temas = Tema::findOrFail($id);
+        $temas = Tema::find($id);
         return view("temas.temas", compact('temas'));
     }
 
@@ -66,8 +70,8 @@ class TemaController extends Controller
      */
     public function edit($id)
     {
-        $tema = Tema::findOrFail($id);
-        return view("temas.editarTema", compact("temas"));
+        $temas = Tema::find($id);
+        return view("temas.editar", compact("temas"));
     }
 
     /**
@@ -79,9 +83,9 @@ class TemaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tema = Tema::findOrFail($id);
-        $tema->update($request->all());
-        $tema->save();
+        $temas = Tema::find($id);
+        $temas->update($request->all());
+        $temas->save();
         return redirect("/temas")->with('success', 'Información actualizada con éxito');
     }
 
@@ -91,14 +95,14 @@ class TemaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $tema = Tema::findOrFail($id);
-        $tema->delete();
+        $temas = Tema::find($id);
+        $temas->delete();
         return redirect("/temas")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
