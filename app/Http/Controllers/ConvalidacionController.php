@@ -40,10 +40,10 @@ class ConvalidacionController extends Controller
      */
     public function store(Request $request)
     {
-        $convalidacion = new Convalidacion;
-        $convalidacion->alumno()->associate($request->alumno_id);
-        $convalidacion->asignatura()->associate($request->asignatura_id);
-        $convalidacion->save();
+        $convalidaciones = new Convalidacion;
+        $convalidaciones->alumno()->associate($request->alumno_id);
+        $convalidaciones->asignatura()->associate($request->asignatura_id);
+        $convalidaciones->save();
         return redirect()-route('convalidaciones')->with('success', 'Información almacenada con éxito');
     }
 
@@ -55,7 +55,7 @@ class ConvalidacionController extends Controller
      */
     public function show($id)
     {
-        $convalidaciones = Convalidacion::findOrFail($id);
+        $convalidaciones = Convalidacion::find($id);
         return view("convalidaciones.convalidaciones", compact('convalidaciones'));
     }
 
@@ -67,8 +67,8 @@ class ConvalidacionController extends Controller
      */
     public function edit($id)
     {
-        $convalidacion = Convalidacion::findOrFail($id);
-        return view("convalidaciones.editarConvalidacion", compact("convalidacion"));
+        $convalidaciones = Convalidacion::find($id);
+        return view("convalidaciones.editar", compact("convalidaciones"));
     }
 
     /**
@@ -80,9 +80,9 @@ class ConvalidacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $convalidacion = Convalidacion::findOrFail($id);
-        $convalidacion->update($request->all());
-        $convalidacion->save();
+        $convalidaciones = Convalidacion::find($id);
+        $convalidaciones->update($request->all());
+        $convalidaciones->save();
         return redirect("/convalidaciones")->with('success', 'Información actualizada con éxito');
     }
 
@@ -92,14 +92,14 @@ class ConvalidacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $convalidacion = Convalidacion::findOrFail($id);
-        $convalidacion->delete();
+        $convalidaciones = Convalidacion::find($id);
+        $convalidaciones->delete();
         return redirect("/convalidaciones")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 

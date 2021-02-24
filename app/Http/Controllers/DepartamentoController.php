@@ -54,7 +54,7 @@ class DepartamentoController extends Controller
      */
     public function show($id)
     {
-        $departamentos = Departamento::findOrFail($id);
+        $departamentos = Departamento::find($id);
         return view("departamentos.departamentos", compact('departamentos'));
     }
 
@@ -66,7 +66,7 @@ class DepartamentoController extends Controller
      */
     public function edit($id)
     {
-        $departamentos = Departamento::findOrFail($id);
+        $departamentos = Departamento::find($id);
         return view("departamentos.editar", ['departamentos' => $departamentos]);
     }
 
@@ -79,7 +79,7 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $departamentos = Departamento::findOrFail($id);
+        $departamentos = Departamento::find($id);
         $departamentos->update($request->all());
         $departamentos->save();
         return redirect()->route("departamentos")->with('success', 'Información actualizada con éxito');
@@ -93,12 +93,12 @@ class DepartamentoController extends Controller
      */
     public function delete($id)
     {
-        $departamento = Departamento::findOrFail($id);
+        $departamento = Departamento::find($id);
         $departamento->delete();
         return redirect()->route("departamentos")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
