@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <!--<div class="row justify-content-center">
+    <div class="row justify-content-center">
         <div class="col-md-8">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -19,8 +19,8 @@
                               {{ session('status') }}
                           </div>
                       @endif
-                      @if(Auth::check())-->
-                        <!--@if(!empty($notas->id))
+                      @if(Auth::check())
+                        @if(!empty($notas->id))
                           <form method="POST" action="{{ route('notas/actualizar', $notas->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
@@ -188,14 +188,14 @@
                                        </span>
                                    @enderror
                                </div>
-                           </div>-->
-                           <!--<div class="form-group row mb-0">
+                           </div>
+                           <div class="form-group row mb-0">
                                <div class="col-md-6 offset-md-4">
                                    <button type="submit" class="btn btn-success">Añadir</button>
                                    <a href="{{ route('notas') }}" class="btn btn-primary">Cancelar</a>
                                </div>
-                           </div>-->
-                         <!--</form>
+                           </div>
+                         </form>
                         @endif
                       @endif
                   </div>
