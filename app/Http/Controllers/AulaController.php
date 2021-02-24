@@ -38,11 +38,11 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        $aula = new Aula;
-        $aula->etiqueta = $request->etiqueta;
-        $aula->descripcion = $request->descripcion;
-        $aula->disponibilidad = $request->disponibilidad;
-        $aula->save();
+        $aulas = new Aula;
+        $aulas->etiqueta = $request->etiqueta;
+        $aulas->descripcion = $request->descripcion;
+        $aulas->disponibilidad = $request->disponibilidad;
+        $aulas->save();
         return redirect()->route('aulas')->with('success', 'Información almacenada con éxito');
     }
 
@@ -54,7 +54,7 @@ class AulaController extends Controller
      */
     public function show($id)
     {
-        $aulas = Aula::findOrFail($id);
+        $aulas = Aula::find($id);
         return view("aulas.aulas", compact('aulas'));
     }
 
@@ -66,7 +66,7 @@ class AulaController extends Controller
      */
     public function edit($id)
     {
-        $aulas = Aula::findOrFail($id);
+        $aulas = Aula::find($id);
         return view("aulas.editar", compact("aulas"));
     }
 
@@ -79,8 +79,8 @@ class AulaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $aula = Aula::findOrFail($id);
-        $aula->update($request->all());
+        $aulas = Aula::find($id);
+        $aulas->update($request->all());
         return redirect("/aulas")->with('success', 'Información actualizada con éxito');
     }
 
@@ -90,14 +90,14 @@ class AulaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $aula = Aula::findOrFail($id);
-        $aula->delete();
+        $aulas = Aula::find($id);
+        $aulas->delete();
         return redirect("/aulas")->with('success', 'La información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 

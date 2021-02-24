@@ -43,11 +43,11 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $asistencia = new Asistencia;
-        $asistencia->numero_horas = $request->numero_horas;
-        $asistencia->alumno()->associate($request->alumno_id);
-        $asistencia->asignatura()->associate($request->asignatura_id);
-        $asistencia->save();
+        $asistencias = new Asistencia;
+        $asistencias->numero_horas = $request->numero_horas;
+        $asistencias->alumno()->associate($request->alumno_id);
+        $asistencias->asignatura()->associate($request->asignatura_id);
+        $asistencias->save();
         return redirect()->route('asistencias')->with('success', 'Información almacenada con éxito');
     }
 
@@ -59,7 +59,7 @@ class AsistenciaController extends Controller
      */
     public function show($id)
     {
-        $asistencias = Asistencia::findOrFail($id);
+        $asistencias = Asistencia::find($id);
         return view("asistencias.asistencias", compact('asistencias'));
     }
 
@@ -71,8 +71,8 @@ class AsistenciaController extends Controller
      */
     public function edit($id)
     {
-        $asistencia = Asistencia::findOrFail($id);
-        return view("asistencias.editarAsistencia", compact("asistencia"));
+        $asistencias = Asistencia::find($id);
+        return view("asistencias.editar", compact("asistencias"));
     }
 
     /**
@@ -84,9 +84,9 @@ class AsistenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $asistencia = Asistencia::findOrFail($id);
-        $asistencia->update($request->all());
-        $asistencia->save();
+        $asistencias = Asistencia::find($id);
+        $asistencias->update($request->all());
+        $asistencias->save();
         return redirect("/asistencias")->with('success', 'Información actualizada con éxito');
     }
 
@@ -96,10 +96,10 @@ class AsistenciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $asistencia = Asistencia::findOrFail($id);
-        $asistencia->delete();
+        $asistencias = Asistencia::find($id);
+        $asistencias->delete();
         return redirect("/asistencias")->with('success','Información eliminada con éxito');
     }
 
