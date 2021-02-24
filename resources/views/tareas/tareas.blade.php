@@ -56,7 +56,7 @@
                                 <td class="v-align-middle">{{ $tarea->fecha_envio }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
-                                <td class="v-align-middle">{{ $tarea->archivo_tarea }}</td>
+                                <td class="v-align-middle"><img src="{{!! asset('fotos/$tarea->archivo_tarea') !!}}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
                                 <td class="v-align-middle">{{ $tarea->asignatura }}</td>
                                 <td class="v-align-middle">{{ $tarea->tema }}</td>
@@ -64,11 +64,30 @@
                                   <form action="{{ route('tareas/eliminar', $tarea->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('tareas/actualizar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
-                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      @if(Auth::check())
+                                        @if(Auth::user()->hasRole('admin'))
+                                          <a href="{{ route('tareas/actualizar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
+                                          <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                          @include('alerts.dialogos')
+                                        @else
+                                          @if(Auth::user()->hasRole('student'))
+                                            <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                          @else
+                                            @if(Auth::user()->hasRole('teacher'))
+                                              <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
+                                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            @else
+                                              @if(Auth::user()->hasRole('user'))
+                                                <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                              @endif
+                                            @endif
+                                          @endif
+                                        @endif
+                                      @endif
                                   </form>
                                 </td>
-
                             </tr>
                         @endforeach
                     </table>
