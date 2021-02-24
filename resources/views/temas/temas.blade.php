@@ -52,7 +52,7 @@
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
-                                          <a href="{{ route('tareas/actualizar', $tema->id) }}" class="btn btn-primary">Modificar</a>
+                                          <a href="{{ route('tareas/editar', $tema->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                           @include('alerts.dialogos')
                                         @else
