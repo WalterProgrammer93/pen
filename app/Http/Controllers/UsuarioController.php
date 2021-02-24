@@ -40,11 +40,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = new User;
-        $usuario->nombre = $request->nombre;
-        $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->save();
+        $usuarios = new User;
+        $usuarios->nombre = $request->nombre;
+        $usuarios->email = $request->email;
+        $usuarios->password = Hash::make($request->password);
+        $usuarios->save();
         return redirect()->route('usuarios')->with('success', 'Información almacenada con éxito');
     }
 
@@ -56,8 +56,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = User::findOrFail($id);
-        return view("usuarios.usuarios", compact('usuario'));
+        $usuarios = User::find($id);
+        return view("usuarios.usuarios", compact('usuarios'));
     }
 
     /**
@@ -68,8 +68,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $usuario = User::findOrFail($id);
-        return view("usuarios.edit", compact("usuario"));
+        $usuarios = User::find($id);
+        return view("usuarios.editar", compact("usuarios"));
     }
 
     /**
@@ -81,7 +81,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = User::findOrFail($id);
+        $usuario = User::find($id);
         $usuario->update($request->all());
         $usuario->save();
         return redirect("/usuarios")->with('success', 'Información actualizada con éxito');
@@ -93,9 +93,9 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $usuario = User::findOrFail($id);
+        $usuario = User::find($id);
         $usuario->delete();
         return redirect("/usuarios")->with('success', 'Información eliminada con éxito');
     }
