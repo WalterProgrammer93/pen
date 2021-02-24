@@ -32,15 +32,18 @@
             <div class="card">
                 <div class="card-header">Modificar Asistencia</div>
                 <div class="card-body">
+                    <!-- Obtengo la sesión actual del usuario -->
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('asistencias/editar', $asistencia->id, $alumnos, $asignaturas) }}">
-                        {{csrf_field()}}
-                        <input type="hidden" name="_method" value="PATCH">
-                        @include('asistencias.index')
+                    <!-- Muestro el mensaje de validación -->
+                    @include('alerts.request')
+                    <form method="POST" action="{{ route('asistencias/actualizar', $asistencias->id) }}" role="form">
+                      <input type="hidden" name="_method" value="PUT">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      @include('asistencias.index')
                     </form>
                 </div>
             </div>
