@@ -15,10 +15,14 @@
                 <div class="card-header">Crear Evento</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    {{ $message=Session::get('message') }}
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('eventos/store') }}" >
+                    <form method="POST" action="{{ route('eventos/guardar') }}" >
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('eventos.index')
