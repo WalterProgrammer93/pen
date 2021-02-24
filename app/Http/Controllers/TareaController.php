@@ -3,6 +3,8 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
+use pen\Asignatura;
+use pen\Tema;
 use pen\Tarea;
 
 class TareaController extends Controller
@@ -28,7 +30,7 @@ class TareaController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $temas = Tema::orderBy('id')->pluck('etiqueta', 'id')->toArray();
+        $temas = Tema::orderBy('id')->pluck('nombre', 'id')->toArray();
         return view("tareas.crear", compact('asignaturas', 'temas'));
     }
 
@@ -64,7 +66,7 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tareas = Tarea::findOrFail($id);
+        $tareas = Tarea::find($id);
         return view("tareas.tareas", compact('tareas'));
     }
 
@@ -76,8 +78,8 @@ class TareaController extends Controller
      */
     public function edit($id)
     {
-        $tarea = Tarea::findOrFail($id);
-        return view("tarea.editarTarea", compact("tarea"));
+        $tarea = Tarea::find($id);
+        return view("tarea.editar", compact("tarea"));
     }
 
     /**
@@ -89,10 +91,10 @@ class TareaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tarea = Tarea::findOrFail($id);
+        $tarea = Tarea::find($id);
         $tarea->update($request->all());
         $tarea->save();
-        return redirect("/tareas")->with('success', 'Información actualizada con éxito');
+        return redirect()->route("tareas")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -101,14 +103,14 @@ class TareaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $tarea = Tarea::findOrFail($id);
+        $tarea = Tarea::find($id);
         $tarea->delete();
-        return redirect("/tareas")->with('success', 'Información eliminada con éxito');
+        return redirect()->route("tareas")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
