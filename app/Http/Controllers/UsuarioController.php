@@ -100,7 +100,7 @@ class UsuarioController extends Controller
         return redirect("/usuarios")->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
 
         $texto = $request->input('buscar');
 
