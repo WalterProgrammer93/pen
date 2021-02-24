@@ -31,7 +31,6 @@
           </nav>
             <div class="card">
                 <div class="card-header">Crear Asignatura</div>
-
                 <div class="card-body">
                   <!-- Obtengo la sesión actual del usuario -->
                     @if (session('status'))
