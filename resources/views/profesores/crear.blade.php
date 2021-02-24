@@ -22,7 +22,7 @@
                     @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('profesores/guardar') }}"  role="form">
+                    <form method="POST" action="{{ route('profesores/guardar') }}" role="form">
                       <input type="hidden" name="_method" value="PUT">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       @include('profesores.index')
