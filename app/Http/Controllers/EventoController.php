@@ -29,7 +29,7 @@ class EventoController extends Controller
     public function create()
     {
         $aulas = Aula::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view("eventos.crear")->with('aula');
+        return view("eventos.crear", compact("aulas"));
     }
 
     /**
@@ -40,13 +40,12 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        $evento = new Evento;
-        $evento->codigo = $request->codigo;
-        $evento->nombre = $request->nombre;
-        $evento->descripcion = $request->descripcion;
-        $evento->disponibilidad = $request->disponibilidad;
-        $evento->aula()->associate($request->aula_id);
-        $evento->save();
+        $eventos = new Evento;
+        $eventos->nombre = $request->nombre;
+        $eventos->descripcion = $request->descripcion;
+        $eventos->disponibilidad = $request->disponibilidad;
+        $eventos->aula()->associate($request->aula_id);
+        $eventos->save();
         return redirect()->route('eventos')->with('success', 'Información almacenada con éxito');
     }
 
@@ -58,7 +57,7 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $eventos = Evento::findOrFail($id);
+        $eventos = Evento::find($id);
         return view("eventos.eventos", compact('eventos'));
     }
 
@@ -70,8 +69,8 @@ class EventoController extends Controller
      */
     public function edit($id)
     {
-        $evento = Evento::findOrFail($id);
-        return view("eventos.editarDepartamento", compact("evento"));
+        $eventos = Evento::find($id);
+        return view("eventos.editar", compact("eventos"));
     }
 
     /**
@@ -83,9 +82,9 @@ class EventoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $evento = Evento::findOrFail($id);
-        $evento->update($request->all());
-        $evento->save();
+        $eventos = Evento::find($id);
+        $eventos->update($request->all());
+        $eventos->save();
         return redirect("/eventos")->with('success', 'Información actualizada con éxito');
     }
 
@@ -97,8 +96,8 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        $evento = Evento::findOrFail($id);
-        $evento->delete();
+        $eventos = Evento::findOrFail($id);
+        $eventos->delete();
         return redirect("/eventos")->with('success', 'Información eliminada con éxito');
     }
 
