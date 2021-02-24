@@ -31,11 +31,15 @@
                 <div class="card-header">Editar Tema</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    {{ $message=Session::get('message') }}
+                    @if (Session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('temas/update', $tema->id) }}">
-                        <input type="hidden" name="_method" value="PATCH">
+                    <form method="POST" action="{{ route('temas/actualizar', $temas->id) }}">
+                        <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('temas.index')
                     </form>
