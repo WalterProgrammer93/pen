@@ -55,7 +55,7 @@
                                 <td class="v-align-middle">{{ $profesor->email }}</td>
                                 <td class="v-align-middle">{{ $profesor->telefono }}</td>
                                 <td class="v-align-middle">{{ $profesor->disponibilidad }}</td>
-                                <td class="v-align-middle">{{ $profesor->departamento}}</td>
+                                <td class="v-align-middle">{{ $profesor->departamento_id }}</td>
                                 <td class="v-align-middle">
                                     <form action="{{ route('profesores/eliminar', $profesor->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                         <input type="hidden" name="_method" value="PUT">

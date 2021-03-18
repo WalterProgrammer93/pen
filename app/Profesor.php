@@ -11,6 +11,6 @@ class Profesor extends Model
     protected $fillable = ['nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
 
     public function departamento() {
-    	return $this->hasOne(Departamento::class);
+    	return $this->belongsTo(Departamento::class);
     }
 }
