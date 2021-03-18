@@ -41,6 +41,7 @@
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Disponibilidad</th>
+                            <th>Aula</th>
                             <th colspan="2">Acción</th>
                         </tr>
                         @foreach($eventos as $evento)
@@ -48,6 +49,7 @@
                                 <td class="v-align-middle">{{ $evento->nombre }}</td>
                                 <td class="v-align-middle">{{ $evento->descripcion }}</td>
                                 <td class="v-align-middle">{{ $evento->disponibilidad }}</td>
+                                <td class="v-align-middle">{{ $evento->aula_id }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('eventos/eliminar', $evento->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
