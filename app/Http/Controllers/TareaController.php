@@ -42,19 +42,18 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        $tarea = new Tarea;
-        $tarea->codigo = $request->codigo;
-        $tarea->titulo = $request->titulo;
-        $tarea->descripcion = $request->descripcion;
-        $tarea->autor = $request->autor;
-        $tarea->fecha_envio = $request->fecha_envio;
-        $tarea->fecha_entrega = $request->fecha_entrega;
-        $tarea->hora_entrega = $request->hora_entrega;
-        $tarea->archivo_tarea = $request->archivo_tarea;
-        $tarea->calificacion = $request->calificacion;
-        $tarea->asignatura()->associate($request->asignatura_id);
-        $tarea->tema()->associate($request->tema_id);
-        $tarea->save();
+        $tareas = new Tarea;
+        $tareas->titulo = $request->titulo;
+        $tareas->descripcion = $request->descripcion;
+        $tareas->autor = $request->autor;
+        $tareas->fecha_envio = $request->fecha_envio;
+        $tareas->fecha_entrega = $request->fecha_entrega;
+        $tareas->hora_entrega = $request->hora_entrega;
+        $tareas->archivo_tarea = $request->archivo_tarea;
+        $tareas->calificacion = $request->calificacion;
+        $tareas->asignatura()->associate($request->asignatura_id);
+        $tareas->tema()->associate($request->tema_id);
+        $tareas->save();
         return redirect()->route('tareas')->with('success', 'Información almacenada con éxito');
     }
 
@@ -78,8 +77,8 @@ class TareaController extends Controller
      */
     public function edit($id)
     {
-        $tarea = Tarea::find($id);
-        return view("tarea.editar", compact("tarea"));
+        $tareas = Tarea::find($id);
+        return view("tarea.editar", compact("tareas"));
     }
 
     /**
@@ -91,9 +90,9 @@ class TareaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tarea = Tarea::find($id);
-        $tarea->update($request->all());
-        $tarea->save();
+        $tareas = Tarea::find($id);
+        $tareas->update($request->all());
+        $tareas->save();
         return redirect()->route("tareas")->with('success', 'Información actualizada con éxito');
     }
 
@@ -105,8 +104,8 @@ class TareaController extends Controller
      */
     public function delete($id)
     {
-        $tarea = Tarea::find($id);
-        $tarea->delete();
+        $tareas = Tarea::find($id);
+        $tareas->delete();
         return redirect()->route("tareas")->with('success', 'Información eliminada con éxito');
     }
 
