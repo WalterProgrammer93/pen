@@ -15,7 +15,7 @@
                 <div class="card-header">Crear Profesor</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    @if (Session::has('message'))
+                    @if(Session::has('message'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('message') }}
                         </div>
