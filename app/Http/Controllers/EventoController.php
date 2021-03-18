@@ -28,8 +28,8 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $aulas = Aula::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view("eventos.crear", compact("aulas"));
+        $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
+        return view("eventos.crear", ['aulas' => $aulas]);
     }
 
     /**

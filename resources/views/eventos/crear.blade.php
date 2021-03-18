@@ -15,7 +15,7 @@
                 <div class="card-header">Crear Evento</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    @if (session('status'))
+                    @if(session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>

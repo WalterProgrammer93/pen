@@ -382,7 +382,7 @@ Route::post('eventos/crear', [
 Route::put('eventos/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'EventoController@guardar'])->name('eventos/guardar');
+    'uses' => 'EventoController@store'])->name('eventos/guardar');
 
 /* Actualizar */
 Route::get('eventos/editar/{id}', [

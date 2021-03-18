@@ -50,8 +50,9 @@
                                 <label for="disponibilidad" class="col-md-4 col-form-label text-md-right">Disponibilidad</label>
                                 <div class="col-md-6">
                                     <select id="disponibilidad" class="form-control" name="disponibilidad" required>
-                                        <option value="{{ $evento->disponibilidad }}">{{ $evento->disponibilidad }}</option>
-                                        <option value="No Disponible">No Disponible</option>
+                                        <option value="" disabled>Seleccionar disponibilidad</option>
+                                        <option value="Disponible" @if(@$eventos->disponibilidad == "Disponible") selected @endif>Disponible</option>
+                                        <option value="No Disponible" @if(@$eventos->disponibilidad == "No Disponible") selected @endif>No Disponible</option>
                                     </select>
                                     @error('disponibilidad')
                                         <span class="invalid-feedback" role="alert">
@@ -117,9 +118,9 @@
                                 <label for="disponibilidad" class="col-md-4 col-form-label text-md-right">Disponibilidad</label>
                                 <div class="col-md-6">
                                     <select id="disponibilidad" class="form-control" name="disponibilidad" required>
-                                        <option value="">Seleccione una disponibilidad</option>
-                                        <option value="Disponible">Disponible</option>
-                                        <option value="No Disponible">No Disponible</option>
+                                      <option value="" disabled>Seleccionar disponibilidad</option>
+                                      <option value="Disponible">Disponible</option>
+                                      <option value="No Disponible">No Disponible</option>
                                     </select>
                                     @error('disponibilidad')
                                         <span class="invalid-feedback" role="alert">
