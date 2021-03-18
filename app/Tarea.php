@@ -9,12 +9,12 @@ use pen\Asignatura;
 class Tarea extends Model
 {
     protected $primaryKey = 'id';
-    protected $fillable = ['codigo','titulo','descripcion','autor','fecha_envio','fecha_entrega','hora_entrega','calificacion','asignatura','tema'];
+    protected $fillable = ['titulo','descripcion','autor','fecha_envio','fecha_entrega','hora_entrega','calificacion','asignatura','tema'];
 
     public function asignatura() {
-    	return $this->hasMany(Asignatura::class);
+    	return $this->belongsTo(Asignatura::class);
     }
     public function tema() {
-    	return $this->hasMany(Tema::class);
+    	return $this->belongsTo(Tema::class);
     }
 }

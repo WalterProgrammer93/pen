@@ -14,7 +14,7 @@
           <div class="card">
               <div class="card-header">Crear Curso</div>
                 <div class="card-body">
-                      @if (Session('status'))
+                      @if(Session('status'))
                         <div class="alert alert-success" role="alert">
                               {{ session('status') }}
                           </div>

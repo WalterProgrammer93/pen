@@ -139,7 +139,7 @@
                                 <div class="col-md-6">
                                     <select id="tema_id" class="form-control" name="tema_id[]" required>
                                         <option value="" disabled>Seleccione un tema</option>
-                                        @foreach($temas as $id)
+                                        @foreach($temas as $id => $nombre)
                                             <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
@@ -252,7 +252,7 @@
                             <div class="form-group row">
                                 <label for="asignatura_id" class="col-md-4 col-form-label text-md-right">Asignatura</label>
                                 <div class="col-md-6">
-                                    <select id="asignatura_id" class="form-control" name="asignatura_id[]" required>
+                                    <select id="asignatura_id" class="form-control" name="asignatura_id" required>
                                         <option value="" disabled>Seleccione una asignatura</option>
                                         @foreach($asignaturas as $id => $nombre)
                                             <option value="{{ $id }} " @if($id=='$id') selected @endif>{{ $nombre }}</option>
