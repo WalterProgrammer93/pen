@@ -11,10 +11,14 @@ class Alumno extends Model
 	protected $primaryKey = 'id';
     protected $fillable = ['nombre','apellido1','apellido2','dni','fecha_nacimiento',
 		'telefono','correo','sexo','ciudad','provincia','nacionalidad','codigo_postal',
-		'direccion','portal','piso','letra','repite','foto','curso_id'];
+		'direccion','portal','piso','letra','repite','foto','curso'];
 
 		public function curso() {
-			return $this->belongsTo(Curso::class, 'curso_id');
+			return $this->belongsTo(Curso::class);
+		}
+
+		public function asistencia() {
+			return $this->hasMany(Asistencia::class);
 		}
 
 }

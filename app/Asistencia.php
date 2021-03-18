@@ -12,10 +12,10 @@ class Asistencia extends Model
     protected $fillable = ['numero_horas','curso','asignatura'];
 
     public function alumno() {
-    	return $this->hasMany(Alumno::class);
+    	return $this->belongsTo(Alumno::class);
     }
 
     public function asignatura() {
-    	return $this->hasMany(Asignatura::class);
+    	return $this->belongsTo(Asignatura::class);
     }
 }

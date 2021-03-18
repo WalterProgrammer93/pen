@@ -30,9 +30,9 @@ class AsistenciaController extends Controller
      */
     public function create()
     {
-        $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view('asistencias.crear', compact('alumnos', 'asignaturas'));
+        $alumnos = Alumno::orderBy('id')->pluck('nombre','id')->toArray();
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        return view('asistencias.crear', ['alumnos' => $alumnos], ['asignaturas' => $asignaturas]);
     }
 
     /**
