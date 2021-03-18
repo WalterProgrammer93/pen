@@ -29,9 +29,9 @@ class TareaController extends Controller
      */
     public function create()
     {
-        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $temas = Tema::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view("tareas.crear", compact('asignaturas', 'temas'));
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        $temas = Tema::orderBy('id')->pluck('nombre','id')->toArray();
+        return view("tareas.crear", ['asignaturas' => $asignaturas], ['temas' => $temas]);
     }
 
     /**

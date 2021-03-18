@@ -5,6 +5,7 @@ namespace pen;
 use Illuminate\Database\Eloquent\Model;
 use pen\Curso;
 use pen\Aula;
+use pen\Tarea;
 
 class Asignatura extends Model
 {
@@ -17,5 +18,9 @@ class Asignatura extends Model
 
     public function aula() {
     	return $this->belongsTo(Aula::class);
+    }
+
+    public function tarea() {
+    	return $this->hasMany(Tarea::class);
     }
 }

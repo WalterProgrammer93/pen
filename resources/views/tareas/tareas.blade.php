@@ -37,7 +37,6 @@
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Titulo</th>
-                            <th>Descripcion</th>
                             <th>Autor</th>
                             <th>Fecha envio</th>
                             <th>Fecha entrega</th>
@@ -51,15 +50,14 @@
                         @foreach($tareas as $tarea)
                             <tr>
                                 <td class="v-align-middle">{{ $tarea->titulo }}</td>
-                                <td class="v-align-middle">{{ $tarea->descripcion }}</td>
                                 <td class="v-align-middle">{{ $tarea->autor }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_envio }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
                                 <td class="v-align-middle"><img src="{{!! asset('fotos/$tarea->archivo_tarea') !!}}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
-                                <td class="v-align-middle">{{ $tarea->asignatura }}</td>
-                                <td class="v-align-middle">{{ $tarea->tema }}</td>
+                                <td class="v-align-middle">{{ $tarea->asignatura_id }}</td>
+                                <td class="v-align-middle">{{ $tarea->tema_id }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('tareas/eliminar', $tarea->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
