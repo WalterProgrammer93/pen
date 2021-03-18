@@ -12,10 +12,10 @@ class Nota extends Model
     protected $fillable = ['eva1','eva2','eva3','media','alumno','asignatura'];
 
     public function alumno() {
-    	return $this->hasMany(Alumno::class);
+    	return $this->belongsTo(Alumno::class);
     }
 
     public function asignatura() {
-    	return $this->hasMany(Asignatura::class);
+    	return $this->belongsTo(Asignatura::class);
     }
 }

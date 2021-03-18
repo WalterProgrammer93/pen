@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <label for="eva1" class="col-md-4 col-form-label text-md-right">EVA1</label>
                                 <div class="col-md-6">
-                                    <input id="eva1" type="text" class="form-control @error('eva1') is-invalid @enderror" name="eva1" value="{{ notas->eva1 }}" required autocomplete="eva1">
+                                    <input id="eva1" type="text" class="form-control @error('eva1') is-invalid @enderror" name="eva1" value="{{ $notas->eva1 }}" required autocomplete="eva1">
                                     @error('eva1')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <label for="eva2" class="col-md-4 col-form-label text-md-right">EVA2</label>
                                 <div class="col-md-6">
-                                    <input id="eva2" type="text" class="form-control @error('eva2') is-invalid @enderror" name="eva2" value="{{ notas->eva2 }}" required autocomplete="eva2">
+                                    <input id="eva2" type="text" class="form-control @error('eva2') is-invalid @enderror" name="eva2" value="{{ $notas->eva2 }}" required autocomplete="eva2">
                                     @error('eva2')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                             <div class="form-group row">
                                 <label for="eva3" class="col-md-4 col-form-label text-md-right">EVA3</label>
                                 <div class="col-md-6">
-                                    <input id="eva3" type="text" class="form-control @error('eva3') is-invalid @enderror" name="eva3" value="{{ notas->eva3 }}" required autocomplete="eva3">
+                                    <input id="eva3" type="text" class="form-control @error('eva3') is-invalid @enderror" name="eva3" value="{{ $notas->eva3 }}" required autocomplete="eva3">
                                     @error('eva3')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                             <div class="form-group row">
                                 <label for="media" class="col-md-4 col-form-label text-md-right">Media</label>
                                 <div class="col-md-6">
-                                    <input id="media" type="text" class="form-control @error('media') is-invalid @enderror" name="media" value="{{ notas->media }}" required autocomplete="media">
+                                    <input id="media" type="text" class="form-control @error('media') is-invalid @enderror" name="media" value="{{ $notas->media }}" required autocomplete="media">
                                     @error('media')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
