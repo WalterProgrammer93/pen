@@ -48,7 +48,7 @@
                                   <form action="{{ route('perfiles/eliminar', $perfil->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('perfiles/actualizar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
+                                      <a href="{{ route('perfiles/editar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
                                       <button type="submit" class="btn btn-danger">Eliminar</button>
                                   </form>
                                 </td>

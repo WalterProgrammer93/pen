@@ -31,12 +31,17 @@
                 <div class="card-header">Editar perfil</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
-                    {{ $message=Session::get('message') }}
+                    @if(Session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('perfiles/editar', $perfil->id) }}">
-                        <input type="hidden" name="_method" value="PATCH">
-                        <input type="hidden" name="_method" value="{{ csrf_token() }}">
+                    <form method="POST" action="{{ route('perfiles/actualizar', $perfiles->id) }}">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @include('perfiles.index')
                     </form>
                 </div>
             </div>

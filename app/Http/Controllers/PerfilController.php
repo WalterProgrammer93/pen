@@ -38,7 +38,7 @@ class PerfilController extends Controller
     {
         $perfiles = new Perfil;
         $perfiles->perfil = $request->perfil;
-        $prefiles->descripcion = $request->descripcion;
+        $perfiles->descripcion = $request->descripcion;
         $perfiles->save();
         return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
     }
@@ -88,7 +88,7 @@ class PerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $perfiles = Perfil::find($id);
         $perfiles->delete();
