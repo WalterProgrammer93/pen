@@ -110,7 +110,7 @@
                                 <div class="col-md-6">
                                     <select id="departamento_id" class="form-control" name="departamento_id[]" required>
                                         <option value="" disabled>Seleccione un departamento</option>
-                                        @foreach($departamento as $id => $nombre)
+                                        @foreach($departamentos as $id => $nombre)
                                             <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
