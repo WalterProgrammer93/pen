@@ -14,13 +14,13 @@
           <div class="card">
               <div class="card-header">Crear Curso</div>
                 <div class="card-body">
-                    @if (Session('status'))
+                    @if(Session('status'))
                         <div class="alert alert-success" role="alert">
                               {{ session('status') }}
                           </div>
                       @endif
                       @if(Auth::check())
-                        @if (!empty($eventos->id))
+                        @if(!empty($eventos->id))
                           <form method="POST" action="{{ route('eventos/actualizar', $eventos->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
@@ -54,6 +54,22 @@
                                         <option value="No Disponible">No Disponible</option>
                                     </select>
                                     @error('disponibilidad')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
+                                <div class="col-md-6">
+                                    <select id="aula_id" class="form-control" name="aula_id[]" required>
+                                        <option value="" disabled>Seleccione una aula</option>
+                                        @foreach($aulas as $id => $etiqueta)
+                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $etiqueta }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('aula_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -106,6 +122,22 @@
                                         <option value="No Disponible">No Disponible</option>
                                     </select>
                                     @error('disponibilidad')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
+                                <div class="col-md-6">
+                                    <select id="aula_id" class="form-control" name="aula_id" required>
+                                        <option value="" disabled>Seleccione una aula</option>
+                                        @foreach($aulas as $id => $etiqueta)
+                                            <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $etiqueta }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('aula_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
