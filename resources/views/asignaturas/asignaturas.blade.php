@@ -48,10 +48,10 @@
                             <tr>
                                 <td class="v-align-middle">{{ $asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $asignatura->descripcion }}</td>
-                                <td class="v-align-middle">{{ $asignatura->curso_id }}</td>
-                                <td class="v-align-middle">{{ $asignatura->aula_id }}</td>
+                                <td class="v-align-middle">{{ $asignatura->curso->nombre }}</td>
+                                <td class="v-align-middle">{{ $asignatura->aula->etiqueta }}</td>
                                 <td class="v-align-middle">
-                                  <form action="{{ route('asignaturas/eliminar', $asignatura->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                  <form action="{{ route('asignaturas/eliminar', $asignatura->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())

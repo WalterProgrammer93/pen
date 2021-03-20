@@ -52,10 +52,10 @@
                                 <td class="v-align-middle">{{ $alumno->apellido1 }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido2 }}</td>
                                 <td class="v-align-middle">{{ $alumno->repite }}</td>
-                                <td class="v-align-middle"><img src="{{!! asset('fotos/$alumno->foto') !!}}"  class="img-responsive" width="50"/>{{ $alumno->foto }}</td>
-                                <td class="v-align-middle">{{ $alumno->curso_id }}</td>
+                                <td class="v-align-middle"><img src="{{!! asset('/../fotos/$alumno->foto') !!}}"  class="img-responsive"/>{{ $alumno->foto }}</td>
+                                <td class="v-align-middle">{{ $alumno->curso->nombre }}</td>
                                 <td class="v-align-middle">
-                                  <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                  <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
