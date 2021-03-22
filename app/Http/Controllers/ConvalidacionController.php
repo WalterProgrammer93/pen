@@ -16,7 +16,7 @@ class ConvalidacionController extends Controller
 
     public function index()
     {
-        $convalidaciones = Convalidacion::all();
+        $convalidaciones = Convalidacion::paginate(5);
         return view("convalidaciones.convalidaciones", compact("convalidaciones"));
     }
 

@@ -16,7 +16,7 @@ class ReservaController extends Controller
 
     public function index()
     {
-        $reservas = Reserva::all();
+        $reservas = Reserva::paginate(5);
         return view("reservas.reservas", compact("reservas"));
     }
 

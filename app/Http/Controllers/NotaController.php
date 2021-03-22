@@ -18,7 +18,7 @@ class NotaController extends Controller
 
     public function index()
     {
-        $notas = Nota::all();
+        $notas = Nota::paginate(5);
         return view("notas.notas", compact("notas"));
     }
 

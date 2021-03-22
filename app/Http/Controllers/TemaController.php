@@ -16,7 +16,7 @@ class TemaController extends Controller
 
     public function index()
     {
-        $temas = Tema::all();
+        $temas = Tema::paginate(5);
         return view("temas.temas", compact("temas"));
     }
 

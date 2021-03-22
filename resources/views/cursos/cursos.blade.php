@@ -47,7 +47,7 @@
                                 <td class="v-align-middle">{{ $curso->nombre }}</td>
                                 <td class="v-align-middle">{{ $curso->descripcion }}</td>
                                 <td class="v-align-middle">
-                                    <form action="{{ route('cursos/eliminar', $curso->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                    <form action="{{ route('cursos/eliminar', $curso->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                           <input type="hidden" name="_method" value="PUT">
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                           @if(Auth::check())
@@ -75,8 +75,9 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @endforeach  
                     </table>
+                    {{ $cursos->links() }}
                     <form  method="POST" action="{{ route('cursos/crear') }}">
                         @csrf
                         <div class="form-group row mb-0">

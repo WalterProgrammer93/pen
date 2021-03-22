@@ -18,7 +18,7 @@ class TareaController extends Controller
 
     public function index()
     {
-        $tareas = Tarea::all();
+        $tareas = Tarea::paginate(5);
         return view("tareas.tareas", compact("tareas"));
     }
 

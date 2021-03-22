@@ -14,7 +14,7 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $perfiles = Perfil::all();
+        $perfiles = Perfil::paginate(5);
         return view('perfiles.perfiles', compact('perfiles'));
     }
 

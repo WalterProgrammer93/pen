@@ -55,7 +55,7 @@
                                 <td class="v-align-middle">{{ $profesor->disponibilidad }}</td>
                                 <td class="v-align-middle">{{ $profesor->departamento->nombre }}</td>
                                 <td class="v-align-middle">
-                                    <form action="{{ route('profesores/eliminar', $profesor->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                    <form action="{{ route('profesores/eliminar', $profesor->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                         <input type="hidden" name="_method" value="PUT">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         @if(Auth::check())
