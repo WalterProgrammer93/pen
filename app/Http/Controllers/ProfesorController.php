@@ -75,7 +75,7 @@ class ProfesorController extends Controller
     public function edit($id)
     {
         $profesores = Profesor::find($id);
-        //$departamentos = Departamento::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $departamentos = Departamento::orderBy('id')->pluck('nombre', 'id')->toArray();
         return view("profesores.editar", ['profesores' => $profesores], ['departamentos' => $departamentos]);
     }
 

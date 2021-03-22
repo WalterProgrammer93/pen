@@ -39,7 +39,6 @@
                             <th>Nombre</th>
                             <th>Primer Apellido</th>
                             <th>Segundo Apellido</th>
-                            <th>DNI</th>
                             <th>Email</th>
                             <th>Telefono</th>
                             <th>Disponibilidad</th>
@@ -51,31 +50,30 @@
                                 <td class="v-align-middle">{{ $profesor->nombre }}</td>
                                 <td class="v-align-middle">{{ $profesor->apellido1 }}</td>
                                 <td class="v-align-middle">{{ $profesor->apellido2 }}</td>
-                                <td class="v-align-middle">{{ $profesor->dni }}</td>
                                 <td class="v-align-middle">{{ $profesor->email }}</td>
                                 <td class="v-align-middle">{{ $profesor->telefono }}</td>
                                 <td class="v-align-middle">{{ $profesor->disponibilidad }}</td>
-                                <td class="v-align-middle">{{ $profesor->departamento_id }}</td>
+                                <td class="v-align-middle">{{ $profesor->departamento->nombre }}</td>
                                 <td class="v-align-middle">
-                                    <form action="{{ route('profesores/eliminar', $profesor->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                    <form action="{{ route('profesores/eliminar', $profesor->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                         <input type="hidden" name="_method" value="PUT">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         @if(Auth::check())
                                           @if(Auth::user()->hasRole('admin'))
-                                            <a href="{{ route('profesores/actualizar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
+                                            <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
                                             <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                             @include('alerts.dialogos')
                                           @else
                                             @if(Auth::user()->hasRole('student'))
-                                              <a href="{{ route('profesores/actualizar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                               <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('teacher'))
-                                                <a href="{{ route('profesores/actualizar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @else
                                                 @if(Auth::user()->hasRole('user'))
-                                                  <a href="{{ route('profesores/actualizar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                  <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                   <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                                 @endif
                                               @endif
