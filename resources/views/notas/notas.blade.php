@@ -52,29 +52,29 @@
                                 <td class="v-align-middle">{{ $nota->eva2 }}</td>
                                 <td class="v-align-middle">{{ $nota->eva3 }}</td>
                                 <td class="v-align-middle">{{ $nota->media }}</td>
-                                <td class="v-align-middle">{{ $nota->alumno_id }}</td>
-                                <td class="v-align-middle">{{ $nota->asignatura_id }}</td>
+                                <td class="v-align-middle">{{ $nota->alumno->nombre }}</td>
+                                <td class="v-align-middle">{{ $nota->asignatura->nombre }}</td>
                                 <td class="v-align-middle">
-                                  <form action="{{ route('notas/eliminar', $nota->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                      <input type="hidden" name="_method" value="PUT">
+                                  <form action="{{ route('notas/eliminar', $nota->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <!--<input type="hidden" name="_method" value="PUT">-->
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
-                                          <a href="{{ route('notas/actualizar', $nota->id) }}" class="btn btn-primary">Modificar</a>
+                                          <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
-                                            <a href="{{ route('notas/actualizar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                            <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
-                                              <a href="{{ route('notas/actualizar', $nota->id) }}" class="btn btn-primary">Modificar</a>
+                                              <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                               @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
-                                                <a href="{{ route('notas/actualizar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @endif
                                             @endif

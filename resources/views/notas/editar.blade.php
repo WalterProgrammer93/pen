@@ -40,7 +40,7 @@
                     @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('notas/editar', $alumno->id, $asignatura->id) }}">
+                    <form method="POST" action="{{ route('notas/editar', $notas->id) }}">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('notas.index')

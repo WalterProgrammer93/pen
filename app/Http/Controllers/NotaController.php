@@ -74,7 +74,11 @@ class NotaController extends Controller
     public function edit($id)
     {
         $notas = Nota::find($id);
-        return view("notas.editar", compact("notas"));
+        $alumnos = Alumno::find($id);
+        $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $asignaturas = Asignatura::find($id);
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
+        return view("notas.editar", ['notas' => $notas], ['alumnos' => $alumnos], ['asignaturas' => $asignaturas]);
     }
 
     /**
