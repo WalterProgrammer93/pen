@@ -75,6 +75,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $usuarios->links() }}
                     <form  method="POST" action="{{ route('usuarios/crear') }}">
                         {{csrf_field()}}
                         <div class="form-group row mb-0">

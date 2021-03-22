@@ -86,6 +86,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $notas->links() }}
                     <form action="{{ route('notas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

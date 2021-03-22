@@ -78,6 +78,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $aulas->links() }}
                     <form action="{{ route('aulas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

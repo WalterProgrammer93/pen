@@ -89,6 +89,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $tareas->links() }}
                     <form action="{{ route('tareas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

@@ -76,6 +76,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $perfiles->links() }}
                     <form action="{{ route('perfiles/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

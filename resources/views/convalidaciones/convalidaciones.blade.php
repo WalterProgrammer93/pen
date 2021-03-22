@@ -57,6 +57,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $convalidaciones->links() }}
                     <form action="{{ route('convalidaciones/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

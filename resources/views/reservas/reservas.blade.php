@@ -59,6 +59,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $reservas->links() }}
                     <form action="{{ route('reservas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

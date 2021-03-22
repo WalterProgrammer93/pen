@@ -79,6 +79,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $departamentos->links() }}
                     <form method="POST" action="{{ route('departamentos/crear') }}" >
                         @csrf
                         <div class="form-group row mb-0">

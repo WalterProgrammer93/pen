@@ -77,6 +77,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $temas->links() }}
                     <form action="{{ route('temas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

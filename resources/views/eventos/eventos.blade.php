@@ -80,6 +80,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    {{ $eventos->links() }}
                     <form action="{{ route('eventos/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
