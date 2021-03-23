@@ -127,28 +127,21 @@ class AlumnoController extends Controller
         return redirect()->route('alumnos')->with('success','Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
+      $alumnos = $request->input('alumnos');
+      $alumno = Alumno::orderBy('id', 'asc')
+      ->where('nombre','LIKE','%'.$alumnos.'%')
+      ->orWhere('apellido1','LIKE','%'.$alumnos.'%')
+      ->orWhere('repite','LIKE','%'.$alumnos.'%')->paginate(5);
 
-        $texto = $request->input('buscar');
-
-        if($texto){
-            $lista = Alumno::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->orWhere('apellido1','LIKE',"%$texto%")
-            ->orWhere('apellido2','LIKE',"%$texto%")
-            ->orWhere('dni','LIKE',"%$texto%")
-            ->orWhere('sexo','LIKE',"%$texto%")
-            ->orWhere('ciudad','LIKE',"%$texto%")
-            ->orWhere('provincia','LIKE',"%$texto%")
-            ->orWhere('nacionalidad','LIKE',"%$texto%")
-            ->orWhere('codigo_potal','LIKE',"%$texto%")
-            ->orWhere('repite','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('alumnos.alumnos',array('lista'=>$lista));
+      if (!empty($alumno[0])) {
+            return view('alumnos.alumnos', ['alumnos' => $alumnos, 'alumno' => $alumno]);
         } else {
-            $lista = Alumno::paginate(3);
-            return view('alumnos.alumnos',array('lista'=>$lista));
+            return redirect()->route('alumnos')
+                            ->with(['message' => 'Alumno ' . $alumnos . ' No encontrado']);
         }
+      //return view('alumnos.alumnos', ['alumnos' => $alumnos]);
     }
 
     /*public function ordenar() {
