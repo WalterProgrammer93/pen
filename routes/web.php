@@ -56,7 +56,7 @@ Route::put('alumnos/eliminar/{id}', [
     'uses' => 'AlumnoController@delete'])->name('alumnos/eliminar');
 
 /* Buscar */
-Route::post('alumnos/buscar/{nombre}', [
+Route::post('alumnos/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'AlumnoController@search'])->name('alumnos/buscar');
