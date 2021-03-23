@@ -2,24 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-20 justify-content-center m-3">
-        <div class="row justify-content-center m-3">
-            <div class="col-md-3">
-                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-            </div>
-            <div class="col-md-3">
-                <select id="ordenar" class="form-control" name="ordenar" required>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                </select>
-            </div>
-            <form action="{{ url('buscarAlumno') }}" method="POST">
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
           <nav aria-label="breadcrumb">
@@ -36,6 +18,25 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
+                    <div class="col-md-20 justify-content-center m-3">
+                        <div class="row justify-content-center m-3">
+                            <div class="col-md-4">
+                                <input id="alumnos" type="text" class="form-control" name="alumnos" autocomplete="alumnos" placeholder="alumnos" autofocus>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="ordenar" class="form-control" name="ordenar" required>
+                                    <option value="Ascendente">Ascendente</option>
+                                    <option value="Descendente">Descendente</option>
+                                </select>
+                            </div>
+                            <form action="{{ route('alumnos/buscar') }}" method="POST" role="form">
+                                @csrf
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Nombre</th>
@@ -85,7 +86,13 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{ $alumnos->links() }}
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center pt-2">
+                            {{ $alumnos->appends(["alumnos" => $alumnos])->links() }}
+                        </div>
+                    </div>
+                    <!--<div class="text-center">{{ $alumnos->links() }}</div>-->
                     <form action="{{ route('alumnos/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
@@ -103,7 +110,7 @@
             </div>
         </div>
         <!-- Bootstrap JS -->
-        <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
+        <!--<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
         <script type="text/javascript">
              function confirmarEliminar()
              {
@@ -113,7 +120,7 @@
              else
                return false;
              }
-        </script>
+        </script>-->
     </div>
 </div>
 @endsection
