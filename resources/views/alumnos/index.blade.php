@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card">
-
               <div class="card-header">Crear Alumno</div>
                 <div class="card-body">
                     @if (Session('status'))
@@ -481,7 +480,6 @@
                                     </form>
                             @endif
                       @endif
-                      <script src="{{ asset('js/fechas.js') }}" defer></script>
                   </div>
               </div>
           </div>
