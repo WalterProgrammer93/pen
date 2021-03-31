@@ -20,14 +20,14 @@
                         </div>
                     @endif
                     @if(Auth::check())
-                      @if (!empty($asistencias->id))
-                        <form method="POST" action="{{ route('asistencias/actualizar', $asignaturas->id) }}">
+                      @if(!empty($asistencias->id))
+                        <form method="POST" action="{{ route('asistencias/actualizar', $asistencias->id) }}">
                           @csrf
                           <input type="hidden" name="_method" value="PUT">
                           <div class="form-group row">
                               <label for="numero_horas" class="col-md-4 col-form-label text-md-right">Numero Horas</label>
                               <div class="col-md-6">
-                                  <input id="numero_horas" type="text" class="form-control @error('numero_horas') is-invalid @enderror" name="numero_horas" value="{{ $asistencia->numero_horas }}" required autocomplete="numero_horas" autofocus>
+                                  <input id="numero_horas" type="text" class="form-control @error('numero_horas') is-invalid @enderror" name="numero_horas" value="{{ $asistencias->numero_horas }}" required autocomplete="numero_horas" autofocus>
                                   @error('numero_horas')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>

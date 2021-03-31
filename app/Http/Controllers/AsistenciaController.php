@@ -72,7 +72,9 @@ class AsistenciaController extends Controller
     public function edit($id)
     {
         $asistencias = Asistencia::find($id);
-        return view("asistencias.editar", compact("asistencias"));
+        $alumnos = Alumno::orderBy('id')->pluck('nombre','id')->toArray();
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        return view("asistencias.editar", compact("asistencias","alumnos","asignaturas"));
     }
 
     /**

@@ -47,8 +47,8 @@
                         @foreach($asistencias as $asistencia)
                             <tr>
                                 <td class="v-align-middle">{{ $asistencia->numero_horas }}</td>
-                                <td class="v-align-middle">{{ $asistencia->alumno_id }}</td>
-                                <td class="v-align-middle">{{ $asistencia->asignatura_id }}</td>
+                                <td class="v-align-middle">{{ $asistencia->alumno->nombre }}</td>
+                                <td class="v-align-middle">{{ $asistencia->asignatura->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('asistencias/eliminar', $asistencia->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
