@@ -21,7 +21,7 @@
                       @endif
                       @if (Auth::check())
                         @if (!empty($tareas->id))
-                          <form method="POST" action="{{ route('asignaturas/actualizar', $tareas->id) }}">
+                          <form method="POST" action="{{ route('tareas/actualizar', $tareas->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
@@ -110,7 +110,7 @@
                             <div class="form-group row">
                                 <label for="calificacion" class="col-md-4 col-form-label text-md-right">Calificacion</label>
                                 <div class="col-md-6">
-                                    <input id="calificacion" type="text" class="form-control" name="calificacion" value="{{ $tarea->calificacion }}" required autocomplete="calificacion">
+                                    <input id="calificacion" type="text" class="form-control" name="calificacion" value="{{ $tareas->calificacion }}" required autocomplete="calificacion">
                                     @error('calificacion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

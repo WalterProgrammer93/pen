@@ -78,7 +78,9 @@ class TareaController extends Controller
     public function edit($id)
     {
         $tareas = Tarea::find($id);
-        return view("tarea.editar", compact("tareas"));
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        $temas = Tema::orderBy('id')->pluck('nombre','id')->toArray();
+        return view("tareas.editar", compact("tareas","asignaturas","temas"));
     }
 
     /**

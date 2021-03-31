@@ -56,15 +56,15 @@
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
                                 <td class="v-align-middle"><img src="{{!! asset('fotos/$tarea->archivo_tarea') !!}}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
-                                <td class="v-align-middle">{{ $tarea->asignatura_id }}</td>
-                                <td class="v-align-middle">{{ $tarea->tema_id }}</td>
+                                <td class="v-align-middle">{{ $tarea->asignatura->nombre }}</td>
+                                <td class="v-align-middle">{{ $tarea->tema->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('tareas/eliminar', $tarea->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
-                                          <a href="{{ route('tareas/actualizar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
+                                          <a href="{{ route('tareas/editar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                           @include('alerts.dialogos')
                                         @else
