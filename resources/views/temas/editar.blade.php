@@ -38,7 +38,7 @@
                     @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('temas/actualizar', $temas->id) }}">
+                    <form method="POST" action="{{ route('temas/actualizar', $temas->id) }}" role="form">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @include('temas.index')

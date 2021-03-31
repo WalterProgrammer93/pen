@@ -20,7 +20,7 @@
                           </div>
                       @endif
                       @if(Auth::check())
-                        @if (!empty($temas->id))
+                        @if(!empty($temas->id))
                           <form method="POST" action="{{ route('temas/actualizar', $temas->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
@@ -77,7 +77,7 @@
                             <div class="form-group row">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
                                 <div class="col-md-6">
-                                    <textarea id="nombre" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" rows="4" cols="50" required autocomplete="contenido"></textarea>
+                                    <input id="nombre" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" rows="4" cols="50" required autocomplete="contenido">
                                     @error('nombre')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
