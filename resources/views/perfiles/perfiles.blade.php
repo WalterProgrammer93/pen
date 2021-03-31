@@ -50,21 +50,21 @@
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
-                                          <a href="{{ route('perfiles/actualizar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
+                                          <a href="{{ route('perfiles/editar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          @include('alerts.dialogo')
+                                          @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
-                                            <a href="{{ route('perfiles/actualizar', $perfil->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                            <a href="{{ route('perfiles/editar', $perfil->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
-                                              <a href="{{ route('perfiles/actualizar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
+                                              <a href="{{ route('perfiles/editar', $perfil->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                               @include('alerts.dialogo')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
-                                                <a href="{{ route('perfiles/actualizar', $perfil->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <a href="{{ route('perfiles/editar', $perfil->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @endif
                                             @endif
