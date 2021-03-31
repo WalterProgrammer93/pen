@@ -70,7 +70,8 @@ class EventoController extends Controller
     public function edit($id)
     {
         $eventos = Evento::find($id);
-        return view("eventos.editar", compact("eventos"));
+        $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
+        return view("eventos.editar", compact("eventos","aulas"));
     }
 
     /**
