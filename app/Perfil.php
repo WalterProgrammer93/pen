@@ -8,7 +8,7 @@ use pen\User;
 class Perfil extends Model
 {
 	protected $primaryKey = 'id';
-	protected $fillable = ['perfil', 'descripcion'];
+	protected $fillable = ['nombre', 'descripcion'];
 
 	public function users() {
 		return $this->belongsToMany(User::class)->withTimestamps();;

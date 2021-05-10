@@ -37,7 +37,7 @@ class PerfilController extends Controller
     public function store(Request $request)
     {
         $perfiles = new Perfil;
-        $perfiles->perfil = $request->perfil;
+        $perfiles->nombre = $request->nombre;
         $perfiles->descripcion = $request->descripcion;
         $perfiles->save();
         return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
