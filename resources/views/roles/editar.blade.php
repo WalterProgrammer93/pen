@@ -23,12 +23,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ url('tareas') }}">Tareas</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('roles') }}">Roles</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Editar</li>
               </ol>
             </nav>
             <div class="card">
-                <div class="card-header">Editar Tarea</div>
+                <div class="card-header">Editar Rol</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
                     @if (Session::has('message'))
@@ -38,10 +38,10 @@
                     @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('tareas/actualizar', $tareas->id) }}" enctype="multipart/form-data" role="form">
+                    <form method="POST" action="{{ route('roles/actualizar', $roles->id) }}" enctype="multipart/form-data" role="form">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        @include('tareas.index')
+                        @include('roles.index')
                     </form>
                 </div>
             </div>

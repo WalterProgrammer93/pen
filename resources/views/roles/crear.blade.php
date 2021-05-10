@@ -7,12 +7,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ url('tareas') }}">Tareas</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('roles') }}">Roles</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Crear</li>
               </ol>
             </nav>
             <div class="card">
-                <div class="card-header">Crear Tarea</div>
+                <div class="card-header">Crear Rol</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
                     @if (Session::has('message'))
@@ -22,10 +22,10 @@
                     @endif
                     <!-- Muestro el mensaje de validación -->
                     @include('alerts.request')
-                    <form method="POST" action="{{ route('tareas/guardar') }}" enctype="multipart/form-data" role="form">
+                    <form method="POST" action="{{ route('roles/guardar') }}" role="form">
                         <input type="hidden" method="_method" value="PUT">
                         <input type="hidden" method="_token" value="{{ csrf_token() }}">
-                        @include('tareas.index')
+                        @include('roles.index')
                     </form>
                 </div>
             </div>

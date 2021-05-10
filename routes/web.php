@@ -600,6 +600,45 @@ Route::post('perfiles/buscar/{nombre}', [
     'before' => 'crsf',
     'uses' => 'PerfilController@search'])->name('perfiles/buscar');
 
+    // ACCESO A RUTAS DE ROLES
+
+    /* Leer */
+    Route::get('roles', 'RolController@index')->name('roles');
+
+    /* Crear */
+    Route::post('roles/crear', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'RolController@create'])->name('roles/crear');
+
+    Route::put('roles/guardar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'RolController@store'])->name('roles/guardar');
+
+    /* Actualizar */
+    Route::get('roles/editar/{id}', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'RolController@edit'])->name('roles/editar');
+
+    Route::put('roles/actualizar/{id}', [
+        'middleware' => 'auth',
+        'before' => 'auth',
+        'uses' => 'RolController@update'])->name('roles/actualizar');
+
+    /* Eliminar */
+    Route::put('roles/eliminar/{id}', [
+        'middleware' => 'auth',
+        'before' => 'auth',
+        'uses' => 'RolController@delete'])->name('roles/eliminar');
+
+    /* Buscar */
+    Route::post('roles/buscar/{nombre}', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'RolController@search'])->name('roles/buscar');
+
 // RUTA DE ENVIO DE EMAL PARA RESTAURAR LA CONTRASEÑA DE USUARIO
 
 Route::get('enviar', ['as' => 'enviar', function () {

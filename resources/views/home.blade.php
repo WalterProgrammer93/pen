@@ -29,6 +29,7 @@
                           <div class="col-sm"><p><a href="{{ url('eventos')}}" class="eventos"><img src="https://img.icons8.com/material/30/000000/scroll.png" alt="eventos">&nbsp; Eventos</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('asistencias')}}" class="asistencias"><img src="https://img.icons8.com/material/30/000000/scroll.png" alt="asistencias">&nbsp; Asistencias</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('perfiles')}}" class="perfiles"><img src="https://img.icons8.com/material/30/000000/user-male-circle--v1.png"alt="usuario">&nbsp; Perfiles</a></p></div>
+                          <div class="col-sm"><p><a href="{{ url('roles')}}" class="roles"><img src="https://img.icons8.com/material/30/000000/user-male-circle--v1.png"alt="usuario">&nbsp; Roles</a></p></div>
                         </div>
                       @else
                           @if (Auth::user()->hasRole('user'))
