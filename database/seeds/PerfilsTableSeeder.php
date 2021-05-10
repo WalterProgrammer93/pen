@@ -13,19 +13,19 @@ class PerfilsTableSeeder extends Seeder
     public function run()
     {
         $role = new Perfil();
-        $role->perfil = 'admin';
+        $role->nombre = 'admin';
         $role->descripcion = 'Administrador';
         $role->save();
         $role = new Perfil();
-        $role->perfil = 'student';
+        $role->nombre = 'student';
         $role->descripcion = 'Estudiante';
         $role->save();
         $role = new Perfil();
-        $role->perfil = 'teacher';
+        $role->nombre = 'teacher';
         $role->descripcion = 'Profesor';
         $role->save();
         $role = new Perfil();
-        $role->perfil = 'user';
+        $role->nombre = 'user';
         $role->descripcion = 'Usuario';
         $role->save();
 
