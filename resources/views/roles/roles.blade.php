@@ -42,8 +42,8 @@
                         </tr>
                         @foreach($roles as $rol)
                             <tr>
-                                <td class="v-align-middle">{{ $rol->usuario->nombre }}</td>
-                                <td class="v-align-middle">{{ $rol->perfil->nombre }}</td>
+                                <td class="v-align-middle">{{ $rol->usuarios->nombre }}</td>
+                                <td class="v-align-middle">{{ $rol->perfiles->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('roles/eliminar', $rol->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">

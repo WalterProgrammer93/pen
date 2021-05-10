@@ -66,6 +66,7 @@
                         @else
                           <form method="POST" action="{{ route('roles/guardar') }}">
                             @csrf
+                            <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
                                 <label for="usuario_id" class="col-md-4 col-form-label text-md-right">Usuario</label>
                                 <div class="col-md-6">
