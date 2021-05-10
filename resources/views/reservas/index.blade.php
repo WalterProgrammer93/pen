@@ -20,7 +20,7 @@
                           </div>
                       @endif
                       @if (Auth::check())
-                        @if (!empty($reserva->id))
+                        @if (!empty($reservas->id))
                           <form method="POST" action="{{ route('reservas/actualizar', $reservas->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
