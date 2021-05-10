@@ -45,14 +45,11 @@ class ReservaController extends Controller
     public function store(Request $request)
     {
         $reservas = new Reserva;
-        $reservas->nombre_profesor = $request->nombre_profesor;
-        $reservas->nombre_evento = $request->nombre_evento;
-        $reservas->etiqueta = $request->etiqueta;
-        $reservas->descripcion = $request->descripcion;
-        $reservas->reservado = $request->reservado;
         $reservas->profesor()->associate($request->profesor_id);
         $reservas->evento()->associate($request->evento_id);
         $reservas->aula()->associate($request->aula_id);
+        $reservas->descripcion = $request->descripcion;
+        $reservas->reservado = $request->reservado;
         $reservas->save();
         return redirect()->route('reservas')->with('success', 'Información almacenada con éxito');
     }
