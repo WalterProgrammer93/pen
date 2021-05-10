@@ -229,7 +229,7 @@ Route::post('usuarios/crear', [
 Route::put('usuarios/guardar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'UsuarioController@store'])->name('usuarios/store');
+    'uses' => 'UsuarioController@store'])->name('usuarios/guardar');
 
 /* Actualizar */
 Route::get('usuarios/editar/{id}', [

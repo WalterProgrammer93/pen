@@ -5,6 +5,7 @@ namespace pen\Http\Controllers;
 use Illuminate\Http\Request;
 use pen\User;
 use pen\Perfil;
+use pen\Roles;
 
 class RolController extends Controller
 {
@@ -17,7 +18,7 @@ class RolController extends Controller
 
   public function index()
   {
-      $roles = Rol::paginate(5);
+      $roles = Roles::paginate(5);
       return view("roles.roles", compact("roles"));
   }
 
@@ -29,7 +30,7 @@ class RolController extends Controller
   public function create()
   {
       $usuarios = User::orderBy('id')->pluck('nombre','id')->toArray();
-      $perfiles = Perfil::orderBy('id')->pluck('perfil','id')->toArray();
+      $perfiles = Perfil::orderBy('id')->pluck('nombre','id')->toArray();
       return view("roles.crear", ['usuarios' => $usuarios], ['perfiles' => $perfiles]);
   }
 
@@ -41,7 +42,7 @@ class RolController extends Controller
    */
   public function store(Request $request)
   {
-      $roles = new Rol;
+      $roles = new Roles;
       $roles->user()->associate($request->usuario_id);
       $tareas->perfil()->associate($request->perfil_id);
       $tareas->save();
