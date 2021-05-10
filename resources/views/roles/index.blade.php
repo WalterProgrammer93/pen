@@ -59,7 +59,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-success">Actualizar</button>
-                                    <a href="{{ route('tareas') }}" class="btn btn-primary">Cancelar</a>
+                                    <a href="{{ route('roles') }}" class="btn btn-primary">Cancelar</a>
                                 </div>
                             </div>
                           </form>
@@ -101,7 +101,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-success">Añadir</button>
-                                    <a href="{{ route('tareas') }}" class="btn btn-primary">Cancelar</a>
+                                    <a href="{{ route('roles') }}" class="btn btn-primary">Cancelar</a>
                                 </div>
                             </div>
                           </form>
