@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use pen\Perfil;
+use pen\Roles;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,10 @@ class User extends Authenticatable
       return $this->belongsToMany(Perfil::class)->withTimestamps();;
     }
 
+    public function roles() {
+      return $this->hasMany(Roles::class);
+    }
+
     public function authorizeRoles($roles) {
       if ($this->hasAnyRole($roles)) {
         return true;
@@ -66,7 +71,7 @@ class User extends Authenticatable
     }
 
     public function hasRole($role) {
-      if ($this->perfils()->where('perfil', $role)->first()) {
+      if ($this->perfils()->where('nombre', $role)->first()) {
           return true;
       }
       return false;

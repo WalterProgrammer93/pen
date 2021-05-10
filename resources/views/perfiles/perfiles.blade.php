@@ -36,13 +36,13 @@
                     @endif
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Perfil</th>
+                            <th>Nombre</th>
                             <th>Descripcion</th>
                             <th colspan="2">Acción</th>
                         </tr>
                         @foreach($perfiles as $perfil)
                             <tr>
-                                <td class="v-align-middle">{{ $perfil->perfil }}</td>
+                                <td class="v-align-middle">{{ $perfil->nombre }}</td>
                                 <td class="v-align-middle">{{ $perfil->descripcion }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('perfiles/eliminar', $perfil->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
