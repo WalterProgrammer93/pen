@@ -522,45 +522,6 @@ Route::post('reservas/buscar/{nombre}', [
     'before' => 'crsf',
     'uses' => 'ReservaController@search'])->name('reservas/buscar');
 
-
-// ACCESO A LAS RUTAS DE CONVALIDACIONES
-/* Leer */
-Route::get('convalidaciones', 'ConvalidacionController@index')->name('convalidaciones');
-
-/* Crear */
-Route::post('convalidaciones/crear', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'ConvalidacionController@create'])->name('convalidaciones/crear');
-
-Route::put('convalidaciones/guardar', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'ConvalidacionController@store'])->name('convalidaciones/guardar');
-
-/* Actualizar */
-Route::get('convalidaciones/editar/{id}', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'ConvalidacionController@editar'])->name('convalidaciones/editar');
-
-Route::put('convalidaciones/actualizar/{id}', [
-    'middleware' => 'auth',
-    'before' => 'auth',
-    'uses' => 'ConvalidacionController@update'])->name('convalidaciones/actualizar');
-
-/* Eliminar */
-Route::put('convalidaciones/eliminar/{id}', [
-    'middleware' => 'auth',
-    'before' => 'auth',
-    'uses' => 'ConvalidacionController@delete'])->name('convalidaciones/eliminar');
-
-/* Buscar */
-Route::post('convalidaciones/buscar/{nombre}', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'ConvalidacionController@search'])->name('convalidaciones/buscar');
-
 // RUTAS DE ACCESO A CLASES
 
 /* Leer */

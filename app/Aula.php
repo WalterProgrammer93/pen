@@ -5,6 +5,7 @@ namespace pen;
 use Illuminate\Database\Eloquent\Model;
 use pen\Asignaturas;
 use pen\Eventos;
+use pen\Reserva;
 
 class Aula extends Model
 {
@@ -17,5 +18,9 @@ class Aula extends Model
 
     public function eventos() {
     	return $this->hasMany(Evento::class);
+    }
+
+    public function reserva() {
+      return $this->hasMany(Reserva::class);
     }
 }

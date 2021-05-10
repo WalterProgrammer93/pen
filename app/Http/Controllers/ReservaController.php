@@ -4,6 +4,9 @@ namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
 use pen\Reserva;
+use pen\Profesor;
+use pen\Evento;
+use pen\Aula;
 
 class ReservaController extends Controller
 {
@@ -28,8 +31,9 @@ class ReservaController extends Controller
     public function create()
     {
         $profesores = Profesor::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $aulas = Aula::orderBy('id')->pluck('etiqueta', 'id')->toArray();
-        return view("reservas.crear", compact('profesores', 'aulas'));
+        $eventos = Evento::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
+        return view("reservas.crear", compact('profesores', 'eventos', 'aulas'));
     }
 
     /**
@@ -42,12 +46,12 @@ class ReservaController extends Controller
     {
         $reservas = new Reserva;
         $reservas->nombre_profesor = $request->nombre_profesor;
-        $reservas->apellido1_profesor = $request->apellido1_profesor;
-        $reservas->apellido2_profesor = $request->apellido2_profesor;
-        $reservas->etiqueta_aula = $request->etiqueta_aula;
+        $reservas->nombre_evento = $request->nombre_evento;
+        $reservas->etiqueta = $request->etiqueta;
         $reservas->descripcion = $request->descripcion;
         $reservas->reservado = $request->reservado;
         $reservas->profesor()->associate($request->profesor_id);
+        $reservas->evento()->associate($request->evento_id);
         $reservas->aula()->associate($request->aula_id);
         $reservas->save();
         return redirect()->route('reservas')->with('success', 'Información almacenada con éxito');
@@ -74,7 +78,7 @@ class ReservaController extends Controller
     public function edit($id)
     {
         $reservas = Reserva::find($id);
-        return view("reserva.editarReserva", compact("reservas"));
+        return view("reserva.editar", compact("reservas"));
     }
 
     /**

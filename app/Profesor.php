@@ -3,7 +3,8 @@
 namespace pen;
 
 use Illuminate\Database\Eloquent\Model;
-use pen\departamento;
+use pen\Departamento;
+use pen\Reserva;
 
 class Profesor extends Model
 {
@@ -11,6 +12,10 @@ class Profesor extends Model
     protected $fillable = ['nombre', 'apellido1', 'apellido2','dni','email','telefono','disponibilidad','departamento'];
 
     public function departamento() {
-    	return $this->belongsTo(Departamento::class);
+    	 return $this->belongsTo(Departamento::class);
+    }
+
+    public function reserva() {
+        return $this->hasMany(Reserva::class);
     }
 }

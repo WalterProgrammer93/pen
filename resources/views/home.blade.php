@@ -22,7 +22,7 @@
                           <div class="col-sm"><p><a href="{{ url('notas') }}" class="notas"><img src="https://img.icons8.com/ios-filled/30/000000/report-card.png" alt="notas">&nbsp; Notas</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('departamentos') }}" class="departamentos"><img src="https://img.icons8.com/ios-filled/30/000000/university.png" alt="departamentos">&nbsp; Departamentos</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('aulas') }}" class="aulas"><img src="https://img.icons8.com/ios-filled/30/000000/classroom.png" alt="aulas">&nbsp; Aulas</a></p></div>
-                          <div class="col-sm"><p><a href="{{ url('convalidaciones') }}" class="convalidaciones"><img src="https://img.icons8.com/ios-glyphs/30/000000/exam.png" alt="convalidaciones">&nbsp; Convalidaciones</a></p></div>
+                          <div class="col-sm"><p><a href="{{ url('reservas') }}" class="reservas"><img src="https://img.icons8.com/ios-glyphs/30/000000/exam.png" alt="reservas">&nbsp; Reservas</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('usuarios') }}" class="usuarios"><img src="https://img.icons8.com/material/30/000000/user-male-circle--v1.png"alt="usuarios">&nbsp; Usuarios</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('tareas') }}" class="tareas"><img src="https://img.icons8.com/ios-filled/30/000000/classroom.png" alt="tareas">&nbsp; Tareas</a></p></div>
                           <div class="col-sm"><p><a href="{{ url('temas') }}" class="temas"><img src="https://img.icons8.com/ios-glyphs/30/000000/courses.png" alt="temas">&nbsp; Temas</a></p></div>

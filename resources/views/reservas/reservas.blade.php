@@ -36,24 +36,46 @@
                     @endif
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Descripcion</th>
-                            <th>Reservado</th>
                             <th>Profesor</th>
                             <th>Evento</th>
+                            <th>Aula</th>
+                            <th>Descripcion</th>
+                            <th>Reservado</th>
                             <th colspan="2">Acción</th>
                         </tr>
                         @foreach($reservas as $reserva)
                             <tr>
-                                <td class="v-align-middle">{{ $reserva->descripcion }}</td>
-                                <td class="v-align-middle">{{ $reserva->reservado }}</td>
                                 <td class="v-align-middle">{{ $reserva->profesor }}</td>
                                 <td class="v-align-middle">{{ $reserva->evento }}</td>
+                                <td class="v-align-middle">{{ $reserva->aula }}</td>
+                                <td class="v-align-middle">{{ $reserva->descripcion }}</td>
+                                <td class="v-align-middle">{{ $reserva->reservado }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('reservas/eliminar', $reserva->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('reservas/actualizar', $reserva->id) }}" class="btn btn-primary">Modificar</a>
-                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      @if(Auth::check())
+                                        @if(Auth::user()->hasRole('admin'))
+                                          <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
+                                          <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                          @include('alerts.dialogos')
+                                        @else
+                                          @if(Auth::user()->hasRole('student'))
+                                            <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                            <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                          @else
+                                            @if(Auth::user()->hasRole('teacher'))
+                                              <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
+                                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            @else
+                                              @if(Auth::user()->hasRole('user'))
+                                                <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                              @endif
+                                            @endif
+                                          @endif
+                                        @endif
+                                      @endif
                                   </form>
                                 </td>
                             </tr>

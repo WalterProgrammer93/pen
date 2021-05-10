@@ -4,6 +4,7 @@ namespace pen;
 
 use Illuminate\Database\Eloquent\Model;
 use pen\Aula;
+use pen\Reserva;
 
 class Evento extends Model
 {
@@ -12,5 +13,9 @@ class Evento extends Model
 
     public function aula() {
       return $this->belongsTo(Aula::class);
+    }
+
+    public function reserva() {
+      return $this->belongsTo(Reserva::class);
     }
 }
