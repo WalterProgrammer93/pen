@@ -2,24 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-20 justify-content-center m-3">
-        <div class="row justify-content-center m-3">
-            <div class="col-md-3">
-                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-            </div>
-            <div class="col-md-3">
-                <select id="ordenar" class="form-control" name="ordenar" required>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                </select>
-            </div>
-            <form action="{{ url('buscarNota') }}" method="POST">
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
           <nav aria-label="breadcrumb">
@@ -36,6 +18,24 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="col-md-20 justify-content-center m-3">
+                        <div class="row justify-content-center m-3">
+                            <div class="col-md-4">
+                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="ordenar" class="form-control" name="ordenar" required>
+                                    <option value="Ascendente">Ascendente</option>
+                                    <option value="Descendente">Descendente</option>
+                                </select>
+                            </div>
+                            <form action="{{ url('buscarNota') }}" method="POST">
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>EVA1</th>
@@ -55,8 +55,8 @@
                                 <td class="v-align-middle">{{ $nota->alumno->nombre }}</td>
                                 <td class="v-align-middle">{{ $nota->asignatura->nombre }}</td>
                                 <td class="v-align-middle">
-                                  <form action="{{ route('notas/eliminar', $nota->id) }}" method="GET" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
-                                      <!--<input type="hidden" name="_method" value="PUT">-->
+                                  <form action="{{ route('notas/eliminar', $nota->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
+                                      <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
@@ -86,7 +86,13 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{ $notas->links() }}
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center pt-2">
+                            {{ $notas->appends(["notas" => $notas])->links() }}
+                        </div>
+                    </div>
+                    <!--{{ $notas->links() }}-->
                     <form action="{{ route('notas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

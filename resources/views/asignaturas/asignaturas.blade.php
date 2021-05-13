@@ -20,10 +20,10 @@
                     @endif
                     <div class="col-md-20 justify-content-center m-3">
                         <div class="row justify-content-center m-3">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <select id="ordenar" class="form-control" name="ordenar" required>
                                     <option value="Ascendente">Ascendente</option>
                                     <option value="Descendente">Descendente</option>
@@ -80,7 +80,13 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{ $asignaturas->links() }}
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center pt-2">
+                            {{ $asignaturas->appends(["asignaturas" => $asignaturas])->links() }}
+                        </div>
+                    </div>
+                    <!--{{ $asignaturas->links() }}-->
                     <form action="{{ route('asignaturas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">

@@ -44,8 +44,8 @@ class RolController extends Controller
   {
       $roles = new Roles;
       $roles->user()->associate($request->usuario_id);
-      $tareas->perfil()->associate($request->perfil_id);
-      $tareas->save();
+      $roles->perfil()->associate($request->perfil_id);
+      $roles->save();
       return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
   }
 

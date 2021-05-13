@@ -2,22 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-20 justify-content-center m-3">
-        <div class="row justify-content-center m-3">
-            <div class="col-md-3">
-                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-            </div>
-            <div class="col-md-3">
-                <select id="ordenar" class="form-control" name="ordenar" required>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-md-20">
             <nav aria-label="breadcrumb">
@@ -34,6 +18,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="col-md-20 justify-content-center m-3">
+                        <div class="row justify-content-center m-3">
+                            <div class="col-md-4">
+                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="ordenar" class="form-control" name="ordenar" required>
+                                    <option value="Ascendente">Ascendente</option>
+                                    <option value="Descendente">Descendente</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Usuario</th>
@@ -42,8 +42,8 @@
                         </tr>
                         @foreach($roles as $rol)
                             <tr>
-                                <td class="v-align-middle">{{ $rol->usuarios->nombre }}</td>
-                                <td class="v-align-middle">{{ $rol->perfiles->nombre }}</td>
+                                <td class="v-align-middle">{{ $rol->user->nombre }}</td>
+                                <td class="v-align-middle">{{ $rol->perfil->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('roles/eliminar', $rol->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
@@ -55,12 +55,12 @@
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
-                                            <a href="{{ route('roles/editar', $rol->id) }}" class="btn btn-primary">Modificar</a>
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            <a href="{{ route('roles/editar', $rol->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                            <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
-                                              <a href="{{ route('roles/editar', $rol->id) }}" class="btn btn-primary">Modificar</a>
-                                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                                              <a href="{{ route('roles/editar', $rol->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('roles/editar', $rol->id) }}" class="btn btn-primary" disabled>Modificar</a>
@@ -75,7 +75,13 @@
                             </tr>
                         @endforeach
                     </table>
-                    <p align="center">{{ $roles->links() }}</p>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center pt-2">
+                            {{ $roles->appends(["roles" => $roles])->links() }}
+                        </div>
+                    </div>
+                    <!--{{ $roles->links() }}-->
                     <form action="{{ route('roles/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
