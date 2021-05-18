@@ -4,6 +4,7 @@ namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use CrearAlumnoRequest;
 use Storage;
 use pen\Alumno;
 use pen\Curso;
@@ -40,33 +41,43 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrearAlumnoRequest $request)
     {
-        $alumnos = new Alumno;
-        $alumnos->nombre = $request->nombre;
-        $alumnos->apellido1 = $request->apellido1;
-        $alumnos->apellido2 = $request->apellido2;
-        $alumnos->dni = $request->dni;
-        $alumnos->fecha_nacimiento = $request->fecha_nacimiento;
-        $alumnos->telefono = $request->telefono;
-        $alumnos->correo = $request->correo;
-        $alumnos->sexo = $request->sexo;
-        $alumnos->ciudad = $request->ciudad;
-        $alumnos->provincia = $request->provincia;
-        $alumnos->nacionalidad = $request->nacionalidad;
-        $alumnos->codigo_postal = $request->codigo_postal;
-        $alumnos->direccion = $request->direccion;
-        $alumnos->portal = $request->portal;
-        $alumnos->piso = $request->piso;
-        $alumnos->letra = $request->letra;
-        $alumnos->repite = $request->repite;
-        if($request->hasFile('foto')){
-          $path = Storage::disk('local')->put('fotos', $request->file('foto'));
-          $alumnos->foto = $path;
+        $validator = Validator::make(
+                $request->all(),
+                $request->rules(),
+                $request->messages()
+                );
+        if ($validator->valid()){
+            $alumnos = new Alumno;
+            $alumnos->nombre = $request->nombre;
+            $alumnos->apellido1 = $request->apellido1;
+            $alumnos->apellido2 = $request->apellido2;
+            $alumnos->dni = $request->dni;
+            $alumnos->fecha_nacimiento = $request->fecha_nacimiento;
+            $alumnos->telefono = $request->telefono;
+            $alumnos->correo = $request->correo;
+            $alumnos->sexo = $request->sexo;
+            $alumnos->ciudad = $request->ciudad;
+            $alumnos->provincia = $request->provincia;
+            $alumnos->nacionalidad = $request->nacionalidad;
+            $alumnos->codigo_postal = $request->codigo_postal;
+            $alumnos->direccion = $request->direccion;
+            $alumnos->portal = $request->portal;
+            $alumnos->piso = $request->piso;
+            $alumnos->letra = $request->letra;
+            $alumnos->repite = $request->repite;
+            if($request->hasFile('foto')){
+              $foto = str_random(30) . '-' . $request->file('foto')->getClientOriginalName();
+              $request->file('foto')->move('fotos', $foto);
+              /*$path = Storage::disk('local')->put('fotos', $request->file('foto'));
+              $alumnos->foto = $path;*/
+            }
+            $alumnos->curso()->associate($request->curso_id);
+            $alumnos->save();
+            return redirect()->route('alumnos')->with('message', 'Información del alumno almacenada con éxito');
         }
-        $alumnos->curso()->associate($request->curso_id);
-        $alumnos->save();
-        return redirect()->route('alumnos')->with('message', 'Información almacenada con éxito');
+
     }
 
     /**

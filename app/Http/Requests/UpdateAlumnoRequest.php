@@ -4,7 +4,7 @@ namespace pen\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ItemUpdateRequest extends FormRequest
+class UpdateAlumnoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
