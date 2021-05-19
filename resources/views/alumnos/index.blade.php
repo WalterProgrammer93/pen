@@ -14,7 +14,16 @@
                       @endif
                       @if(Auth::check())
                             @if(!empty($alumnos->id))
-                                <form method="POST" action="{{ route('alumnos/actualizar', $alumnos->id) }}" role="form">
+                                @if ($errors->any())
+                                   <div class="alert alert-danger">
+                                      <ul>
+                                           @foreach ($errors->all() as $error)
+                                               <li>{{ $error }}</li>
+                                           @endforeach
+                                      </ul>
+                                  </div>
+                                @endif
+                                <form method="POST" action="{{ route('alumnos/actualizar', $alumnos->id) }}" role="form" id="formulario">
                                   @csrf
                                   <input type="hidden" name="_method" value="PUT">
                                   <div class="form-group row">

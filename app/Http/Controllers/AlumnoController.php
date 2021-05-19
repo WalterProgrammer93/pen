@@ -3,8 +3,8 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use CrearAlumnoRequest;
+use Validator;
+//use pen\Http\Requests\CrearAlumnoRequest;
 use Storage;
 use pen\Alumno;
 use pen\Curso;
@@ -41,42 +41,43 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CrearAlumnoRequest $request)
+    public function store(Request $request)
     {
-        $validator = Validator::make(
-                $request->all(),
+        /*$validator = Validator::make(
                 $request->rules(),
                 $request->messages()
                 );
-        if ($validator->valid()){
-            $alumnos = new Alumno;
-            $alumnos->nombre = $request->nombre;
-            $alumnos->apellido1 = $request->apellido1;
-            $alumnos->apellido2 = $request->apellido2;
-            $alumnos->dni = $request->dni;
-            $alumnos->fecha_nacimiento = $request->fecha_nacimiento;
-            $alumnos->telefono = $request->telefono;
-            $alumnos->correo = $request->correo;
-            $alumnos->sexo = $request->sexo;
-            $alumnos->ciudad = $request->ciudad;
-            $alumnos->provincia = $request->provincia;
-            $alumnos->nacionalidad = $request->nacionalidad;
-            $alumnos->codigo_postal = $request->codigo_postal;
-            $alumnos->direccion = $request->direccion;
-            $alumnos->portal = $request->portal;
-            $alumnos->piso = $request->piso;
-            $alumnos->letra = $request->letra;
-            $alumnos->repite = $request->repite;
-            if($request->hasFile('foto')){
-              $foto = str_random(30) . '-' . $request->file('foto')->getClientOriginalName();
-              $request->file('foto')->move('fotos', $foto);
-              /*$path = Storage::disk('local')->put('fotos', $request->file('foto'));
-              $alumnos->foto = $path;*/
-            }
-            $alumnos->curso()->associate($request->curso_id);
-            $alumnos->save();
-            return redirect()->route('alumnos')->with('message', 'Información del alumno almacenada con éxito');
+        if ($validator->fails()){
+              return redirect('alumnos.crear')
+                  ->withErrors($validator)
+                  ->withInput();
+        }*/
+        $alumnos = new Alumno;
+        $alumnos->nombre = $request->nombre;
+        $alumnos->apellido1 = $request->apellido1;
+        $alumnos->apellido2 = $request->apellido2;
+        $alumnos->dni = $request->dni;
+        $alumnos->fecha_nacimiento = $request->fecha_nacimiento;
+        $alumnos->telefono = $request->telefono;
+        $alumnos->correo = $request->correo;
+        $alumnos->sexo = $request->sexo;
+        $alumnos->ciudad = $request->ciudad;
+        $alumnos->provincia = $request->provincia;
+        $alumnos->nacionalidad = $request->nacionalidad;
+        $alumnos->codigo_postal = $request->codigo_postal;
+        $alumnos->direccion = $request->direccion;
+        $alumnos->portal = $request->portal;
+        $alumnos->piso = $request->piso;
+        $alumnos->letra = $request->letra;
+        $alumnos->repite = $request->repite;
+        if ($archivo = $request->file('foto')) {
+            $nombre  = $archivo->getClientOriginalName();
+            $archivo->move("fotos", $nombre);
+            $alumnos->foto = $nombrearchivo;
         }
+          $alumnos->curso()->associate($request->curso_id);
+          $alumnos->save();
+          return redirect('alumnos')->with('message', 'Información del alumno almacenada con éxito');
 
     }
 
@@ -135,27 +136,22 @@ class AlumnoController extends Controller
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
-        return redirect()->route('alumnos')->with('success','Información eliminada con éxito');
+        return redirect('alumnos')->with('success','Información alumno eliminada con éxito');
     }
 
     public function search(Request $request)
     {
-      $alumnos = $request->input('alumnos');
-      $alumno = Alumno::orderBy('id', 'asc')
-      ->where('nombre','LIKE','%'.$alumnos.'%')
-      ->orWhere('apellido1','LIKE','%'.$alumnos.'%')
-      ->orWhere('repite','LIKE','%'.$alumnos.'%')->paginate(5);
+        $texto = $request->input('buscar');
+        $alumnos = Alumno::where('nombre','like','%'.$texto.'%')
+        ->orWhere('apellido1','like','%'.$texto.'%')
+        ->orWhere('repite','like','%'.$texto.'%')->paginate(5);
 
-      if (!empty($alumno[0])) {
-            return view('alumnos.alumnos', ['alumnos' => $alumnos, 'alumno' => $alumno]);
+        //$alumnos->appends(['buscar' => $texto]);
+
+        if (!empty($alumnos[0])) {
+            return view('alumnos.alumnos', ['texto' => $texto, 'alumnos' => $alumnos]);
         } else {
-            return redirect()->route('alumnos')
-                            ->with(['message' => 'Alumno ' . $alumnos . ' No encontrado']);
+            return redirect('alumnos')->with(['message' => 'Alumno ' . $texto . ' no encontrado']);
         }
-      //return view('alumnos.alumnos', ['alumnos' => $alumnos]);
     }
-
-    /*public function ordenar() {
-
-    }*/
 }

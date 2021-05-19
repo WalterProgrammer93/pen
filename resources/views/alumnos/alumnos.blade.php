@@ -21,7 +21,7 @@
                     <div class="col-md-20 justify-content-center m-3">
                         <div class="row justify-content-center m-3">
                             <div class="col-md-4">
-                                <input id="alumnos" type="text" class="form-control" name="alumnos" autocomplete="alumnos" placeholder="alumnos" autofocus>
+                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="buscar" autofocus>
                             </div>
                             <div class="col-md-4">
                                 <select id="ordenar" class="form-control" name="ordenar" required>
@@ -53,7 +53,7 @@
                                 <td class="v-align-middle">{{ $alumno->apellido1 }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido2 }}</td>
                                 <td class="v-align-middle">{{ $alumno->repite }}</td>
-                                <td class="v-align-middle"><img src="{{!! asset('/../fotos/$alumno->foto') !!}}"  class="img-responsive"/>{{ $alumno->foto }}</td>
+                                <td class="v-align-middle"><img src="fotos/{{ $alumno->foto }}"  class="img-responsive"/></td>
                                 <td class="v-align-middle">{{ $alumno->curso->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
@@ -89,10 +89,9 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center pt-2">
-                            {{ $alumnos->appends(["alumnos" => $alumnos])->links() }}
+                            {{ $alumnos->appends(['alumnos' => $alumnos])->links() }}
                         </div>
                     </div>
-                    <!--<div class="text-center">{{ $alumnos->links() }}</div>-->
                     <form action="{{ route('alumnos/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
