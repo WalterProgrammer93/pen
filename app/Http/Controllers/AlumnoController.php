@@ -121,7 +121,7 @@ class AlumnoController extends Controller
         $curso = implode(',', $arrayCurso);
         $alumnos->curso()->associate($curso);
         $alumnos->save();
-        return redirect()->route('alumnos')->with('message', 'Información actualizada con éxito');
+        return redirect()->route('alumnos')->with('message', 'Información de alumno actualizada con éxito');
     }
 
     /**
