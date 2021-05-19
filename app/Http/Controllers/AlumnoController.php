@@ -148,10 +148,14 @@ class AlumnoController extends Controller
 
         //$alumnos->appends(['buscar' => $texto]);
 
-        if (!empty($alumnos[0])) {
+        if (!empty($alumnos)) {
             return view('alumnos.alumnos', ['texto' => $texto, 'alumnos' => $alumnos]);
         } else {
             return redirect('alumnos')->with(['message' => 'Alumno ' . $texto . ' no encontrado']);
         }
+    }
+
+    public function encontrado($id) {
+
     }
 }
