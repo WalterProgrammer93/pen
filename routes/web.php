@@ -280,10 +280,10 @@ Route::put('notas/actualizar/{id}', [
     'before' => 'auth',
     'uses' => 'NotaController@update'])->name('notas/actualizar');
 
-Route::put('notas/importar', [
+Route::get('notas/imprimir', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'NotaController@import'])->name('notas/importar');
+    'uses' => 'NotaController@print'])->name('notas/imprimir');
 
 /* Eliminar */
 Route::put('notas/eliminar/{id}', [

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use pen\Nota;
 use pen\Alumno;
 use pen\Asignatura;
+use PDF;
+use Carbon;
 
 class NotaController extends Controller
 {
@@ -128,5 +130,12 @@ class NotaController extends Controller
             $lista = Nota::paginate(3);
             return view('notas.notas',array('lista'=>$lista));
         }
+    }
+
+    public function print() {
+        $today = Carbon::now()->format('d/m/Y');
+        $notas = Nota::find($id);
+        $pdf = PDF::loadView('ejemplo', compact('today', 'notas'));
+        return $pdf->download('boletin de notas.pdf');
     }
 }
