@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Home</div>
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (Session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
