@@ -18,6 +18,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('logout', function () {
+    return view('auth.login');
+});
+
 Route::get('/home', [
 	'middleware' => 'auth',
 	'before' => 'crsf',
@@ -280,11 +284,6 @@ Route::put('notas/actualizar/{id}', [
     'before' => 'auth',
     'uses' => 'NotaController@update'])->name('notas/actualizar');
 
-Route::get('notas/imprimir', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'NotaController@print'])->name('notas/imprimir');
-
 /* Eliminar */
 Route::put('notas/eliminar/{id}', [
     'middleware' => 'auth',
@@ -296,6 +295,11 @@ Route::post('notas/buscar/{nombre}', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'NotaController@search'])->name('notas/buscar');
+
+Route::get('notas/imprimir/{id}', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'NotaController@print'])->name('notas/imprimir');
 
 // ACCESO A LAS RUTAS DE DEPARTAMENTOS
 /* Leer */

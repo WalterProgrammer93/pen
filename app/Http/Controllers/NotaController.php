@@ -80,7 +80,7 @@ class NotaController extends Controller
         $alumnos = Alumno::orderBy('id')->pluck('nombre', 'id')->toArray();
         $asignaturas = Asignatura::find($id);
         $asignaturas = Asignatura::orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view("notas.editar", ['notas' => $notas], ['alumnos' => $alumnos], ['asignaturas' => $asignaturas]);
+        return view("notas.editar", compact('notas', 'alumnos', 'asignaturas'));
     }
 
     /**
@@ -132,10 +132,10 @@ class NotaController extends Controller
         }
     }
 
-    public function print() {
+    public function print($id) {
         $today = Carbon::now()->format('d/m/Y');
         $notas = Nota::find($id);
-        $pdf = PDF::loadView('ejemplo', compact('today', 'notas'));
-        return $pdf->download('boletin de notas.pdf');
+        $pdf = PDF::loadView('notas.impresion', compact('today', 'notas'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream('boletin de notas.pdf');
     }
 }

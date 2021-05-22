@@ -94,9 +94,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Crear Asignatura
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <a href="{{ url('home') }}" class="enlaceback">Volver a menu</a>
-                                </button>
+                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>
                     </form>

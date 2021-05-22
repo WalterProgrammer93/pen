@@ -18,77 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-
-        .enlaceback {
-
-            color: white;
-        }
-        .enlaceback:hover {
-            color: white;
-            text-decoration: none;
-        }
-        .modificar {
-            color: white;
-        }
-        .modificar:hover {
-            color: white;
-            text-decoration: none;
-        }
-        .eliminar {
-            color: white;
-        }
-        .eliminar:hover {
-            color: white;
-            text-decoration: none;
-        }
-        .alumnos:hover {
-            text-decoration: none;
-        }
-        .cursos:hover {
-            text-decoration: none;
-        }
-        .asignaturas:hover {
-            text-decoration: none;
-        }
-        .profesores:hover {
-            text-decoration: none;
-        }
-        .notas:hover {
-            text-decoration: none;
-        }
-        .departamentos:hover {
-            text-decoration: none;
-        }
-        .aulas:hover {
-            text-decoration: none;
-        }
-        .asistencias:hover {
-            text-decoration: none;
-        }
-        .examenes:hover {
-            text-decoration: none;
-        }
-        .usuarios:hover {
-            text-decoration: none;
-        }
-        .convalidaciones:hover {
-            text-decoration: none;
-        }
-        .tareas:hover {
-            text-decoration: none;
-        }
-        .temas:hover {
-            text-decoration: none;
-        }
-        .reservas:hover {
-            text-decoration: none;
-        }
-        .eventos:hover {
-            text-decoration: none;
-        }
-    </style>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/impresion_notas.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="bg-secondary">
     <div id="app">

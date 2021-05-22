@@ -111,7 +111,7 @@
                                     <select id="departamento_id" class="form-control" name="departamento_id[]" required>
                                         <option value="" disabled>Seleccione un departamento</option>
                                         @foreach($departamentos as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $profesores->departamento_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('departamento_id')

@@ -38,7 +38,8 @@
                             <div class="form-group row">
                                 <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
                                 <div class="col-md-6">
-                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $asignaturas->descripcion }}" rows="4" cols="50" required autocomplete="descripcion"/>
+                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $asignaturas->descripcion }}" rows="4" cols="50" required autocomplete="descripcion">
+                                    </textarea>
                                     @error('descripcion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -52,7 +53,7 @@
                                     <select id="curso_id" class="form-control" name="curso_id[]" required>
                                         <option value="" disabled>Seleccione un curso</option>
                                         @foreach($cursos as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $asignaturas->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('curso_id')
@@ -68,7 +69,7 @@
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
                                         <option value="" disabled>Seleccione una aula</option>
                                         @foreach($aulas as $id => $etiqueta)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $etiqueta }}</option>
+                                            <option value="{{ $id }}" {{ $id == $asignaturas->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
                                     @error('aula_id')

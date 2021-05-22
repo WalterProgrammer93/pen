@@ -62,7 +62,7 @@
                                         @if(Auth::user()->hasRole('admin'))
                                           <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          <a href="{{ route('notas/descargar', $nota->id )}}" class="btn btn-download">Descargar</a>
+                                          <a href="{{ route('notas/imprimir', $nota->id )}}" class="btn btn-warning">Imprimir</a>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))

@@ -74,7 +74,7 @@
                                     <select id="alumno_id" class="form-control @error('alumno_id') is-invalid @enderror" name="alumno_id[]" required>
                                         <option value="" disabled>Seleccione un alumno</option>
                                         @foreach($alumnos as $id => $nombre)
-                                          <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                          <option value="{{ $id }}" {{ $id == $notas->alumno_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('alumno_id')
@@ -90,7 +90,7 @@
                                     <select id="asignatura_id" class="form-control @error('asignatura_id') is-invalid @enderror" name="asignatura_id[]" required>
                                         <option value="" disabled>Seleccione una asignatura</option>
                                         @foreach($asignaturas as $id => $nombre)
-                                          <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                          <option value="{{ $id }}" {{ $id == $notas->asignatura_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('asignatura_id')
