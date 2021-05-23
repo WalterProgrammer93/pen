@@ -53,9 +53,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Registrar
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <a href="{{ route('login') }}" class="enlaceback">Cancelar</a>
-                                </button>
+                                <a href="{{ route('login') }}" class="btn btn-primary">Cancelar</a>
                             </div>
                         </div>
                     </form>
