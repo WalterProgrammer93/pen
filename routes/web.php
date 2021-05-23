@@ -69,6 +69,11 @@ Route::post('alumnos/buscar', [
     'before' => 'crsf',
     'uses' => 'AlumnoController@search'])->name('alumnos/buscar');
 
+Route::post('alumnos/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'AlumnoController@filter'])->name('alumnos/filtro');
+
 // ACCESO A LAS RUTAS DE CURSOS
 /* Leer */
 Route::get('cursos', 'CursoController@index')->name('cursos');

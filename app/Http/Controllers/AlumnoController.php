@@ -4,7 +4,6 @@ namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-//use pen\Http\Requests\CrearAlumnoRequest;
 use Storage;
 use pen\Alumno;
 use pen\Curso;
@@ -146,16 +145,24 @@ class AlumnoController extends Controller
         ->orWhere('apellido1','like','%'.$texto.'%')
         ->orWhere('repite','like','%'.$texto.'%')->paginate(5);
 
-        //$alumnos->appends(['buscar' => $texto]);
-
         if (!empty($alumnos)) {
-            return view('alumnos.alumnos', ['texto' => $texto, 'alumnos' => $alumnos]);
+            return view('alumnos.alumnos', compact('texto', 'alumnos'));
         } else {
-            return redirect('alumnos')->with(['message' => 'Alumno ' . $texto . ' no encontrado']);
+            return redirect('alumnos')->with('message', 'Alumno no encontrado');
         }
     }
 
-    public function encontrado($id) {
-
+    public function filter(Request $request) {
+        if($seleccion->filtro == 'Todos') {
+            return view('alumnos.alumnos', compact('seleccion'));
+        } else if ($seleccion == 'Ascendente') {
+            $alumnos = Alumno::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('alumnos.alumnos', compact('alumnos'));
+        } else if ($seleccion == 'Descendente') {
+            $alumnos = Alumno::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('alumnos.alumnos', compact('alumnos'));
+        } else {
+            return redirect('alumnos')->with('message', 'No funciona');
+        }
     }
 }

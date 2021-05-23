@@ -18,25 +18,29 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
-                    <div class="col-md-20 justify-content-center m-3">
-                        <div class="row justify-content-center m-3">
-                            <div class="col-md-4">
-                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="buscar" autofocus>
+                    <form action="{{ route('alumnos/buscar') }}" method="POST" role="form">
+                        @csrf
+                        <div class="col-md-20 justify-content-center m-3">
+                            <div class="row justify-content-center m-3">
+                              <div class="col-md-5">
+                                  <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="buscar" autofocus>
+                              </div>
+                              <div class="col-md-5">
+                                  <form action="{{ route('alumnos/filtro') }}" method="POST" role="form">
+                                    <select id="filtro" class="form-control" name="filtro">
+                                        <option value="" disabled>Seleccione filtro</option>
+                                        <option value="todos">Todos</option>
+                                        <option value="ascendente">Ascendente</option>
+                                        <option value="descendente">Descendente</option>
+                                    </select>
+                                  </form>
+                              </div>
+                              <div class="col-md-2">
+                                  <button type="submit" class="btn btn-primary">Buscar</button>
+                              </div>
                             </div>
-                            <div class="col-md-4">
-                                <select id="ordenar" class="form-control" name="ordenar" required>
-                                    <option value="Ascendente">Ascendente</option>
-                                    <option value="Descendente">Descendente</option>
-                                </select>
-                            </div>
-                            <form action="{{ route('alumnos/buscar') }}" method="POST" role="form">
-                                @csrf
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary">Buscar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                          </div>
+                    </form>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Nombre</th>
@@ -106,18 +110,6 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap JS -->
-        <!--<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-        <script type="text/javascript">
-             function confirmarEliminar()
-             {
-             var x = confirm("Estas seguro de Eliminar?");
-             if (x)
-               return true;
-             else
-               return false;
-             }
-        </script>-->
     </div>
 </div>
 @endsection

@@ -22,7 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/impresion_notas.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('asset/css/menu.css') }}" rel="stylesheet" type="text/css">
+    <link href="/css/menu.css'" rel="stylesheet" type="text/css">
 </head>
 <body class="bg-secondary">
     <div id="app">
