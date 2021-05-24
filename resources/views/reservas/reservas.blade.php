@@ -18,22 +18,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-20 justify-content-center m-3">
-                        <div class="row justify-content-center m-3">
-                            <div class="col-md-4">
-                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-                            </div>
-                            <div class="col-md-4">
-                                <select id="ordenar" class="form-control" name="ordenar" required>
-                                    <option value="Ascendente">Ascendente</option>
-                                    <option value="Descendente">Descendente</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary">Buscar</button>
+                    <form action="{{ route('reservas/buscar') }}" method="POST" role="form">
+                        @csrf
+                        <div class="col-md-20 justify-content-center m-3">
+                            <div class="row justify-content-center m-3">
+                                <div class="col-md-4">
+                                    <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="{{ route('reservas/filtro') }}" method="POST" role="form">
+                                        <select id="filtro" class="form-control" name="filtro">
+                                            <option value="" disabled>Seleccione filtro</option>
+                                            <option value="todos">Todos</option>
+                                            <option value="ascendente">Ascendente</option>
+                                            <option value="descendente">Descendente</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Profesor</th>
@@ -45,9 +52,9 @@
                         </tr>
                         @foreach($reservas as $reserva)
                             <tr>
-                                <td class="v-align-middle">{{ $reserva->profesor }}</td>
-                                <td class="v-align-middle">{{ $reserva->evento }}</td>
-                                <td class="v-align-middle">{{ $reserva->aula }}</td>
+                                <td class="v-align-middle">{{ $reserva->profesor->nombre }}</td>
+                                <td class="v-align-middle">{{ $reserva->evento->nombre }}</td>
+                                <td class="v-align-middle">{{ $reserva->aula->etiqueta }}</td>
                                 <td class="v-align-middle">{{ $reserva->descripcion }}</td>
                                 <td class="v-align-middle">{{ $reserva->reservado }}</td>
                                 <td class="v-align-middle">
@@ -56,20 +63,20 @@
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
-                                          <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
+                                          <a href="{{ route('reservas/editar', $reserva->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
-                                            <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                            <a href="{{ route('reservas/editar', $reserva->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
-                                              <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary">Modificar</a>
+                                              <a href="{{ route('reservas/editar', $reserva->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger">Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('user'))
-                                                <a href="{{ route('profesores/editar', $profesor->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                <a href="{{ route('reservas/editar', $reserva->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @endif
                                             @endif
@@ -87,7 +94,6 @@
                             {{ $reservas->appends(["reservas" => $reservas])->links() }}
                         </div>
                     </div>
-                    <!--{{ $reservas->links() }}-->
                     <form action="{{ route('reservas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
@@ -95,9 +101,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Crear Reserva
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <a href="{{ url('home') }}" class="enlaceback">Volver a menu</a>
-                                </button>
+                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>
                     </form>

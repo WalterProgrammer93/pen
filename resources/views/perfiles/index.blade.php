@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <label for="perfil" class="col-md-4 col-form-label text-md-right">Descripcion</label>
                                 <div class="col-md-6">
-                                    <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $perfiles-descripcion }}" required autocomplete="descripcion" autofocus>
+                                    <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $perfiles->descripcion }}" required autocomplete="descripcion" autofocus>
                                     @error('descripcion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

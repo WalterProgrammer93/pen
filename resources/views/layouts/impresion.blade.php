@@ -24,24 +24,6 @@
     <link href="{{ asset('css/impresion_notas.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="bg-secondary">
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">PEN Software S.L</a>
-                <ul class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://img.icons8.com/material/30/000000/user-male-circle--v1.png" alt="usuario"> {{ Auth::user()->nombre }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}">
-                                    Salir
-                            </a>
-                        </div>
-                    </div>
-                </ul>
-            </div>
-        </nav>
         <main class="py-4">
             @yield('content')
         </main>

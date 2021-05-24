@@ -18,22 +18,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-20 justify-content-center m-3">
-                        <div class="row justify-content-center m-3">
-                            <div class="col-md-4">
-                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-                            </div>
-                            <div class="col-md-4">
-                                <select id="ordenar" class="form-control" name="ordenar" required>
-                                    <option value="Ascendente">Ascendente</option>
-                                    <option value="Descendente">Descendente</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary">Buscar</button>
+                    <form action="{{ route('perfiles/buscar') }}" method="POST" role="form">
+                        @csrf
+                        <div class="col-md-20 justify-content-center m-3">
+                            <div class="row justify-content-center m-3">
+                                <div class="col-md-4">
+                                    <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="{{ route('perfiles/filtro') }}" method="POST" role="form">
+                                        <select id="filtro" class="form-control" name="filtro">
+                                            <option value="" disabled>Seleccione filtro</option>
+                                            <option value="todos">Todos</option>
+                                            <option value="ascendente">Ascendente</option>
+                                            <option value="descendente">Descendente</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Nombre</th>
@@ -82,7 +89,6 @@
                             {{ $perfiles->appends(["perfiles" => $perfiles])->links() }}
                         </div>
                     </div>
-                    <!--{{ $perfiles->links() }}-->
                     <form action="{{ route('perfiles/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
@@ -90,9 +96,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Crear Perfil
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <a href="{{ url('home') }}" class="enlaceback">Volver a menu</a>
-                                </button>
+                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>
                     </form>

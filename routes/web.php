@@ -334,10 +334,10 @@ Route::post('notas/filtro', [
     'before' => 'crsf',
     'uses' => 'NotaController@filter'])->name('notas/filtro');
 
-Route::get('notas/imprimir/{id}', [
+Route::get('notas/ver/{id}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'NotaController@print'])->name('notas/imprimir');
+    'uses' => 'NotaController@ver'])->name('notas/ver');
 
 // ACCESO A LAS RUTAS DE DEPARTAMENTOS
 /* Leer */

@@ -75,7 +75,13 @@ class ReservaController extends Controller
     public function edit($id)
     {
         $reservas = Reserva::find($id);
-        return view("reserva.editar", compact("reservas"));
+        $profesores = Profesor::find($id);
+        $eventos = Evento::find($id);
+        $aulas = Aula::find($id);
+        $profesores = Profesor::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $eventos = Evento::orderBy('id')->pluck('nombre', 'id')->toArray();
+        $aulas = Aula::orderBy('id')->pluck('etiqueta','id')->toArray();
+        return view("reservas.editar", compact('reservas','profesores','eventos','aulas'));
     }
 
     /**
@@ -106,22 +112,30 @@ class ReservaController extends Controller
         return redirect("/reservas")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $reservas = Reserva::where('reservado','like','%'.$texto.'%')
+            ->orWhere('descripcion','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Reserva::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre_profesor','LIKE',"%$texto%")
-            ->orWhere('apellido1_profesor','LIKE',"%$texto%")
-            ->orWhere('apellido2_profesor','LIKE',"%$texto%")
-            ->orWhere('etiqueta_aula','LIKE',"%$texto%")
-            ->orWhere('reservado','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('reservas.reservas',array('lista'=>$lista));
+        if (!empty($reservas)) {
+            return view('reservas.reservas', compact('texto', 'reservas'));
         } else {
-            $lista = Reserva::paginate(3);
-            return view('reservas.reservas',array('lista'=>$lista));
+            return redirect('reservas')->with('message', 'Reserva no encontrada');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('reservas.reservas');
+        } else if ($request->filtro == 'Ascendente') {
+            $reservas = Reserva::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('reservas.reservas', compact('reservas'));
+        } else if ($request->filtro == 'Descendente') {
+            $reservas = Reserva::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('reservas.reservas', compact('reservas'));
+        } else {
+            return redirect('reservas')->with('message', 'No funciona');
         }
     }
 }

@@ -79,7 +79,7 @@ class PerfilController extends Controller
         $perfiles = Perfil::find($id);
         $perfiles->update($request->all());
         $perfiles->save();
-        return redirect("/perfiles")->with('success', 'Información actualizada con éxito');
+        return redirect("perfiles")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -92,21 +92,33 @@ class PerfilController extends Controller
     {
         $perfiles = Perfil::find($id);
         $perfiles->delete();
-        return redirect("/perfiles")->with('success','Información eliminada con éxito');
+        return redirect("perfiles")->with('success','Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $perfiles = Perfil::where('nombre','like','%'.$texto.'%')
+        ->orWhere('descripcion','like','%'.$texto.'%')->paginate(5);
 
-        if($texto) {
-            $lista = Perfil::where('codigo','LIKE',"%$texto%")
-            ->orWhere('rol','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('perfiles.perfiles',array('lista'=>$lista));
+        if (!empty($perfiles)) {
+            return view('perfiles.perfiles', compact('texto', 'perfiles'));
         } else {
-            $lista = Perfil::paginate(3);
-            return view('perfiles.perfiles',array('lista'=>$lista));
+            return redirect('perfiles')->with('message', 'Perfil no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('perfiles.perfiles');
+        } else if ($request->filtro == 'Ascendente') {
+            $perfiles = Perfil::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('perfiles.perfiles', compact('perfiles'));
+        } else if ($request->filtro == 'Descendente') {
+            $perfiles = Perfil::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('perfiles.perfiles', compact('perfiles'));
+        } else {
+            return redirect('perfiles')->with('message', 'No funciona');
         }
     }
 }

@@ -1,19 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.impresion')
 
 @section('content')
-        <div class="fondo_notas">
-          <div class="cabecera_principal">
-              <div class="logo"></div>
-              <div class="datos_colegio">
-                  <p class="referencia">39001895 - IES Ataulfo Argenta</p>
-                  <p class="direccion">MENENDEZ PELAYO, 4</p>
-                  <p class="ciudad">Castro Urdiales - Cantabria</p>
-                  <p class="telefono">telf: 942860637</p>
+        <div style="background-color: #FEF9E7;">
+          <div>
+              <div style="text-align: left;"><image src="{{ asset('imagenes/logo.png') }}" alt="PEN Software"></div>
+              <div style="text-align: right;">
+                  <p>39001895 - IES Ataulfo Argenta</p>
+                  <p>MENENDEZ PELAYO, 4</p>
+                  <p>Castro Urdiales - Cantabria</p>
+                  <p>telf: 942860637</p>
               </div>
           </div>
-          <h3 class="titulo_boletin"><u>Boletín de notas</u></h3>
-          <div class="contenido_alumno">
-              <div class="datos_alumno">
+          <h3 style="text-align: center;"><u>Boletín de notas</u></h3>
+          <div>
+              <div style="text-align: left;">
                   <p><b>ALUMNO: </b>{{ $notas->alumno->nombre }}</p>
                   <p><b>PRIMER APELLIDO: </b>{{ $notas->alumno->apellido1 }}</p>
                   <p><b>SEGUNDO APELLIDO: </b>{{ $notas->alumno->apellido2 }}</p>
@@ -22,37 +22,35 @@
                   <p><b>CURSO: </b>{{ $notas->alumno->curso->nombre }}</p>
                   <p><b>FECHA: </b>{{ $today }}</p>
               </div>
-              <div class="datos_personales">
+              <div style="text-align: right;">
                   <p>Sr/Sra {{ $notas->alumno->nombre}} {{ $notas->alumno->apellido1 }} {{ $notas->alumno->apellido2 }}</p>
                   <p>{{ $notas->alumno->direccion }}, Nº{{ $notas->alumno->portal }}, Piso: {{ $notas->alumno->piso }} Letra: {{ $notas->alumno->letra }}</p>
                   <p>{{ $notas->alumno->ciudad }} - {{ $notas->alumno->codigo_postal }} ({{ $notas->alumno->provincia }})</p>
                   <p>{{ $notas->alumno->ciudad }}</p>
               </div>
           </div>
-          <h4 class="titulo_tabla">E V A L U A C I Ó N</h4>
-          <hr>
-          <div class="contenido_tabla">
-              <table class="tabla">
-                <tr class="cabecera_tabla">
-                    <th>Asignatura</th>
-                    <th>EVA1</th>
-                    <th>EVA2</th>
-                    <th>EVA3</th>
-                    <th>Media</th>
+          <h4 style="text-align: center">E V A L U A C I Ó N</h4>
+          <div class="row">
+              <table style="border: 1px solid black;width: 100%;">
+                <tr style="border: 1px solid black;">
+                    <th style="text-align: center;">Asignatura</th>
+                    <th style="text-align: center;">EVA1</th>
+                    <th style="text-align: center;">EVA2</th>
+                    <th style="text-align: center;">EVA3</th>
+                    <th style="text-align: center;">Media</th>
                 </tr>
-                <tr class="filas_tabla">
-                    <td>{{ $notas->asignatura->nombre }}</td>
-                    <td>{{ $notas->eva1 }}</td>
-                    <td>{{ $notas->eva2 }}</td>
-                    <td>{{ $notas->eva3 }}</td>
-                    <td>{{ $notas->media }}</td>
+                <tr>
+                    <td style="text-align: center;">{{ $notas->asignatura->nombre }}</td>
+                    <td style="text-align: center;">{{ $notas->eva1 }}</td>
+                    <td style="text-align: center;">{{ $notas->eva2 }}</td>
+                    <td style="text-align: center;">{{ $notas->eva3 }}</td>
+                    <td style="text-align: center;">{{ $notas->media }}</td>
                 </tr>
               </table>
           </div>
-          <div class="saludos">
+          <div style="text-align: center;">
               <p>Les saluda cordialmente.</p>
               <p>En Castro Urdiales a {{ date('d') }} de {{ date('m') }} de {{ date('Y') }}<p>
-              <br>
               <p>Tutor: Francisco Javier Gómez Diez</p>
               <p>Horario de tutoria: Miercoles de 19:45 a 20:35 </p>
               <p>Firma</p>

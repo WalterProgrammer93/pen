@@ -18,7 +18,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form action="{{ route(notas/buscar') }}" method="POST" role="form">
+                    <form action="{{ route('notas/buscar') }}" method="POST" role="form">
                         @csrf
                         <div class="col-md-20 justify-content-center m-3">
                             <div class="row justify-content-center m-3">
@@ -67,24 +67,21 @@
                                         @if(Auth::user()->hasRole('admin'))
                                           <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
+                                          <a href="{{ route('notas/ver', $nota->id )}}" class="btn btn-warning">Ver</a>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
                                             <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
-                                            <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
                                               <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                              <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                               @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
-                                                <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                               @endif
                                             @endif
                                           @endif

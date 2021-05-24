@@ -30,7 +30,7 @@
                                     <select id="usuario_id" class="form-control" name="usuario_id[]" required>
                                         <option value="" disabled>Seleccione un usuario</option>
                                         @foreach($usuarios as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $roles->usuario_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('usuario_id')
@@ -46,7 +46,7 @@
                                     <select id="perfil_id" class="form-control" name="perfil_id[]" required>
                                         <option value="" disabled>Seleccione un perfil</option>
                                         @foreach($perfiles as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $roles->perfil_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('perfil_id')

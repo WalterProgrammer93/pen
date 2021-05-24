@@ -30,7 +30,7 @@
                                     <select id="profesor_id" class="form-control" name="profesor_id[]" required>
                                         <option value="" disabled>Seleccione un profesor</option>
                                         @foreach($profesores as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $reservas->profesor_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('profesor_id')
@@ -46,7 +46,7 @@
                                     <select id="evento_id" class="form-control" name="evento_id[]" required>
                                         <option value="" disabled>Seleccione un evento</option>
                                         @foreach($eventos as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $reservas->evento_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('evento_id')
@@ -61,8 +61,8 @@
                                 <div class="col-md-6">
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
                                         <option value="" disabled>Seleccione un aula</option>
-                                        @foreach($aulas as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                        @foreach($aulas as $id => $etiqueta)
+                                            <option value="{{ $id }}" {{ $id == $reservas->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
                                     @error('aula_id')
@@ -178,7 +178,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-success">Añadir</button>

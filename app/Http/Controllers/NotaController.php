@@ -116,7 +116,8 @@ class NotaController extends Controller
         $texto = $request->input('buscar');
         $notas = Nota::where('eva1','like','%'.$texto.'%')
         ->orWhere('ev2','like','%'.$texto.'%')
-        ->orWhere('eva3','like','%'.$texto.'%')->paginate(5);
+        ->orWhere('eva3','like','%'.$texto.'%')
+        ->orWhere('media','like','%'.$texto.'%')->paginate(5);
 
         if (!empty($eventos)) {
             return view('eventos.eventos', compact('texto', 'eventos'));
@@ -139,7 +140,7 @@ class NotaController extends Controller
         }
     }
 
-    public function print($id) {
+    public function ver($id) {
         $today = Carbon::now()->format('d/m/Y');
         $notas = Nota::find($id);
         $pdf = PDF::loadView('notas.impresion', compact('today', 'notas'))->setOptions(['defaultFont' => 'sans-serif']);

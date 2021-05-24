@@ -3,7 +3,6 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use pen\Profesor;
 use pen\Departamento;
 
@@ -107,21 +106,32 @@ class ProfesorController extends Controller
         return redirect()->route("profesores")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $profesores = Profesor::where('nombre','like','%'.$texto.'%')
+            ->orWhere('apellido1','like','%'.$texto.'%')
+            ->orWhere('apellido2','like','%'.$texto.'%')
+            ->orWhere('disponibilidad','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Profesor::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->orWhere('apellido1','LIKE',"%$texto%")
-            ->orWhere('apellido2','LIKE',"%$texto%")
-            ->orWhere('disponibilidad','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('profesores.profesores',array('lista'=>$lista));
+        if (!empty($profesores)) {
+            return view('profesores.profesores', compact('texto', 'profesores'));
         } else {
-            $lista = Profesor::paginate(3);
-            return view('profesores.profesores',array('lista'=>$lista));
+            return redirect('profesores')->with('message', 'Profesor no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('profesores.profesores');
+        } else if ($request->filtro == 'Ascendente') {
+            $profesores = Profesor::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('profesores.profesores', compact('profesores'));
+        } else if ($request->filtro == 'Descendente') {
+            $profesores = Profesor::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('profesores.profesores', compact('profesores'));
+        } else {
+            return redirect('profesores')->with('message', 'No funciona');
         }
     }
 }

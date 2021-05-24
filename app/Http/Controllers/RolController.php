@@ -31,7 +31,7 @@ class RolController extends Controller
   {
       $usuarios = User::orderBy('id')->pluck('nombre','id')->toArray();
       $perfiles = Perfil::orderBy('id')->pluck('nombre','id')->toArray();
-      return view("roles.crear", ['usuarios' => $usuarios], ['perfiles' => $perfiles]);
+      return view("roles.crear", compact('usuarios','perfiles'));
   }
 
   /**
@@ -46,7 +46,7 @@ class RolController extends Controller
       $roles->user()->associate($request->usuario_id);
       $roles->perfil()->associate($request->perfil_id);
       $roles->save();
-      return redirect()->route('perfiles')->with('success', 'Información almacenada con éxito');
+      return redirect()->route('roles')->with('success', 'Información almacenada con éxito');
   }
 
   /**
@@ -70,8 +70,10 @@ class RolController extends Controller
   public function edit($id)
   {
       $roles = Roles::find($id);
+      $usuarios = User::find($id);
+      $perfiles = Perfil::find($id);
       $usuarios = User::orderBy('id')->pluck('nombre','id')->toArray();
-      $perfiles = Perfil::orderBy('id')->pluck('perfil','id')->toArray();
+      $perfiles = Perfil::orderBy('id')->pluck('nombre','id')->toArray();
       return view("roles.editar", compact("roles","usuarios","perfiles"));
   }
 
@@ -103,21 +105,30 @@ class RolController extends Controller
       return redirect()->route("roles")->with('success', 'Información eliminada con éxito');
   }
 
-  public function search(Request $request) {
-
+  public function search(Request $request)
+  {
       $texto = $request->input('buscar');
+      $roles = Rol::where('reservado','like','%'.$texto.'%')
+          ->orWhere('descripcion','like','%'.$texto.'%')->paginate(5);
 
-      if ($texto) {
-          $lista = Tarea::where('codigo','LIKE',"%$texto%")
-          ->orWhere('titulo','LIKE',"%$texto%")
-          ->orWhere('autor','LIKE',"%$texto%")
-          ->orWhere('fecha_envio','LIKE',"%$texto%")
-          ->paginate(2);
-          return view('tareas.tareas',array('lista'=>$lista));
-
+      if (!empty($roles)) {
+          return view('roles.roles', compact('texto', 'roles'));
       } else {
-          $lista = Tarea::paginate(3);
-          return view('tareas.tareas',array('lista'=>$lista));
+          return redirect('roles')->with('message', 'Rol no encontrada');
+      }
+  }
+
+  public function filter(Request $request) {
+      if($request->filtro == 'Todos') {
+          return view('roles.roles');
+      } else if ($request->filtro == 'Ascendente') {
+          $roles = Rol::where('id')->orderBy('id', 'asc')->paginate(5);
+          return view('roles.roles', compact('roles'));
+      } else if ($request->filtro == 'Descendente') {
+          $roles = Rol::where('id')->orderBy('id', 'desc')->paginate(5);
+          return view('roles.roles', compact('roles'));
+      } else {
+          return redirect('roles')->with('message', 'No funciona');
       }
   }
 }
