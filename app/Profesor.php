@@ -5,6 +5,7 @@ namespace pen;
 use Illuminate\Database\Eloquent\Model;
 use pen\Departamento;
 use pen\Reserva;
+use pen\Clase;
 
 class Profesor extends Model
 {
@@ -17,5 +18,9 @@ class Profesor extends Model
 
     public function reserva() {
         return $this->hasMany(Reserva::class);
+    }
+
+    public function clase() {
+      return $this->hasMany(Clase::class);
     }
 }

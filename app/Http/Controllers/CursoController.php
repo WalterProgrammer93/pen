@@ -84,10 +84,10 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cursos = Curso::findOrFail($id);
+        $cursos = Curso::find($id);
         $cursos->update($request->all());
         $cursos->save();
-        return redirect()->route("cursos")->with('success', 'Información actualizada con éxito');
+        return redirect('cursos')->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -98,23 +98,35 @@ class CursoController extends Controller
      */
     public function delete($id)
     {
-        $cursos = Curso::findOrFail($id);
+        $cursos = Curso::find($id);
         $cursos->delete();
-        return redirect()->route("cursos")->with('success', 'Información eliminada con éxito');
+        return redirect('cursos')->with('success', 'Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $cursos = Curso::where('nombre','like','%'.$texto.'%')
+        ->orWhere('descripcion','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Curso::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('cursos.cursos',array('lista'=>$lista));
+        if (!empty($cursos)) {
+            return view('cursos.cursos', compact('texto', 'cursos'));
         } else {
-            $lista = Curso::paginate(3);
-            return view('cursos.cursos',array('lista'=>$lista));
+            return redirect('cursos')->with('message', 'Curso no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('cursos.cursos');
+        } else if ($request->filtro == 'Ascendente') {
+            $cursos = Curso::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('cursos.cursos', compact('cursos'));
+        } else if ($request->filtro == 'Descendente') {
+            $cursos = Curso::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('cursos.cursos', compact('cursos'));
+        } else {
+            return redirect('cursos')->with('message', 'No funciona');
         }
     }
 }

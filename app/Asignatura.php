@@ -7,6 +7,7 @@ use pen\Curso;
 use pen\Aula;
 use pen\Tarea;
 use pen\Asistencia;
+use pen\Clase;
 
 class Asignatura extends Model
 {
@@ -27,5 +28,9 @@ class Asignatura extends Model
 
     public function asistencia() {
       return $this->hasMany(Asistencia::class);
+    }
+
+    public function clase() {
+      return $this->hasMany(Clase::class);
     }
 }

@@ -107,10 +107,15 @@ Route::put('cursos/eliminar/{id}', [
     'uses' => 'CursoController@delete'])->name('cursos/eliminar');
 
 /* Buscar */
-Route::post('cursos/buscar/{nombre}', [
+Route::post('cursos/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'CursoController@search'])->name('cursos/buscar');
+
+Route::post('cursos/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'CursoController@filter'])->name('cursos/filtro');
 
 // ACCESO A LAS RUTAS DE ASIGNATURAS
 /* Leer */
@@ -145,10 +150,15 @@ Route::put('asignaturas/eliminar/{id}', [
     'uses' => 'AsignaturaController@delete'])->name('asignaturas/eliminar');
 
 /* Buscar */
-Route::post('asignaturas/buscar/{nombre}', [
+Route::post('asignaturas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'AsignaturaController@search'])->name('asignaturas/buscar');
+
+Route::post('asignaturas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'AsignaturaController@filter'])->name('asignaturas/filtro');
 
 
 // ACCESO A LAS RUTAS DE ASISTENCIAS
@@ -184,11 +194,15 @@ Route::put('asistencias/eliminar/{id}', [
     'uses' => 'AsistenciaController@delete'])->name('asistencias/eliminar');
 
 /* Buscar */
-Route::post('asistencias/buscar/{nombre}', [
+Route::post('asistencias/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'AsistenciaController@search'])->name('asistencias/buscar');
 
+Route::post('asistencias/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'AsistenciaController@filter'])->name('asistencias/filtro');
 
 // ACCESO A LAS RUTAS DE PROFESORES
 /* Leer */
@@ -223,10 +237,15 @@ Route::put('profesores/eliminar/{id}', [
     'uses' => 'ProfesorController@delete'])->name('profesores/eliminar');
 
 /* Buscar */
-Route::post('profesores/buscar/{nombre}', [
+Route::post('profesores/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'ProfesorController@search'])->name('profesores/buscar');
+
+Route::post('profesores/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'ProfesorController@filter'])->name('profesores/filtro');
 
 // ACCESO A LAS RUTAS DE USUARIOS
 
@@ -262,10 +281,15 @@ Route::put('usuarios/eliminar/{id}', [
     'uses' => 'UsuarioController@delete'])->name('usuarios/eliminar');
 
 /* Buscar */
-Route::post('usuarios/buscar/{nombre}', [
+Route::post('usuarios/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'UsuarioController@search'])->name('usuarios/buscar');
+
+Route::post('usuarios/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'UsuarioController@filter'])->name('usuarios/filtro');
 
 // ACCESSO A RUTAS DE NOTAS
 /* Leer */
@@ -300,10 +324,15 @@ Route::put('notas/eliminar/{id}', [
     'uses' => 'NotaController@delete'])->name('notas/eliminar');
 
 /* Buscar */
-Route::post('notas/buscar/{nombre}', [
+Route::post('notas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'NotaController@search'])->name('notas/buscar');
+
+Route::post('notas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'NotaController@filter'])->name('notas/filtro');
 
 Route::get('notas/imprimir/{id}', [
     'middleware' => 'auth',
@@ -343,11 +372,15 @@ Route::put('departamentos/eliminar/{id}', [
     'uses' => 'DepartamentoController@delete'])->name('departamentos/eliminar');
 
 /* Buscar */
-Route::post('departamentos/buscar/{nombre}', [
+Route::post('departamentos/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'DepartamentoController@search'])->name('departamentos/buscar');
 
+Route::post('departamentos/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'DepartamentoController@filter'])->name('departamentos/filtro');
 
 // ACCESO A LAS RUTAS DE AULAS
 /* Leer */
@@ -382,10 +415,15 @@ Route::put('aulas/eliminar/{id}', [
     'uses' => 'AulaController@delete'])->name('aulas/eliminar');
 
 /* Buscar */
-Route::post('aulas/buscar/{nombre}', [
+Route::post('aulas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'AulaController@search'])->name('aulas/buscar');
+
+Route::post('aulas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'AulaController@filter'])->name('aulas/filtro');
 
 // ACCESO A LAS RUTAS DE EVENTOS
 /* Leer */
@@ -420,10 +458,15 @@ Route::put('eventos/eliminar/{id}', [
     'uses' => 'EventoController@delete'])->name('eventos/eliminar');
 
 /* Buscar */
-Route::post('eventos/buscar/{nombre}', [
+Route::post('eventos/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'EventoController@search'])->name('eventos/buscar');
+
+Route::post('eventos/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'EventoController@filter'])->name('eventos/filtro');
 
 // ACCESO A LAS RUTAS DE TAREAS
 /* Leer */
@@ -458,11 +501,20 @@ Route::put('tareas/eliminar/{id}', [
     'uses' => 'TareaController@delete'])->name('tareas/eliminar');
 
 /* Buscar */
-Route::post('tareas/buscar/{nombre}', [
+Route::post('tareas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'TareaController@search'])->name('tareas/buscar');
 
+Route::post('tareas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'TareaController@filter'])->name('tareas/filtro');
+
+Route::get('tareas/imprimir/{id}', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'TareaController@print'])->name('tareas/imprimir');
 
 // ACCESO A LAS RUTAS DE TEMAS
 /* Leer */
@@ -497,10 +549,20 @@ Route::put('temas/eliminar/{id}', [
     'uses' => 'TemaController@delete'])->name('temas/eliminar');
 
 /* Buscar */
-Route::post('temas/buscar/{nombre}', [
+Route::post('temas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'TemaController@search'])->name('temas/buscar');
+
+Route::post('temas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'TemaController@filter'])->name('temas/filtro');
+
+Route::get('temas/imprimir/{id}', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'TemaController@print'])->name('temas/imprimir');
 
 // ACCESO A LAS RUTAS DE RESERVAS
 /* Leer */
@@ -535,10 +597,15 @@ Route::put('reservas/eliminar/{id}', [
     'uses' => 'ReservaController@delete'])->name('reservas/eliminar');
 
 /* Buscar */
-Route::post('reservas/buscar/{nombre}', [
+Route::post('reservas/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'ReservaController@search'])->name('reservas/buscar');
+
+Route::post('reservas/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'ReservaController@filter'])->name('reservas/filtro');
 
 // RUTAS DE ACCESO A CLASES
 
@@ -574,10 +641,15 @@ Route::put('clases/eliminar/{id}', [
     'uses' => 'ClaseController@delete'])->name('clases/eliminar');
 
 /* Buscar */
-Route::post('clases/buscar/{nombre}', [
+Route::post('clases/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'ClaseController@search'])->name('clases/buscar');
+
+Route::post('clases/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'ClaseController@filter'])->name('clases/filtro');
 
 // ACCESO A RUTAS DE PERFILES
 
@@ -613,63 +685,56 @@ Route::put('perfiles/eliminar/{id}', [
     'uses' => 'PerfilController@delete'])->name('perfiles/eliminar');
 
 /* Buscar */
-Route::post('perfiles/buscar/{nombre}', [
+Route::post('perfiles/buscar', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'PerfilController@search'])->name('perfiles/buscar');
 
-    // ACCESO A RUTAS DE ROLES
+Route::post('perfiles/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'PerfilController@filter'])->name('perfiles/filtro');
 
-    /* Leer */
-    Route::get('roles', 'RolController@index')->name('roles');
+// ACCESO A RUTAS DE ROLES
 
-    /* Crear */
-    Route::post('roles/crear', [
-        'middleware' => 'auth',
-        'before' => 'crsf',
-        'uses' => 'RolController@create'])->name('roles/crear');
+/* Leer */
+Route::get('roles', 'RolController@index')->name('roles');
 
-    Route::put('roles/guardar', [
-        'middleware' => 'auth',
-        'before' => 'crsf',
-        'uses' => 'RolController@store'])->name('roles/guardar');
+/* Crear */
+Route::post('roles/crear', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'RolController@create'])->name('roles/crear');
 
-    /* Actualizar */
-    Route::get('roles/editar/{id}', [
-        'middleware' => 'auth',
-        'before' => 'crsf',
-        'uses' => 'RolController@edit'])->name('roles/editar');
+Route::put('roles/guardar', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'RolController@store'])->name('roles/guardar');
 
-    Route::put('roles/actualizar/{id}', [
-        'middleware' => 'auth',
-        'before' => 'auth',
-        'uses' => 'RolController@update'])->name('roles/actualizar');
+/* Actualizar */
+Route::get('roles/editar/{id}', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'RolController@edit'])->name('roles/editar');
 
-    /* Eliminar */
-    Route::put('roles/eliminar/{id}', [
-        'middleware' => 'auth',
-        'before' => 'auth',
-        'uses' => 'RolController@delete'])->name('roles/eliminar');
+Route::put('roles/actualizar/{id}', [
+    'middleware' => 'auth',
+    'before' => 'auth',
+    'uses' => 'RolController@update'])->name('roles/actualizar');
 
-    /* Buscar */
-    Route::post('roles/buscar/{nombre}', [
-        'middleware' => 'auth',
-        'before' => 'crsf',
-        'uses' => 'RolController@search'])->name('roles/buscar');
+/* Eliminar */
+Route::put('roles/eliminar/{id}', [
+    'middleware' => 'auth',
+    'before' => 'auth',
+    'uses' => 'RolController@delete'])->name('roles/eliminar');
 
-// RUTA DE ENVIO DE EMAL PARA RESTAURAR LA CONTRASEÑA DE USUARIO
+/* Buscar */
+Route::post('roles/buscar', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'RolController@search'])->name('roles/buscar');
 
-Route::get('enviar', ['as' => 'enviar', function () {
-
-    $data = ['link' => 'http://http://localhost/pen/public/password/reset'];
-
-    \Mail::send('emails.notificacion', $data, function ($message) {
-
-        $message->from('walter12@gmail.com', 'pen.software.app');
-
-        $message->to('co2full@outlook.es')->subject('Notificación');
-
-    });
-
-    return "Se envío el email";
-}]);
+Route::post('roles/filtro', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'RolController@filter'])->name('roles/filtro');

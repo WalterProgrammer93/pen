@@ -107,17 +107,26 @@ class AsignaturaController extends Controller
     }
 
     public function search(Request $request) {
+      $texto = $request->input('buscar');
+      $asignaturas = Asignatura::where('nombre','like','%'.$texto.'%')->paginate(5);
+      if (!empty($asignaturas)) {
+          return view('asignaturas.asignaturas', compact('texto', 'asignaturas'));
+      } else {
+          return redirect('asignaturas')->with('message', 'Asignatura no encontrado');
+      }
+    }
 
-        $texto = $request->input('buscar');
-
-        if($texto){
-            $lista = Asignatura::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('asignaturas.asignaturas',array('lista'=>$lista));
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('asignaturas.asignaturas');
+        } else if ($request->filtro == 'Ascendente') {
+            $asignaturas = Asignatura::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('asignaturas.asignaturas', compact('asignaturas'));
+        } else if ($request->filtro == 'Descendente') {
+            $asignaturas = Asignatura::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('asignaturas.asignaturas', compact('asignaturas'));
         } else {
-            $lista = Asignatura::paginate(3);
-            return view('asignaturas.asignaturas',array('lista'=>$lista));
+            return redirect('asignaturas')->with('message', 'No funciona');
         }
     }
 }

@@ -48,7 +48,7 @@ class AsistenciaController extends Controller
         $asistencias->alumno()->associate($request->alumno_id);
         $asistencias->asignatura()->associate($request->asignatura_id);
         $asistencias->save();
-        return redirect()->route('asistencias')->with('success', 'Información almacenada con éxito');
+        return redirect('asistencias')->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -89,7 +89,7 @@ class AsistenciaController extends Controller
         $asistencias = Asistencia::find($id);
         $asistencias->update($request->all());
         $asistencias->save();
-        return redirect("/asistencias")->with('success', 'Información actualizada con éxito');
+        return redirect("asistencias")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -102,22 +102,30 @@ class AsistenciaController extends Controller
     {
         $asistencias = Asistencia::find($id);
         $asistencias->delete();
-        return redirect("/asistencias")->with('success','Información eliminada con éxito');
+        return redirect("asistencias")->with('success','Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
-
+    public function search(Request $request) {
         $texto = $request->input('buscar');
-
-        if($texto){
-            $lista = Asistencia::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre_alumno','LIKE',"%$texto%")
-            ->orWhere('numero_horas','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('asistencias.asistencias',array('lista'=>$lista));
+        $asistencias = Asistencia::where('numero_horas','like','%'.$texto.'%')->paginate(5);
+        if (!empty($asistencias)) {
+            return view('asistencias.asistencias', compact('texto', 'asistencias'));
         } else {
-            $lista = Asistencia::paginate(3);
-            return view('asistencias.asistencias',array('lista'=>$lista));
+            return redirect('asistencias')->with('message', 'Asistencia no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('asistencias.asistencias');
+        } else if ($request->filtro == 'Ascendente') {
+            $asistencias = Asistencia::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('asistencias.asistencias', compact('asistencias'));
+        } else if ($request->filtro == 'Descendente') {
+            $asistencias = Asistencia::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('asistencias.asistencias', compact('asistencias'));
+        } else {
+            return redirect('asistencias')->with('message', 'No funciona');
         }
     }
 }

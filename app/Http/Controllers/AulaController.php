@@ -43,7 +43,7 @@ class AulaController extends Controller
         $aulas->descripcion = $request->descripcion;
         $aulas->disponibilidad = $request->disponibilidad;
         $aulas->save();
-        return redirect()->route('aulas')->with('success', 'Información almacenada con éxito');
+        return redirect('aulas')->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -81,7 +81,7 @@ class AulaController extends Controller
     {
         $aulas = Aula::find($id);
         $aulas->update($request->all());
-        return redirect("/aulas")->with('success', 'Información actualizada con éxito');
+        return redirect("aulas")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -94,22 +94,33 @@ class AulaController extends Controller
     {
         $aulas = Aula::find($id);
         $aulas->delete();
-        return redirect("/aulas")->with('success', 'La información eliminada con éxito');
+        return redirect("aulas")->with('success', 'La información eliminada con éxito');
     }
 
     public function search(Request $request) {
+      $texto = $request->input('buscar');
+      $aulas = Aula::where('etiqueta','like','%'.$texto.'%')
+      ->orWhere('descripcion','like','%'.$texto.'%')
+      ->orWhere('disponibilidad','like','%'.$texto.'%')->paginate(5);
 
-        $texto = $request->input('buscar');
+      if (!empty($aulas)) {
+          return view('aulas.aulas', compact('texto', 'aulas'));
+      } else {
+          return redirect('aulas')->with('message', 'Aula no encontrado');
+      }
+    }
 
-        if($texto){
-            $lista = Aula::where('codigo','LIKE',"%$texto%")
-            ->orWhere('etiqueta','LIKE',"%$texto%")
-            ->orWhere('disponibilidad','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('aulas.aulas',array('lista'=>$lista));
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('aulas.aulas');
+        } else if ($request->filtro == 'Ascendente') {
+            $alumnos = Alumno::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('alumnos.alumnos', compact('alumnos'));
+        } else if ($request->filtro == 'Descendente') {
+            $alumnos = Alumno::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('alumnos.alumnos', compact('alumnos'));
         } else {
-            $lista = Aula::paginate(3);
-            return view('aulas.aulas',array('lista'=>$lista));
+            return redirect('alumnos')->with('message', 'No funciona');
         }
     }
 }

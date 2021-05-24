@@ -93,24 +93,36 @@ class DepartamentoController extends Controller
      */
     public function delete($id)
     {
-        $departamento = Departamento::find($id);
-        $departamento->delete();
+        $departamentos = Departamento::find($id);
+        $departamentos->delete();
         return redirect()->route("departamentos")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $departamentos = Departamento::where('nombre','like','%'.$texto.'%')
+        ->orWhere('descripcion','like','%'.$texto.'%')
+        ->orWhere('estado','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Departamento::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->orWhere('estado','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('departamentos.departamentos',array('lista'=>$lista));
+        if (!empty($departamentos)) {
+            return view('departamentos.departamentos', compact('texto', 'departamentos'));
         } else {
-            $lista = Departamento::paginate(3);
-            return view('departamentos.departamentos',array('lista'=>$lista));
+            return redirect('departamentos')->with('message', 'Departamento no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('departamentos.departamentos');
+        } else if ($request->filtro == 'Ascendente') {
+            $departamentos = Departamento::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('departamentos.departamentos', compact('departamentos'));
+        } else if ($request->filtro == 'Descendente') {
+            $departamentos = Departamento::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('departamentos.departamentos', compact('departamentos'));
+        } else {
+            return redirect('departamentos')->with('message', 'No funciona');
         }
     }
 }

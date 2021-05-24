@@ -18,24 +18,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-20 justify-content-center m-3">
-                        <div class="row justify-content-center m-3">
-                            <div class="col-md-4">
-                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-                            </div>
-                            <div class="col-md-4">
-                                <select id="ordenar" class="form-control" name="ordenar" required>
-                                    <option value="Ascendente">Ascendente</option>
-                                    <option value="Descendente">Descendente</option>
-                                </select>
-                            </div>
-                            <form action="{{ url('buscarClase') }}" method="POST">
+                    <form action="{{ route('clases/buscar') }}" method="POST" role="form">
+                        @csrf
+                        <div class="col-md-20 justify-content-center m-3">
+                            <div class="row justify-content-center m-3">
+                                <div class="col-md-4">
+                                    <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="{{ route('clases/filtro') }}" method="POST" role="form">
+                                        <select id="filtro" class="form-control" name="filtro">
+                                            <option value="" disabled>Seleccione filtro</option>
+                                            <option value="todos">Todos</option>
+                                            <option value="ascendente">Ascendente</option>
+                                            <option value="descendente">Descendente</option>
+                                        </select>
+                                    </form>
+                                </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">Buscar</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Asignatura</th>
@@ -45,15 +50,34 @@
                         </tr>
                         @foreach($clases as $clase)
                             <tr>
-                                <td class="v-align-middle">{{ $clase->asignatura }}</td>
-                                <td class="v-align-middle">{{ $clase->profesor }}</td>
+                                <td class="v-align-middle">{{ $clase->asignatura->nombre }}</td>
+                                <td class="v-align-middle">{{ $clase->profesor->nombre }}</td>
                                 <td class="v-align-middle">{{ $clase->horario }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('clases/eliminar', $clase->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                      <a href="{{ route('clases/actualizar', $clase->id) }}" class="btn btn-primary">Modificar</a>
-                                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      @if(Auth::check())
+                                        @if(Auth::user()->hasRole('admin'))
+                                          <a href="{{ route('clases/editar', $clase->id) }}" class="btn btn-primary">Modificar</a>
+                                          <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                          @include('alerts.dialogos')
+                                        @else
+                                            @if(Auth::user()->hasRole('student'))
+                                              <a href="{{ route('clases/editar', $clase->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                            @else
+                                              @if(Auth::user()->hasRole('teacher'))
+                                                  <a href="{{ route('clases/editar', $clase->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                  <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                              @else
+                                                  if(Auth::user()->hasRole('user'))
+                                                    <a href="{{ route('clases/editar', $clase->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                    <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                  @endif
+                                            @endif
+                                          @endif
+                                      @endif
                                   </form>
                                 </td>
                             </tr>

@@ -3,6 +3,7 @@
 namespace pen\Http\Controllers;
 
 use Illuminate\Http\Request;
+use pen\Clase;
 use pen\Asignatura;
 use pen\Profesor;
 
@@ -13,9 +14,11 @@ class ClaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $redirectTo = '/clases';
+
     public function index()
     {
-        $clases = Clase::all();
+        $clases = Clase::paginate(5);
         return view('clases.clases', compact('clases'));
     }
 
@@ -27,7 +30,7 @@ class ClaseController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
-        $profesor = Profesor::orderBy('id')->pluck('nombre','id')->toArray();
+        $profesores = Profesor::orderBy('id')->pluck('nombre','id')->toArray();
         return view("clases.crear", compact('asignaturas', 'profesores'));
     }
 
@@ -39,13 +42,12 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        $clase = new Clase;
-        $clase->codigo = $request->codigo;
-        $clase->asignatura()->associate($request->asignatura_id);
-        $clase->profesor()->associate($request->profesor_id);
-        $clase->horario = $request->horario;
-        $clase->save();
-        return redirect()->route('clases')->with('success', 'Información almacenada con éxito');
+        $clases = new Clase;
+        $clases->asignatura()->associate($request->asignatura_id);
+        $clases->profesor()->associate($request->profesor_id);
+        $clases->horario = $request->horario;
+        $clases->save();
+        return redirect('clases')->with('success', 'Información almacenada con éxito');
     }
 
     /**
@@ -56,7 +58,7 @@ class ClaseController extends Controller
      */
     public function show($id)
     {
-        $clases = Clase::findOrFail($id);
+        $clases = Clase::find($id);
         return view("clases.clases", compact('clases'));
     }
 
@@ -68,8 +70,12 @@ class ClaseController extends Controller
      */
     public function edit($id)
     {
-        $clase = Clase::findOrFail($id);
-        return view("clases.editarClase", compact('clase', 'id'));
+        $clases = Clase::find($id);
+        $asignaturas = Asignatura::find($id);
+        $profesores = Profesor::find($id);
+        $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
+        $profesores = Profesor::orderBy('id')->pluck('nombre','id')->toArray();
+        return view("clases.editar", compact('clases', 'asignaturas', 'profesores'));
     }
 
     /**
@@ -81,9 +87,10 @@ class ClaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clase = Clase::findOrFail($id);
-        $clase->update($request->all());
-        return redirect("/clases")->with('success', 'Información actualizada con éxito');
+      $clases = Clase::find($id);
+      $clases->update($request->all());
+      $clases->save();
+      return redirect("clases")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -92,26 +99,37 @@ class ClaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $clase = Clase::findOrFail($id);
-        $clase->delete();
-        return redirect("/clases")->with('success', 'La información eliminada con éxito');
+      $clases = Clase::find($id);
+      $clases->delete();
+      return redirect("clases")->with('success','Información eliminada con éxito');
     }
 
-    public function buscar(Request $request) {
+    public function search(Request $request) {
+      $texto = $request->input('buscar');
+      $clases = Clase::where('asignatura_id','like','%'.$texto.'%')
+          ->orWhere('profesor_id','like','%'.$texto.'%')
+          ->orWhere('horario','like','%'.$texto.'%')->paginate(5);
 
-        $texto = $request->input('buscar');
+      if (!empty($clases)) {
+          return view('clases.clases', compact('texto', 'clases'));
+      } else {
+          return redirect('clases')->with('message', 'Clase no encontrado');
+      }
+    }
 
-        if ($texto) {
-            $lista = Clase::where('codigo','LIKE',"%$texto%")
-            ->orWhere('profesor','LIKE',"%$texto%")
-            ->orWhere('asignatura','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('clases.clases',array('lista'=>$lista));
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('clases.clases');
+        } else if ($request->filtro == 'Ascendente') {
+            $clases = Clase::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('clases.clases', compact(clases));
+        } else if ($request->filtro == 'Descendente') {
+            $clases = Clase::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('clases.clases', compact('clases'));
         } else {
-            $lista = Clase::paginate(3);
-            return view('clases.clases',array('lista'=>$lista));
+            return redirect('clases')->with('message', 'No funciona');
         }
     }
 }

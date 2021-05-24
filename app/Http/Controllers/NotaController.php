@@ -111,24 +111,31 @@ class NotaController extends Controller
         return redirect()->route("notas")->with('success','Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $notas = Nota::where('eva1','like','%'.$texto.'%')
+        ->orWhere('ev2','like','%'.$texto.'%')
+        ->orWhere('eva3','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Nota::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre_alumno','LIKE',"%$texto%")
-            ->orWhere('apellido1_alumno','LIKE',"%$texto%")
-            ->orWhere('apellido2_alumno','LIKE',"%$texto%")
-            ->orWhere('eva1','LIKE',"%$texto%")
-            ->orWhere('eva2','LIKE',"%$texto%")
-            ->orWhere('eva3','LIKE',"%$texto%")
-            ->orWhere('media','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('notas.notas',array('lista'=>$lista));
+        if (!empty($eventos)) {
+            return view('eventos.eventos', compact('texto', 'eventos'));
         } else {
-            $lista = Nota::paginate(3);
-            return view('notas.notas',array('lista'=>$lista));
+            return redirect('eventos')->with('message', 'Evento no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('eventos.eventos');
+        } else if ($request->filtro == 'Ascendente') {
+            $eventos = Evento::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('eventos.eventos', compact('eventos'));
+        } else if ($request->filtro == 'Descendente') {
+            $eventos = Evento::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('eventos.eventos', compact('eventos'));
+        } else {
+            return redirect('eventos')->with('message', 'No funciona');
         }
     }
 

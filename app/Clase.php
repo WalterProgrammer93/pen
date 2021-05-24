@@ -12,10 +12,10 @@ class Clase extends Model
     protected $fillable = ['asignatura','profesor', 'horario'];
 
     public function asignatura() {
-    	return $this->hasMany(Asignaturas::class);
+    	return $this->belongsTo(Asignatura::class);
     }
 
     public function profesor() {
-    	return $this->hasMany(Evento::class);
+    	return $this->belongsTo(Profesor::class);
     }
 }

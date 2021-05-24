@@ -67,7 +67,7 @@
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
                                         <option value="" disabled>Seleccione una aula</option>
                                         @foreach($aulas as $id => $etiqueta)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $etiqueta }}</option>
+                                            <option value="{{ $id }}" {{ $id == $eventos->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
                                     @error('aula_id')
@@ -82,9 +82,7 @@
                                     <button type="submit" class="btn btn-success">
                                         Actualizar
                                     </button>
-                                    <button type="submit" class="btn btn-primary">
-                                        <a href="{{ url('eventos') }}" class="enlaceback">Cancelar</a>
-                                    </button>
+                                    <a href="{{ url('eventos') }}" class="btn btn-primary">Cancelar</a>
                                 </div>
                             </div>
                           </form>

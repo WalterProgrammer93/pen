@@ -18,24 +18,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-20 justify-content-center m-3">
-                        <div class="row justify-content-center m-3">
-                            <div class="col-md-4">
-                                <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
-                            </div>
-                            <div class="col-md-4">
-                                <select id="ordenar" class="form-control" name="ordenar" required>
-                                    <option value="Ascendente">Ascendente</option>
-                                    <option value="Descendente">Descendente</option>
-                                </select>
-                            </div>
-                            <form action="{{ url('buscarNota') }}" method="POST">
+                    <form action="{{ route(notas/buscar') }}" method="POST" role="form">
+                        @csrf
+                        <div class="col-md-20 justify-content-center m-3">
+                            <div class="row justify-content-center m-3">
+                                <div class="col-md-4">
+                                    <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="{{ route('notas/filtro') }}" method="POST" role="form">
+                                        <select id="filtro" class="form-control" name="filtro">
+                                            <option value="" disabled>Seleccione filtro</option>
+                                            <option value="todos">Todos</option>
+                                            <option value="ascendente">Ascendente</option>
+                                            <option value="descendente">Descendente</option>
+                                        </select>
+                                    </form>
+                                </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">Buscar</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>EVA1</th>
@@ -62,21 +67,24 @@
                                         @if(Auth::user()->hasRole('admin'))
                                           <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          <a href="{{ route('notas/imprimir', $nota->id )}}" class="btn btn-warning">Imprimir</a>
+                                          <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
                                             <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                            <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
                                               <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                              <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                               @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                <a href="{{ route('notas/imprimir', $nota->id) }}" class="btn btn-warning">Imprimir</a>
                                               @endif
                                             @endif
                                           @endif
@@ -93,7 +101,6 @@
                             {{ $notas->appends(["notas" => $notas])->links() }}
                         </div>
                     </div>
-                    <!--{{ $notas->links() }}-->
                     <form action="{{ route('notas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
@@ -101,9 +108,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Crear Nota
                                 </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <a href="{{ url('home') }}" class="enlaceback">Volver a menu</a>
-                                </button>
+                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>
                     </form>

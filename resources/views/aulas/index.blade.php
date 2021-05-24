@@ -20,7 +20,7 @@
                         </div>
                     @endif
                     @if(Auth::check())
-                      @if(!empty($aula->id))
+                      @if(!empty($aulas->id))
                         <form method="POST" action="{{ route('aulas/actualizar', $aulas->id) }}">
                           @csrf
                           <input type="hidden" name="_method" value="PUT">
@@ -67,6 +67,7 @@
                                   <a href="{{ url('aulas') }}" class="btn btn-primary">Cancelar</a>
                               </div>
                           </div>
+                        </form>
                       @else
                         <form method="POST" action="{{ route('aulas/guardar') }}">
                           @csrf

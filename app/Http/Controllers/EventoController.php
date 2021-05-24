@@ -86,7 +86,7 @@ class EventoController extends Controller
         $eventos = Evento::find($id);
         $eventos->update($request->all());
         $eventos->save();
-        return redirect("/eventos")->with('success', 'Información actualizada con éxito');
+        return redirect("eventos")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -97,24 +97,36 @@ class EventoController extends Controller
      */
     public function delete($id)
     {
-        $eventos = Evento::findOrFail($id);
+        $eventos = Evento::find($id);
         $eventos->delete();
-        return redirect("/eventos")->with('success', 'Información eliminada con éxito');
+        return redirect("eventos")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $eventos = Evento::where('nombre','like','%'.$texto.'%')
+        ->orWhere('descripcion','like','%'.$texto.'%')
+        ->orWhere('disponibilidad','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = Evento::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->orWhere('disponibilidad','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('eventos.eventos',array('lista'=>$lista));
+        if (!empty($eventos)) {
+            return view('eventos.eventos', compact('texto', 'eventos'));
         } else {
-            $lista = Evento::paginate(3);
-            return view('eventos.eventos',array('lista'=>$lista));
+            return redirect('eventos')->with('message', 'Evento no encontrado');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('eventos.eventos');
+        } else if ($request->filtro == 'Ascendente') {
+            $eventos = Evento::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('eventos.eventos', compact('eventos'));
+        } else if ($request->filtro == 'Descendente') {
+            $eventos = Evento::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('eventos.eventos', compact('eventos'));
+        } else {
+            return redirect('eventos')->with('message', 'No funciona');
         }
     }
 }

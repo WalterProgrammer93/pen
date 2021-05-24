@@ -153,12 +153,12 @@ class AlumnoController extends Controller
     }
 
     public function filter(Request $request) {
-        if($seleccion->filtro == 'Todos') {
-            return view('alumnos.alumnos', compact('seleccion'));
-        } else if ($seleccion == 'Ascendente') {
+        if($request->filtro == 'Todos') {
+            return view('alumnos.alumnos');
+        } else if ($request->filtro == 'Ascendente') {
             $alumnos = Alumno::where('id')->orderBy('id', 'asc')->paginate(5);
             return view('alumnos.alumnos', compact('alumnos'));
-        } else if ($seleccion == 'Descendente') {
+        } else if ($request->filtro == 'Descendente') {
             $alumnos = Alumno::where('id')->orderBy('id', 'desc')->paginate(5);
             return view('alumnos.alumnos', compact('alumnos'));
         } else {
