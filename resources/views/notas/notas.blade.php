@@ -73,15 +73,18 @@
                                           @if(Auth::user()->hasRole('student'))
                                             <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                            <a href="{{ route('notas/ver', $nota->id )}}" class="btn btn-warning">Ver</a>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
                                               <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                              <a href="{{ route('notas/ver', $nota->id )}}" class="btn btn-warning">Ver</a>
                                               @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('notas/editar', $nota->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                <a href="{{ route('notas/ver', $nota->id )}}" class="btn btn-warning" disabled>Ver</a>
                                               @endif
                                             @endif
                                           @endif

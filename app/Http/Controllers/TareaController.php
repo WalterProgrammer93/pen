@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use pen\Asignatura;
 use pen\Tema;
 use pen\Tarea;
+use PDF;
+use Carbon;
 
 class TareaController extends Controller
 {
@@ -49,7 +51,11 @@ class TareaController extends Controller
         $tareas->fecha_envio = $request->fecha_envio;
         $tareas->fecha_entrega = $request->fecha_entrega;
         $tareas->hora_entrega = $request->hora_entrega;
-        $tareas->archivo_tarea = $request->archivo_tarea;
+        if ($archivo = $request->file('archivo_tarea')) {
+            $nombre  = $archivo->getClientOriginalName();
+            $archivo->move("archivos", $nombre);
+            $tareas->archivo_tarea = $archivo;
+        }
         $tareas->calificacion = $request->calificacion;
         $tareas->asignatura()->associate($request->asignatura_id);
         $tareas->tema()->associate($request->tema_id);
@@ -78,6 +84,8 @@ class TareaController extends Controller
     public function edit($id)
     {
         $tareas = Tarea::find($id);
+        $asignaturas = Asignatura::find($id);
+        $temas = Tema::find($id);
         $asignaturas = Asignatura::orderBy('id')->pluck('nombre','id')->toArray();
         $temas = Tema::orderBy('id')->pluck('nombre','id')->toArray();
         return view("tareas.editar", compact("tareas","asignaturas","temas"));
@@ -107,25 +115,47 @@ class TareaController extends Controller
     public function delete($id)
     {
         $tareas = Tarea::find($id);
+        $imagen = explode(",", $tareas->archivo_tarea);
         $tareas->delete();
+        Storage::delete('$imagen');
         return redirect()->route("tareas")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $tareas = Tarea::where('titulo','like','%'.$texto.'%')
+            ->orWhere('autor','like','%'.$texto.'%')
+            ->orWhere('fecha_envio','like','%'.$texto.'%')
+            ->orWhere('fecha_entrega','like','%'.$texto.'%')
+            ->orWhere('hora_entrega','like','%'.$texto.'%')
+            ->orWhere('calificacion','like','%'.$texto.'%')->paginate(5);
 
-        if ($texto) {
-            $lista = Tarea::where('codigo','LIKE',"%$texto%")
-            ->orWhere('titulo','LIKE',"%$texto%")
-            ->orWhere('autor','LIKE',"%$texto%")
-            ->orWhere('fecha_envio','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('tareas.tareas',array('lista'=>$lista));
-
+        if (!empty($tareas)) {
+            return view('tareas.tareas', compact('texto', 'tareas'));
         } else {
-            $lista = Tarea::paginate(3);
-            return view('tareas.tareas',array('lista'=>$lista));
+            return redirect('tareas')->with('message', 'Tarea no encontrada');
         }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('tareas.tareas');
+        } else if ($request->filtro == 'Ascendente') {
+            $tareas = Tarea::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('tareas.tareas', compact('tareas'));
+        } else if ($request->filtro == 'Descendente') {
+            $tareas = Tarea::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('tareas.tareas', compact('tareas'));
+        } else {
+            return redirect('tareas')->with('message', 'No funciona');
+        }
+    }
+
+    public function ver($id) {
+        $today = Carbon::now()->format('d/m/Y');
+        $tareas = Tarea::find($id);
+        $pdf = PDF::loadView('tareas.archivo_tarea', compact('today', 'tareas'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream('Tarea.pdf');
     }
 }

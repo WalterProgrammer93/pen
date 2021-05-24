@@ -72,7 +72,7 @@ class AlumnoController extends Controller
         if ($archivo = $request->file('foto')) {
             $nombre  = $archivo->getClientOriginalName();
             $archivo->move("fotos", $nombre);
-            $alumnos->foto = $nombrearchivo;
+            $alumnos->foto = $archivo;
         }
           $alumnos->curso()->associate($request->curso_id);
           $alumnos->save();

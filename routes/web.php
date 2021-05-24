@@ -511,10 +511,10 @@ Route::post('tareas/filtro', [
     'before' => 'crsf',
     'uses' => 'TareaController@filter'])->name('tareas/filtro');
 
-Route::get('tareas/imprimir/{id}', [
+Route::get('tareas/ver/{documento_tarea}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TareaController@print'])->name('tareas/imprimir');
+    'uses' => 'TareaController@ver'])->name('tareas/ver');
 
 // ACCESO A LAS RUTAS DE TEMAS
 /* Leer */
@@ -559,10 +559,10 @@ Route::post('temas/filtro', [
     'before' => 'crsf',
     'uses' => 'TemaController@filter'])->name('temas/filtro');
 
-Route::get('temas/imprimir/{id}', [
+Route::get('temas/ver/{documento_tema}', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'TemaController@print'])->name('temas/imprimir');
+    'uses' => 'TemaController@ver'])->name('temas/ver');
 
 // ACCESO A LAS RUTAS DE RESERVAS
 /* Leer */

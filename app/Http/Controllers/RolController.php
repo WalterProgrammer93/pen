@@ -108,8 +108,8 @@ class RolController extends Controller
   public function search(Request $request)
   {
       $texto = $request->input('buscar');
-      $roles = Rol::where('reservado','like','%'.$texto.'%')
-          ->orWhere('descripcion','like','%'.$texto.'%')->paginate(5);
+      $roles = Roles::where('user_id','like','%'.$texto.'%')
+          ->orWhere('perfil_id','like','%'.$texto.'%')->paginate(5);
 
       if (!empty($roles)) {
           return view('roles.roles', compact('texto', 'roles'));

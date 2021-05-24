@@ -60,7 +60,7 @@
                             <div class="form-group row">
                                 <label for="fecha_envio" class="col-md-4 col-form-label text-md-right">Fecha envio</label>
                                 <div class="col-md-6">
-                                    <input id="fecha_envio" type="text" class="form-control" name="fecha_envio" value="{{ $tareas->fecha_envio }}" required autocomplete="fecha_envio">
+                                    <input id="fecha_envio" type="date" class="form-control" name="fecha_envio" value="{{ $tareas->fecha_envio }}" required autocomplete="fecha_envio">
                                     @error('fecha_envio')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
                             <div class="form-group row">
                                 <label for="fecha_entrega" class="col-md-4 col-form-label text-md-right">Fecha Entrega</label>
                                 <div class="col-md-6">
-                                    <input id="fecha_entrega" type="text" class="form-control" name="fecha_entrega" value="{{ $tareas->fecha_entrega }}" required autocomplete="fecha_entrega">
+                                    <input id="fecha_entrega" type="date" class="form-control" name="fecha_entrega" value="{{ $tareas->fecha_entrega }}" required autocomplete="fecha_entrega">
                                     @error('fecha_entrega')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                             <div class="form-group row">
                                 <label for="hora_entrega" class="col-md-4 col-form-label text-md-right">Hora Entrega</label>
                                 <div class="col-md-6">
-                                    <input id="hora_entrega" type="text" class="form-control" name="hora_entrega" value="{{ $tareas->hora_entrega }}" required autocomplete="hora_entrega">
+                                    <input id="hora_entrega" type="time" class="form-control" name="hora_entrega" value="{{ $tareas->hora_entrega }}" required autocomplete="hora_entrega">
                                     @error('hora_entrega')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -124,7 +124,7 @@
                                     <select id="asignatura_id" class="form-control" name="asignatura_id[]" required>
                                         <option value="" disabled>Seleccione una asignatura</option>
                                         @foreach($asignaturas as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $tareas->asignatura_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('asignatura_id')
@@ -140,7 +140,7 @@
                                     <select id="tema_id" class="form-control" name="tema_id[]" required>
                                         <option value="" disabled>Seleccione un tema</option>
                                         @foreach($temas as $id => $nombre)
-                                            <option value="{{ $id }}" {{ $id == $id ? 'selected' : '' }}>{{ $nombre }}</option>
+                                            <option value="{{ $id }}" {{ $id == $tareas->tema_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
                                     @error('tema_id')
@@ -197,7 +197,7 @@
                             <div class="form-group row">
                                 <label for="fecha_envio" class="col-md-4 col-form-label text-md-right">Fecha envio</label>
                                 <div class="col-md-6">
-                                    <input id="fecha_envio" type="text" class="form-control" name="fecha_envio" required autocomplete="fecha_envio">
+                                    <input id="fecha_envio" type="date" class="form-control" name="fecha_envio" required autocomplete="fecha_envio">
                                     @error('fecha_envio')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -208,7 +208,7 @@
                             <div class="form-group row">
                                 <label for="fecha_entrega" class="col-md-4 col-form-label text-md-right">Fecha Entrega</label>
                                 <div class="col-md-6">
-                                    <input id="fecha_entrega" type="text" class="form-control" name="fecha_entrega" required autocomplete="fecha_entrega">
+                                    <input id="fecha_entrega" type="date" class="form-control" name="fecha_entrega" required autocomplete="fecha_entrega">
                                     @error('fecha_entrega')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -219,7 +219,7 @@
                             <div class="form-group row">
                                 <label for="hora_entrega" class="col-md-4 col-form-label text-md-right">Hora Entrega</label>
                                 <div class="col-md-6">
-                                    <input id="hora_entrega" type="text" class="form-control" name="hora_entrega" required autocomplete="hora_entrega">
+                                    <input id="hora_entrega" type="time" class="form-control" name="hora_entrega" required autocomplete="hora_entrega">
                                     @error('hora_entrega')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
