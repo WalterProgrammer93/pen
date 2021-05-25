@@ -52,7 +52,7 @@
                             <tr>
                                 <td class="v-align-middle">{{ $tema->nombre }}</td>
                                 <td class="v-align-middle">{{ $tema->contenido }}</td>
-                                <td class="v-align-middle"><img src="{{!! asset('fotos/$tema->documento_tarea') !!}}"  class="img-responsive" width="50"/>{{ $tema->documento_tema }}</td>
+                                <td class="v-align-middle"><img src="/imagenes/pdf.png"  class="img-responsive" width="50">{{ $tema->documento_tema }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('temas/eliminar', $tema->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">

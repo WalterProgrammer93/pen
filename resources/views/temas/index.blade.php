@@ -49,10 +49,9 @@
                             <div class="form-group row">
                                 <label for="documento_tema" class="col-md-4 col-form-label text-md-right">Documento Tema</label>
                                 <div class="col-md-6">
-                                    <input id="documento_tema" type="file" class="form-control @error('documento_tema') is-invalid @enderror btn-success" name="documento_tema" value="{{ $temas->documento_tema }}" required>
+                                    <input id="documento_tema" type="file" class="form-control @error('documento_tema') is-invalid @enderror" name="documento_tema" value="{{ $temas->documento_tema }}" required>
                                     @if (!empty($temas->documento_tema))
-                                      <span>Archivo actual: </span>
-                                      <img src="/fotos/{{ $temas->documento_tema }}" width="200" class="img-fluid">
+                                      <img src="/imagenes/pdf.png" width="100" class="img-fluid">
                                     @else
                                       Aún no se ha cargado el archivo
                                     @endif

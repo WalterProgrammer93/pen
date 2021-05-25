@@ -8,6 +8,8 @@ use pen\Tema;
 use pen\Tarea;
 use PDF;
 use Carbon;
+use Storage;
+use File;
 
 class TareaController extends Controller
 {
@@ -53,8 +55,8 @@ class TareaController extends Controller
         $tareas->hora_entrega = $request->hora_entrega;
         if ($archivo = $request->file('archivo_tarea')) {
             $nombre  = $archivo->getClientOriginalName();
-            $archivo->move("archivos", $nombre);
-            $tareas->archivo_tarea = $archivo;
+            $archivo->move("documentos", $nombre);
+            $tareas->archivo_tarea = $nombre;
         }
         $tareas->calificacion = $request->calificacion;
         $tareas->asignatura()->associate($request->asignatura_id);

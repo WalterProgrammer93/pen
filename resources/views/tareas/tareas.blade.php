@@ -61,7 +61,7 @@
                                 <td class="v-align-middle">{{ $tarea->fecha_envio }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
-                                <td class="v-align-middle"><img src="{{!! asset('fotos/$tarea->archivo_tarea') !!}}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
+                                <td class="v-align-middle"><img src="documentos/{{ $tarea->archivo_tarea }}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
                                 <td class="v-align-middle">{{ $tarea->asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $tarea->tema->nombre }}</td>
