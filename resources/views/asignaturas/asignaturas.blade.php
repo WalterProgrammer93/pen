@@ -22,10 +22,10 @@
                         @csrf
                       <div class="col-md-20 justify-content-center m-3">
                           <div class="row justify-content-center m-3">
-                              <div class="col-md-5">
+                              <div class="col-md-4">
                                   <input id="buscar" type="text" class="form-control" name="buscar" autocomplete="buscar" placeholder="Buscar" autofocus>
                               </div>
-                              <div class="col-md-5">
+                              <div class="col-md-4">
                                 <form action="{{ route('asignaturas/filtro') }}" method="POST" role="form">
                                   <select id="filtro" class="form-control" name="filtro">
                                       <option value="" disabled>Seleccione filtro</option>

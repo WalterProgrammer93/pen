@@ -100,19 +100,30 @@ class UsuarioController extends Controller
         return redirect("/usuarios")->with('success', 'Información eliminada con éxito');
     }
 
-    public function search(Request $request) {
-
+    public function search(Request $request)
+    {
         $texto = $request->input('buscar');
+        $usuarios = User::where('nombre','like','%'.$texto.'%')
+            ->orWhere('email','like','%'.$texto.'%')->paginate(5);
 
-        if($texto){
-            $lista = User::where('codigo','LIKE',"%$texto%")
-            ->orWhere('nombre','LIKE',"%$texto%")
-            ->paginate(2);
-            return view('usuarios.usuarios',array('lista'=>$lista));
-
+        if (!empty($usuarios)) {
+            return view('usuarios.usuarios', compact('texto', 'usuarios'));
         } else {
-            $lista = User::paginate(3);
-            return view('usuarios.usuarios',array('lista'=>$lista));
+            return redirect('usuarios')->with('message', 'Usuario no encontrada');
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->filtro == 'Todos') {
+            return view('usuarios.usuarios');
+        } else if ($request->filtro == 'Ascendente') {
+            $usuarios = User::where('id')->orderBy('id', 'asc')->paginate(5);
+            return view('usuarios.usuarios', compact('usuarios'));
+        } else if ($request->filtro == 'Descendente') {
+            $usuarios = User::where('id')->orderBy('id', 'desc')->paginate(5);
+            return view('usuarios.usuarios', compact('usuarios'));
+        } else {
+            return redirect('usuarios')->with('message', 'No funciona');
         }
     }
 }
