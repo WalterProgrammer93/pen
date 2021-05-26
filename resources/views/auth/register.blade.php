@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.register')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header row justify-content-center display-4 font-weight-bold">Crear cuenta</div>
+                <div class="card-header">Crear cuenta</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf

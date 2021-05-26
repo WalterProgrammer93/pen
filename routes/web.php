@@ -16,15 +16,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
-
 Auth::routes();
-
-Route::get('/logout', function () {
-    return view('auth.login');
-});
 
 Route::get('/home', [
 	'middleware' => 'auth',
