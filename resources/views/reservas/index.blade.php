@@ -28,8 +28,8 @@
                                 <label for="profesor_id" class="col-md-4 col-form-label text-md-right">Profesor</label>
                                 <div class="col-md-6">
                                     <select id="profesor_id" class="form-control" name="profesor_id[]" required>
-                                        <option value="" disabled>Seleccione un profesor</option>
                                         @foreach($profesores as $id => $nombre)
+                                            <option value="" disabled>Seleccione un profesor</option>
                                             <option value="{{ $id }}" {{ $id == $reservas->profesor_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
@@ -44,8 +44,8 @@
                                 <label for="evento_id" class="col-md-4 col-form-label text-md-right">Evento</label>
                                 <div class="col-md-6">
                                     <select id="evento_id" class="form-control" name="evento_id[]" required>
-                                        <option value="" disabled>Seleccione un evento</option>
                                         @foreach($eventos as $id => $nombre)
+                                            <option value="" disabled>Seleccione un evento</option>
                                             <option value="{{ $id }}" {{ $id == $reservas->evento_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
@@ -60,8 +60,8 @@
                                 <label for="aula_id" class="col-md-4 col-form-label text-md-right">Aula</label>
                                 <div class="col-md-6">
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
-                                        <option value="" disabled>Seleccione un aula</option>
                                         @foreach($aulas as $id => $etiqueta)
+                                            <option value="" disabled>Seleccione un aula</option>
                                             <option value="{{ $id }}" {{ $id == $reservas->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
@@ -111,8 +111,8 @@
                                 <label for="profesor_id" class="col-md-4 col-form-label text-md-right">Profesor</label>
                                 <div class="col-md-6">
                                     <select id="profesor_id" class="form-control" name="profesor_id" required>
-                                        <option value="" disabled>Seleccione un profesor</option>
                                         @foreach($profesores as $id => $nombre)
+                                            <option value="" disabled>Seleccione un profesor</option>
                                             <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
@@ -127,8 +127,8 @@
                                 <label for="evento_id" class="col-md-4 col-form-label text-md-right">Evento</label>
                                 <div class="col-md-6">
                                     <select id="evento_id" class="form-control" name="evento_id" required>
-                                        <option value="" disabled>Seleccione un evento</option>
                                         @foreach($eventos as $id => $nombre)
+                                            <option value="" disabled>Seleccione un evento</option>
                                             <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $nombre }}</option>
                                         @endforeach
                                     </select>
@@ -143,8 +143,8 @@
                                 <label for="evento_id" class="col-md-4 col-form-label text-md-right">Aula</label>
                                 <div class="col-md-6">
                                     <select id="aula_id" class="form-control" name="aula_id" required>
-                                        <option value="" disabled>Seleccione un aula</option>
                                         @foreach($aulas as $id => $etiqueta)
+                                            <option value="" disabled>Seleccione un aula</option>
                                             <option value="{{ $id }}" @if($id=='$id') selected @endif>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
@@ -169,8 +169,8 @@
                             <div class="form-group row">
                                 <label for="reservado" class="col-md-4 col-form-label text-md-right">Reservado</label>
                                 <div class="col-md-6">
-                                    Si &nbsp;<input id="reservado" type="radio" class="form-control  @error('reservado') is-invalid @enderror" name="reservado" value="Si">
-                                    No &nbsp;<input id="reservado" type="radio" class="form-control  @error('reservado') is-invalid @enderror" name="reservado" value="No">
+                                    Si &nbsp;<input id="reservado" type="radio" name="reservado" value="Si">
+                                    No &nbsp;<input id="reservado" type="radio" name="reservado" value="No">
                                     @error('reservado')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

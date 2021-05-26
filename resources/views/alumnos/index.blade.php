@@ -209,8 +209,8 @@
                                   <div class="form-group row">
                                       <label for="repite" class="col-md-4 col-form-label text-md-right">Repite</label>
                                       <div class="col-md-6">
-                                          Si &nbsp;<input id="repite" type="radio" class="form-control @error('repite') is-invalid @enderror" name="repite" value="Si" @if(@$alumnos->repite == "Si") checked @endif>
-                                          No &nbsp;<input id="repite" type="radio" class="form-control @error('repite') is-invalid @enderror" name="repite" value="No" @if(@$alumnos->repite == "No") checked @endif>
+                                          Si &nbsp;<input id="repite" type="radio" name="repite" value="Si" @if(@$alumnos->repite == "Si") checked @endif>
+                                          No &nbsp;<input id="repite" type="radio" name="repite" value="No" @if(@$alumnos->repite == "No") checked @endif>
                                           @error('repite')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
@@ -239,8 +239,8 @@
                                       <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                       <div class="col-md-6">
                                           <select id="curso_id" class="form-control @error('curso_id') is-invalid @enderror" name="curso_id[]" required>
-                                              <option value="" disabled>Seleccione un Curso</option>
                                               @foreach($cursos as $id => $nombre)
+                                                <option value="" disabled>Seleccione un Curso</option>
                                                 <option value="{{ $id }}" {{ $id == $alumnos->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                               @endforeach
                                           </select>
@@ -444,8 +444,8 @@
                                           <div class="form-group row">
                                               <label for="repite" class="col-md-4 col-form-label text-md-right">Repite</label>
                                               <div class="col-md-6">
-                                                  Si &nbsp;<input id="repite" type="radio" class="form-control  @error('repite') is-invalid @enderror" name="repite" value="Si">
-                                                  No &nbsp;<input id="repite" type="radio" class="form-control  @error('repite') is-invalid @enderror" name="repite" value="No">
+                                                  Si &nbsp;<input id="repite" type="radio" name="repite" value="Si">
+                                                  No &nbsp;<input id="repite" type="radio" name="repite" value="No">
                                                   @error('repite')
                                                       <span class="invalid-feedback" role="alert">
                                                           <strong>{{ $message }}</strong>

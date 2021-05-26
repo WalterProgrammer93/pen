@@ -116,9 +116,9 @@ class AlumnoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $alumnos->update($request->all());
-        $arrayCurso = array('curso_id' => $id);
+        /*$arrayCurso = array('curso_id' => $id);
         $curso = implode(',', $arrayCurso);
-        $alumnos->curso()->associate($curso);
+        $alumnos->curso()->associate($arrayCurso);*/
         $alumnos->save();
         return redirect('alumnos')->with('message', 'Información de alumno actualizada con éxito');
     }
