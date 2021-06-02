@@ -57,7 +57,7 @@
                                 <td class="v-align-middle">{{ $alumno->apellido1 }}</td>
                                 <td class="v-align-middle">{{ $alumno->apellido2 }}</td>
                                 <td class="v-align-middle">{{ $alumno->repite }}</td>
-                                <td class="v-align-middle"><img src="/fotos/{{ $alumno->foto }}" class="img-responsive"/></td>
+                                <td class="v-align-middle"><img src="imagenes/{{ $alumno->foto }}" class="img-responsive" width="100"></td>
                                 <td class="v-align-middle">{{ $alumno->curso->nombre }}</td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('alumnos/eliminar', $alumno->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
@@ -65,21 +65,21 @@
                                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                       @if(Auth::check())
                                           @if(Auth::user()->hasRole('admin'))
-                                            <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
-                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                            <a href="{{ route('alumnos/editar', $alumno->id) }}" id="modificar" class="btn btn-primary">Modificar</a>
+                                            <button type="submit" class="btn btn-danger" id="eliminar" data-toggle="modal" data-target="#myModal">Eliminar</button>
                                             @include('alerts.dialogos')
                                           @else
                                             @if(Auth::user()->hasRole('student'))
-                                              <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                              <a href="{{ route('alumnos/editar', $alumno->id) }}" id="modificar" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('teacher'))
-                                                <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                                <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" id="modificar" disabled>Modificar</a>
+                                                <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
                                               @else
                                                 @if(Auth::user()->hasRole('user'))
-                                                  <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
-                                                  <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
+                                                  <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" id="modificar" disabled>Modificar</a>
+                                                  <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
                                                 @endif
                                               @endif
                                             @endif
@@ -100,9 +100,31 @@
                         @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
-                                <button type="submit" class="btn btn-success">
-                                    Crear Alumno
-                                </button>
+                                @if (Auth::check())
+                                  @if (Auth::user()->hasRole('admin'))
+                                    <button type="submit" class="btn btn-success">
+                                        Crear Alumno
+                                    </button>
+                                  @else
+                                    @if (Auth::user()->hasRole('student'))
+                                      <button type="submit" class="btn btn-success" disabled>
+                                          Crear Alumno
+                                      </button>
+                                    @else
+                                      @if (Auth::user()->hasRole('teacher'))
+                                        <button type="submit" class="btn btn-success" disabled>
+                                            Crear Alumno
+                                        </button>
+                                      @else
+                                        @if(Auth::user()->hasRole('user'))
+                                          <button type="submit" class="btn btn-success" disabled>
+                                              Crear Alumno
+                                          </button>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                                @endif
                                 <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>

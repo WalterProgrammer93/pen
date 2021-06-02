@@ -215,7 +215,7 @@
                                         <input name="foto" type="file"  class="form-control @error('foto') is-invalid @enderror" id="foto">
                                         @if (!empty($alumnos->foto))
                                           <span>Foto actual: </span>
-                                          <img src="/fotos/{{ $alumnos->foto }}" width="200" class="img-fluid">
+                                          <img src="imagenes/{{ $alumnos->foto }}" width="200" class="img-fluid">
                                         @else
                                           Aún no se ha cargado la foto del alumno
                                         @endif
@@ -244,7 +244,7 @@
                                   </div>
                                   <div class="form-group row mb-0">
                                       <div class="col-md-6 offset-md-4">
-                                          <button type="submit" class="btn btn-success">Actualizar</button>
+                                          <button type="submit" class="btn btn-success" id="actualizar">Actualizar</button>
                                           <a href="{{ route('alumnos') }}" class="btn btn-primary">Cancelar</a>
                                       </div>
                                   </div>
@@ -473,7 +473,7 @@
                                           </div>
                                           <div class="form-group row mb-0">
                                               <div class="col-md-6 offset-md-4">
-                                                  <button type="submit" class="btn btn-success">Añadir</button>
+                                                  <button type="submit" class="btn btn-success" id="crear">Añadir</button>
                                                   <a href="{{ route('alumnos') }}" class="btn btn-primary">Cancelar</a>
                                               </div>
                                           </div>

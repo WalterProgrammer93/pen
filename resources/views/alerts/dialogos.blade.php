@@ -5,7 +5,6 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h1 class="modal-title">Eliminar</h1>
-          <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
 
         <!-- Modal body -->
@@ -15,9 +14,9 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="aceptar" data-dismiss="modal">Si</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
         </div>
-
       </div>
     </div>
-  </div>
+</div>

@@ -139,12 +139,12 @@ class AlumnoController extends Controller
           $alumnos->repite = $request->repite;
           if ($archivo = $request->file('foto')) {
               $nombre  = $archivo->getClientOriginalName();
-              $archivo->move("fotos", $nombre);
+              $archivo->move("imagenes", $nombre);
               $alumnos->foto = $archivo;
           }
-            $alumnos->curso()->associate($request->curso_id);
-            $alumnos->save();
-            return redirect('alumnos')->with('message', 'Información del alumno almacenada con éxito');
+          $alumnos->curso()->associate($request->curso_id);
+          $alumnos->save();
+          return redirect('alumnos')->with('message', 'Información del alumno almacenada con éxito');
         }
 
 
@@ -205,7 +205,7 @@ class AlumnoController extends Controller
         $imagen = explode(",", $alumnos->foto);
         $alumnos->delete();
         Storage::delete('$imagen');
-        return redirect('alumnos')->with('success','Información alumno eliminada con éxito');
+        return redirect('alumnos')->with('message','Información alumno eliminada con éxito');
     }
 
     public function search(Request $request)
@@ -218,7 +218,7 @@ class AlumnoController extends Controller
         if (!empty($alumnos)) {
             return view('alumnos.alumnos', compact('texto', 'alumnos'));
         } else {
-            return redirect('alumnos')->with('message', 'Alumno no encontrado');
+            return redirect('alumnos')->with('message', 'Alumno/a no encontrado');
         }
     }
 
