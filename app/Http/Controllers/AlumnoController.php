@@ -61,64 +61,12 @@ class AlumnoController extends Controller
             'letra' => 'required', 'max:1', 'regex:/^[A-Z]+$/i',
             'repite' => 'required', 'max:2', 'regex:/^[A-z]+$/i',
             'foto' => 'required', 'image', 'max:1024*1024*1',
-        ], [
-            'nombre.required' => 'El campo nombre es obligatorio',
-            'nombre.max' => 'El máximo permitido son 10 caracteres',
-            'nombre.regex' => 'Sólo se aceptan letras',
-            'apellido1.required' => 'El campo apellido1 es obligatorio',
-            'apellido1.max' => 'El máximo permitido son 10 caracteres',
-            'apellido1.regex' => 'Sólo se aceptan letras',
-            'apellido2.required' => 'El campo apellido2 es obligatorio',
-            'apellido2.max' => 'El máximo permitido son 10 caracteres',
-            'apellido2.regex' => 'Sólo se aceptan letras',
-            'dni.required' => 'El campo dni es obligatorio',
-            'dni.max' => 'El máximo permitido son 9 caracteres',
-            'dni.regex' => 'Sólo se aceptan 9 caracteres numericos y una letra',
-            'fecha_nacimiento.required' => 'El campo fecha_nacimiento es obligatorio',
-            'fecha_nacimiento.max' => 'El máximo permitido son 10 caracteres',
-            'fecha_nacimiento.regex' => 'Sólo se aceptan caracteres numericos separados por guiones',
-            'telefono.required' => 'El campo telefono es obligatorio',
-            'telefono.max' => 'El máximo permitido son 9 caracteres',
-            'telefono.regex' => 'Sólo se aceptan caracteres numericos',
-            'correo.required' => 'El campo correo es obligatorio',
-            'correo.max' => 'El máximo permitido son 100 caracteres',
-            'correo.regex' => 'Sólo se aceptan letras con una arroba y el nombre del dominio separado por un punto',
-            'correo.unique' => 'Ya existe un usuario con ese email',
-            'sexo.required' => 'El campo sexo es obligatorio',
-            'sexo.max' => 'El máximo permitido es 1 caracter',
-            'ciudad.required' => 'El campo ciudad es obligatorio',
-            'ciudad.max' => 'El máximo permitido son 20 caracteres',
-            'ciudad.regex' => 'Sólo se aceptan letras',
-            'provincia.required' => 'El campo provincia es obligatorio',
-            'provincia.max' => 'El máximo permitido son 15 caracteres',
-            'provincia.regex' => 'Sólo se aceptan letras',
-            'nacionalidad.required' => 'El campo nacionalidad es obligatorio',
-            'nacionalidad.max' => 'El máximo permitido son 10 caracteres',
-            'nacionalidad.regex' => 'Sólo se aceptan letras',
-            'codigo_postal.required' => 'El campo codigo postal es obligatorio',
-            'codigo_postal.max' => 'El máximo permitido son 5 caracteres',
-            'codigo_postal.regex' => 'Sólo se aceptan caracteres numericos',
-            'direccion.required' => 'El campo direccion es obligatorio',
-            'direccion.max' => 'El máximo permitido son 15 caracteres',
-            'direccion.regex' => 'Sólo se aceptan letras',
-            'portal.required' => 'El campo portal es obligatorio',
-            'portal.max' => 'El máximo permitido son 2 caracteres',
-            'portal.regex' => 'Sólo se aceptan caracteres numericos',
-            'piso.required' => 'El campo piso es obligatorio',
-            'piso.max' => 'El máximo permitido son 2 caracteres',
-            'piso.regex' => 'Sólo se aceptan caracteres numericos',
-            'letra.required' => 'El campo letra es obligatorio',
-            'letra.max' => 'El máximo permitido son 1 caracter',
-            'letra.regex' => 'Sólo se aceptan letras',
-            'foto.required' => 'El campo foto es obligatorio',
-            'foto.image' => 'Formato no permitido',
-            'foto.max' => 'El máximo permitido es 1 MB',
         ]);
 
-        if ($alumnos->fails())
+        /*if ($alumnos->fails())
         {
             return redirect()->back()->withInput()->withErrors($alumnos->errors());
-        } else {
+        } else {*/
           $alumnos = new Alumno;
           $alumnos->nombre = $request->nombre;
           $alumnos->apellido1 = $request->apellido1;
@@ -145,7 +93,7 @@ class AlumnoController extends Controller
           $alumnos->curso()->associate($request->curso_id);
           $alumnos->save();
           return redirect('alumnos')->with('message', 'Información del alumno almacenada con éxito');
-        }
+        //}
 
 
     }
@@ -186,9 +134,9 @@ class AlumnoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $alumnos->update($request->all());
-        /*$arrayCurso = array('curso_id' => $id);
-        $curso = implode(',', $arrayCurso);
-        $alumnos->curso()->associate($arrayCurso);*/
+        $array = array('curso_id' => $id);
+        $alumnos = implode(',', $array);
+        //$alumnos->curso()->associate($request->curso_id);
         $alumnos->save();
         return redirect('alumnos')->with('message', 'Información de alumno actualizada con éxito');
     }

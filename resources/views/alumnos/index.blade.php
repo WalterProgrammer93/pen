@@ -230,8 +230,8 @@
                                       <label for="curso_id" class="col-md-4 col-form-label text-md-right">Curso</label>
                                       <div class="col-md-6">
                                           <select id="curso_id" class="form-control @error('curso_id') is-invalid @enderror" name="curso_id[]">
+                                              <option value="" disabled>Seleccione un Curso</option>
                                               @foreach($cursos as $id => $nombre)
-                                                <option value="" disabled>Seleccione un Curso</option>
                                                 <option value="{{ $id }}" {{ $id == $alumnos->curso_id ? 'selected' : '' }}>{{ $nombre }}</option>
                                               @endforeach
                                           </select>
