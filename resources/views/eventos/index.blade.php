@@ -12,7 +12,7 @@
             </ol>
           </nav>
           <div class="card">
-              <div class="card-header">Crear Curso</div>
+              <div class="card-header">Crear Evento</div>
                 <div class="card-body">
                     @if(Session('status'))
                         <div class="alert alert-success" role="alert">
@@ -67,7 +67,7 @@
                                     <select id="aula_id" class="form-control" name="aula_id[]" required>
                                         <option value="" disabled>Seleccione una aula</option>
                                         @foreach($aulas as $id => $etiqueta)
-                                            <option value="{{ $id }}" {{ $id == $eventos->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
+                                            <option value="{{ $id }}" {{ $id == $eventos->aula->aula_id ? 'selected' : '' }}>{{ $etiqueta }}</option>
                                         @endforeach
                                     </select>
                                     @error('aula_id')
