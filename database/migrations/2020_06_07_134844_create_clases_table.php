@@ -20,7 +20,6 @@ class CreateClasesTable extends Migration
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->foreign('profesor_id')->references('id')->on('profesors');
             $table->string('horario',255);
-            $table->timestamps();
         });
     }
 

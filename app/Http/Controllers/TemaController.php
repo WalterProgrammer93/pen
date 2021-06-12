@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use pen\Tema;
 use PDF;
 use Carbon;
+use Storage;
 
 class TemaController extends Controller
 {
@@ -88,7 +89,7 @@ class TemaController extends Controller
         $temas = Tema::find($id);
         $temas->update($request->all());
         $temas->save();
-        return redirect("/temas")->with('success', 'Información actualizada con éxito');
+        return redirect("temas")->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -99,11 +100,11 @@ class TemaController extends Controller
      */
     public function delete($id)
     {
-        $temas = Tema::find($id);
+        $temas = Tema::findOrFail($id);
         $imagen = explode(",", $temas->documento_tema);
         $temas->delete();
         Storage::delete('$imagen');
-        return redirect("/temas")->with('success', 'Información eliminada con éxito');
+        return redirect("temas")->with('success', 'Información eliminada con éxito');
     }
 
     public function search(Request $request)

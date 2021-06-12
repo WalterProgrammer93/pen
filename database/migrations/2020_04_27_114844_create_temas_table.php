@@ -17,8 +17,7 @@ class CreateTemasTable extends Migration
             $table->increments('id');
             $table->string('nombre',50)->unique();
             $table->string('contenido',255);
-            $table->string('documento_tema',255);
-            $table->timestamps();
+            $table->string('documento_tema');
         });
     }
 

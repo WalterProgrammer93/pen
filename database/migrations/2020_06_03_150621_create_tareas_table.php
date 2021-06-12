@@ -17,17 +17,17 @@ class CreateTareasTable extends Migration
             $table->increments('id');
             $table->string('titulo',20)->unique();
             $table->string('descripcion',100);
-            $table->string('autor',12)->unique();
-            $table->date('fecha_envio');
+            $table->string('autor',20)->unique();
+            $table->date('fecha_subida');
             $table->date('fecha_entrega');
             $table->time('hora_entrega');
-            $table->string('archivo_tarea',255);
-            $table->integer('calificacion')->length('2')->unsigned();
+            $table->string('documento_tarea',255);
+            $table->string('subir_documento',255)->nullable();
+            $table->integer('calificacion')->unsigned()->nullable();
             $table->integer('asignatura_id')->unsigned();
             $table->integer('tema_id')->unsigned();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->foreign('tema_id')->references('id')->on('temas');
-            $table->timestamps();
         });
     }
 

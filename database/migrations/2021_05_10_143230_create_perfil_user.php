@@ -19,7 +19,6 @@ class CreatePerfilUser extends Migration
             $table->integer('perfil_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('perfil_id')->references('id')->on('perfils');
-            $table->timestamps();
         });
     }
 

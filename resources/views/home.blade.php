@@ -48,12 +48,10 @@
                               @else
                                   @if (Auth::user()->hasRole('teacher'))
                                       <div class="row">
-                                          <div class="col-sm"><p><a href="{{ url('alumnos')}}" class="card-link"><img src="https://img.icons8.com/material/30/000000/scroll.png" alt="alumnos">&nbsp; Alumnos</a></p></div>
-                                          <div class="col-sm"><p><a href="{{ url('cursos') }}" class="card-link"><img src="https://img.icons8.com/ios-glyphs/30/000000/graduation-cap--v1.png" alt="cursos">&nbsp; Cursos</a></p></div>
-                                          <div class="col-sm"><p><a href="{{ url('asignaturas') }}" class="card-link"><img src="https://img.icons8.com/ios-glyphs/30/000000/courses.png" alt="asignaturas">&nbsp; Asignaturas</a></p></div>
                                           <div class="col-sm"><p><a href="{{ url('notas') }}" class="card-link"><img src="https://img.icons8.com/ios-filled/30/000000/report-card.png" alt="notas">&nbsp; Notas</a></p></div>
                                           <div class="col-sm"><p><a href="{{ url('tareas') }}" class="card-link"><img src="https://img.icons8.com/ios-filled/30/000000/classroom.png" alt="tareas">&nbsp; Tareas</a></p></div>
                                           <div class="col-sm"><p><a href="{{ url('temas') }}" class="card-link"><img src="https://img.icons8.com/ios-glyphs/30/000000/courses.png" alt="temas">&nbsp; Temas</a></p></div>
+                                          <div class="col-sm"><p><a href="{{ url('reservas') }}" class="card-link"><img src="https://img.icons8.com/ios-glyphs/30/000000/exam.png" alt="reservas">&nbsp; Reservas</a></p></div>
                                           <div class="col-sm"><p><a href="{{ url('asistencias')}}" class="card-link"><img src="https://img.icons8.com/material/30/000000/scroll.png" alt="asistencias">&nbsp; Asistencias</a></p></div>
                                       </div>
                                   @endif

@@ -52,7 +52,12 @@
                             <tr>
                                 <td class="v-align-middle">{{ $tema->nombre }}</td>
                                 <td class="v-align-middle">{{ $tema->contenido }}</td>
-                                <td class="v-align-middle"><img src="/imagenes/pdf.png"  class="img-responsive" width="50">{{ $tema->documento_tema }}</td>
+                                <td class="v-align-middle">
+                                  <a href="{{ Storage::url($tema->documento_tema) }}" class="btn-descargar" target="_blank">
+                                      <i class="fas fa-download">{{ $tema->documento_tema }}</i>
+                                      <img src="/imagenes/pdf.png"  class="img-responsive" width="50">
+                                  </a>
+                                </td>
                                 <td class="v-align-middle">
                                   <form action="{{ route('temas/eliminar', $tema->id) }}" method="POST" class="form-horizontal" role="form" onsubmit="return confirmarEliminar()">
                                       <input type="hidden" name="_method" value="PUT">
@@ -61,23 +66,20 @@
                                         @if(Auth::user()->hasRole('admin'))
                                           <a href="{{ route('temas/editar', $tema->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          <a href="{{ route('temas/ver', $tema->documento_tema )}}" class="btn btn-warning">Ver</a>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
                                             <a href="{{ route('temas/editar', $tema->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
-                                            <a href="{{ route('temas/ver', $tema->documento_tema)}}" class="btn btn-warning">Ver</a>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
                                               <a href="{{ route('temas/editar', $tema->id) }}" class="btn btn-primary">Modificar</a>
-                                              <button type="submit" class="btn btn-danger">Eliminar</button>
-                                              <a href="{{ route('temas/ver', $tema->documento_tema )}}" class="btn btn-warning">Ver</a>
+                                              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                                              @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('temas/editar', $tema->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
-                                                <a href="{{ route('temas/ver', $tema->documento_tema )}}" class="btn btn-warning" disabled>Ver</a>
                                               @endif
                                             @endif
                                           @endif

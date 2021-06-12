@@ -20,7 +20,6 @@ class CreateAsistenciasTable extends Migration
             $table->integer('asignatura_id')->unsigned();
             $table->foreign('alumno_id')->references('id')->on('alumnos');
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
-            $table->timestamps();
         });
     }
 

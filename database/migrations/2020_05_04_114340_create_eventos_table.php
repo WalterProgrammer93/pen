@@ -20,7 +20,6 @@ class CreateEventosTable extends Migration
             $table->string('disponibilidad',13);
             $table->integer('aula_id')->unsigned();
             $table->foreign('aula_id')->references('id')->on('aulas');
-            $table->timestamps();
         });
     }
 
