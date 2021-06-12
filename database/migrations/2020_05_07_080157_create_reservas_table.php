@@ -23,6 +23,7 @@ class CreateReservasTable extends Migration
             $table->foreign('profesor_id')->references('id')->on('profesors');
             $table->foreign('evento_id')->references('id')->on('eventos');
             $table->foreign('aula_id')->references('id')->on('aulas');
+            $table->timestamps();
         });
     }
 

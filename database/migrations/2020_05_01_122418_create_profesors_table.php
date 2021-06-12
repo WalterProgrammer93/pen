@@ -24,6 +24,7 @@ class CreateProfesorsTable extends Migration
             $table->string('disponibilidad',13);
             $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->timestamps();
         });
     }
 

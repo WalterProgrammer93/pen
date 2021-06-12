@@ -18,6 +18,7 @@ class CreateDepartamentosTable extends Migration
             $table->string('nombre',50)->unique();
             $table->string('descripcion',100)->nullable();
             $table->string('estado',7);
+            $table->timestamps();
         });
     }
 

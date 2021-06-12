@@ -17,6 +17,7 @@ class CreateCursosTable extends Migration
             $table->increments('id');
             $table->string('nombre',50)->unique();
             $table->string('descripcion',100)->nullable();
+            $table->timestamps();
         });
     }
 

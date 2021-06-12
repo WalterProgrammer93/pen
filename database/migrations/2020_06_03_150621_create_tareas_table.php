@@ -28,6 +28,7 @@ class CreateTareasTable extends Migration
             $table->integer('tema_id')->unsigned();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');
             $table->foreign('tema_id')->references('id')->on('temas');
+            $table->timestamps();
         });
     }
 

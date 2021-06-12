@@ -17,6 +17,7 @@ class CreatePerfilsTable extends Migration
             $table->increments('id');
             $table->string('nombre',20)->unique();
             $table->string('descripcion',100);
+            $table->timestamps();
         });
     }
 
