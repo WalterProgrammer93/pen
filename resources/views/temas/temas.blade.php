@@ -98,9 +98,31 @@
                         @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-0">
-                                <button type="submit" class="btn btn-success">
-                                    Crear Tema
-                                </button>
+                                @if (Auth::check())
+                                  @if (Auth::user()->hasRole('admin'))
+                                    <button type="submit" class="btn btn-success">
+                                        Crear Tema
+                                    </button>
+                                  @else
+                                    @if (Auth::user()->hasRole('student'))
+                                      <button type="submit" class="btn btn-success" disabled>
+                                          Crear Tema
+                                      </button>
+                                    @else
+                                      @if (Auth::user()->hasRole('teacher'))
+                                        <button type="submit" class="btn btn-success">
+                                            Crear Tema
+                                        </button>
+                                      @else
+                                        @if(Auth::user()->hasRole('user'))
+                                          <button type="submit" class="btn btn-success" disabled>
+                                              Crear Tema
+                                          </button>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                                @endif
                                 <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
                             </div>
                         </div>
