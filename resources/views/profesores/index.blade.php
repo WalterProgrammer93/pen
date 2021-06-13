@@ -1,26 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+@if(Auth::check())
+  @if(!empty($profesores->id))
+    <div class="container">
+      <div class="row justify-content-center">
         <div class="col-md-8">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
               <li class="breadcrumb-item"><a href="{{ url('profesores') }}">Profesores</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Crear</li>
+              <li class="breadcrumb-item active" aria-current="page">Modificar</li>
             </ol>
           </nav>
           <div class="card">
-              <div class="card-header">Crear Profesor</div>
+              <div class="card-header">Modificar Profesor</div>
                 <div class="card-body">
                       @if(Session('status'))
                         <div class="alert alert-success" role="alert">
                               {{ session('status') }}
                         </div>
                       @endif
-                      @if(Auth::check())
-                        @if(!empty($profesores->id))
+
                           <form method="POST" action="{{ route('profesores/actualizar', $profesores->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
@@ -128,7 +129,33 @@
                                 </div>
                             </div>
                           </form>
-                      @else
+
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+  @else
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('profesores') }}">Profesores</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear</li>
+              </ol>
+            </nav>
+            <div class="card">
+                <div class="card-header">Crear Profesor</div>
+                  <div class="card-body">
+                        @if(Session('status'))
+                          <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                          </div>
+                        @endif
                         <form method="POST" action="{{ route('profesores/guardar') }}">
                           @csrf
                           <input type="hidden" name="_method" value="PUT">
@@ -235,12 +262,13 @@
                               </div>
                           </div>
                         </form>
-                      @endif
-                    @endif
+
                   </div>
               </div>
           </div>
         </div>
     </div>
 </div>
+@endif
+@endif
 @endsection
