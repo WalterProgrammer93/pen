@@ -20,7 +20,7 @@ class CsvFile extends Controller
 
     public function Export()
     {
-        return Excel::download(new CsvExport, 'usuario.csv')
+        return Excel::download(new CsvExport, 'usuario.csv');
     }
 
     public function Import()

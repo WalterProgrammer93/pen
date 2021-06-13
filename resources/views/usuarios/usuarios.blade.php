@@ -113,7 +113,8 @@
                                   @endif
                                 @endif
                                 <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
-                                <a href="{{ url('importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                <a href="{{ route('usuarios/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                <a href="{{ route('usuarios/exportar') }}" class="btn btn-warning">Exportar CSV</a>
                             </div>
                         </div>
                     </form>

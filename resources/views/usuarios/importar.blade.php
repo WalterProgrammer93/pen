@@ -26,8 +26,9 @@
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="file" name="file" accept=".csv">
+
                         <button class="btn btn-success">Importar</button>
-                        <a href="{{ route('exportar') }}" class="btn btn-warning">Exportar</a>
+                        
                     </form>
                 </div>
             </div>
