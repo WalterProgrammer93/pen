@@ -86,7 +86,7 @@
                     <form  method="POST" action="{{ route('usuarios/crear') }}">
                         {{csrf_field()}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-0">
+                            <div class="col-md-10 offset-md-0">
                                 @if (Auth::check())
                                   @if (Auth::user()->hasRole('admin'))
                                     <button type="submit" class="btn btn-success">
@@ -113,6 +113,7 @@
                                   @endif
                                 @endif
                                 <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
+                                <a href="{{ url('importacion') }}" class="btn btn-warning">Importar CSV</a>
                             </div>
                         </div>
                     </form>

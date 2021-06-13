@@ -283,6 +283,21 @@ Route::post('usuarios/filtro', [
     'before' => 'crsf',
     'uses' => 'UsuarioController@filter'])->name('usuarios/filtro');
 
+Route::get('usuarios/importacion', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'CsvFile@index'])->name('usuarios/importacion');
+
+Route::get('usuarios/exportar', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'CsvFile@export'])->name('usuarios/exportar');
+
+Route::post('usuarios/import', [
+    'middleware' => 'auth',
+    'before' => 'crsf',
+    'uses' => 'CsvFile@import'])->name('usuarios/importar');
+
 // ACCESSO A RUTAS DE NOTAS
 /* Leer */
 Route::get('notas', 'NotaController@index')->name('notas');
