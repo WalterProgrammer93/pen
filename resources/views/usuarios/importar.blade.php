@@ -25,10 +25,42 @@
                     <form method="POST" action="{{ route('usuarios/importar') }}" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="file" name="file" accept=".csv">
-
-                        <button class="btn btn-success">Importar</button>
-                        
+                        <div class="form-group row">
+                            <label for="file" class="col-md-4 col-form-label text-md-right">Archivo: </label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control @error('file') is-invalid @enderror" name="file" accept=".csv">
+                            </div>
+                            @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                              @if (Auth::check())
+                                  @if (Auth::user()->hasRole('admin'))
+                                    <button class="btn btn-success">Importar</button>
+                                    <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                  @else
+                                    @if (Auth::user()->hasRole('student'))
+                                      <button class="btn btn-success" disabled>Importar</button>
+                                      <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                    @else
+                                      @if (Auth::user()->hasRole('teacher'))
+                                        <button class="btn btn-success" disabled>Importar</button>
+                                        <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                      @else
+                                        @if (Auth::user()->hasRole('user'))
+                                          <button class="btn btn-success" disabled>Importar</button>
+                                          <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                              @endif
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

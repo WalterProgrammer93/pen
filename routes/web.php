@@ -293,7 +293,7 @@ Route::get('usuarios/exportar', [
     'before' => 'crsf',
     'uses' => 'CsvFile@export'])->name('usuarios/exportar');
 
-Route::post('usuarios/import', [
+Route::put('usuarios/import', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'CsvFile@import'])->name('usuarios/importar');
