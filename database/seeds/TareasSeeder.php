@@ -21,7 +21,7 @@ class TareasSeeder extends Seeder
         $tarea->fecha_envio = '2021/06/15';
         $tarea->fecha_entrega = '2021/06/17';
         $tarea->hora_entrega = '19:30';
-        $tarea->documento_tarea = '';
+        $tarea->documento_tarea = 'C:\Users\Usuario\Desktop\PMDM\Tarea1.pdf';
         $tarea->subido_documento = '';
         $tarea->calificacion = '';
         $asignatura = Asignatura::where('nombre', 'Matemáticas')->first();
@@ -37,7 +37,7 @@ class TareasSeeder extends Seeder
         $tarea->fecha_envio = '2021/06/15';
         $tarea->fecha_entrega = '2021/06/17';
         $tarea->hora_entrega = '13:30';
-        $tarea->documento_tarea = '';
+        $tarea->documento_tarea = 'C:\Users\Usuario\Desktop\PMDM\Tarea2.pdf';
         $tarea->subido_documento = '';
         $tarea->calificacion = '';
         $asignatura = Asignatura::where('nombre', 'Lengua y Castellano')->first();
@@ -53,7 +53,7 @@ class TareasSeeder extends Seeder
         $tarea->fecha_envio = '2021/06/15';
         $tarea->fecha_entrega = '2021/06/17';
         $tarea->hora_entrega = '12:30';
-        $tarea->documento_tarea = '';
+        $tarea->documento_tarea = 'C:\Users\Usuario\Desktop\PMDM\Tarea3.pdf';
         $tarea->subido_documento = '';
         $tarea->calificacion = '';
         $asignatura = Asignatura::where('nombre', 'Educación física')->first();
@@ -69,7 +69,7 @@ class TareasSeeder extends Seeder
         $tarea->fecha_envio = '2021/06/15';
         $tarea->fecha_entrega = '2021/06/17';
         $tarea->hora_entrega = '10:30';
-        $tarea->documento_tarea = '';
+        $tarea->documento_tarea = 'C:\Users\Usuario\Desktop\PMDM\Tarea4.pdf';
         $tarea->subido_documento = '';
         $tarea->calificacion = '';
         $asignatura = Asignatura::where('nombre', 'Física y Química')->first();
@@ -85,7 +85,7 @@ class TareasSeeder extends Seeder
         $tarea->fecha_envio = '2021/06/15';
         $tarea->fecha_entrega = '2021/06/17';
         $tarea->hora_entrega = '09:30';
-        $tarea->documento_tarea = '';
+        $tarea->documento_tarea = 'C:\Users\Usuario\Desktop\PMDM\Tarea4B.pdf';
         $tarea->subido_documento = '';
         $tarea->calificacion = '';
         $asignatura = Asignatura::where('nombre', 'Inglés')->first();

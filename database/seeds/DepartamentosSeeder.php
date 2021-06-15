@@ -31,7 +31,7 @@ class DepartamentosSeeder extends Seeder
         $departamento->save();
 
         $departamento = new Departamento();
-        $departamento->nombre = 'Ciencias y tecnología';
+        $departamento->nombre = 'Ciencias y tecnologías';
         $departamento->descripcion = 'Tercera planta';
         $departamento->estado = 'Cerrado';
         $departamento->save();
@@ -39,7 +39,7 @@ class DepartamentosSeeder extends Seeder
         $departamento = new Departamento();
         $departamento->nombre = 'Educación y filosofía';
         $departamento->descripcion = 'Tercera planta';
-        $departamento->estado = '';
+        $departamento->estado = 'Abierto';
         $departamento->save();
     }
 }
