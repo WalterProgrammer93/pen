@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use pen\Curso;
 
 class CursosSeeder extends Seeder
 {
@@ -42,13 +43,8 @@ class CursosSeeder extends Seeder
         $curso->save();
 
         $curso = new Curso();
-        $curso->nombre = 'ESO1';
-        $curso->descripcion = 'Primero de la educación secundaria obligatoria';
-        $curso->save();
-
-        $curso = new Curso();
-        $curso->nombre = 'ESO1';
-        $curso->descripcion = 'Primero de la educación secundaria obligatoria';
+        $curso->nombre = 'FPBC';
+        $curso->descripcion = 'Formación profesional basica de cocina';
         $curso->save();
 
         $curso = new Curso();

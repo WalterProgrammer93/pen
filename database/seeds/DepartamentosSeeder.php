@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use pen\Departamento;
 
 class DepartamentosSeeder extends Seeder
 {
@@ -11,6 +12,10 @@ class DepartamentosSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $departamento = new Departamento();
+        $departamento->nombre = '';
+        $departamento->descripcion = '';
+        $departamento->estado = '';
+        $departamento->save();
     }
 }
