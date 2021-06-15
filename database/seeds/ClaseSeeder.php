@@ -36,14 +36,14 @@ class ClaseSeeder extends Seeder
         $clase->horario = '10:00 a 11:30';
 
         $clase = new Clase();
-        $asignatura = Asignatura::where('nombre', 'Física y Química')->first();
+        $asignatura = Asignatura::where('nombre', 'Inglés')->first();
         $clase->asignatura()->associate($asignatura);
         $profesor = Profesor::where('nombre', 'María')->first();
         $clase->profesor()->associate($profesor);
         $clase->horario = '10:00 a 11:30';
 
         $clase = new Clase();
-        $asignatura = Asignatura::where('nombre', 'Informática')->first();
+        $asignatura = Asignatura::where('nombre', 'Física y Química')->first();
         $clase->asignatura()->associate($asignatura);
         $profesor = Profesor::where('nombre', 'Carlos')->first();
         $clase->profesor()->associate($profesor);

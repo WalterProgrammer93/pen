@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
       $this->call(ReservasSeeder::class);
       $this->call(TemasSeeder::class);
       $this->call(TareasSeeder::class);
-      $this->call(RoleSeeder::class);*/
+      $this->call(RoleSeeder::class);
     }
 }

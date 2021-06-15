@@ -22,7 +22,7 @@ class ProfesorsSeeder extends Seeder
         $profesor->telefono = '93549274';
         $profesor->disponibilidad = 'Disponible';
         $departamento = Departamento::where('nombre', 'Lengua y literatura')->first();
-        $profesor->curso()->associate($departamento);
+        $profesor->departamento()->associate($departamento);
         $profesor->save();
 
         $profesor = new Profesor();
@@ -34,43 +34,43 @@ class ProfesorsSeeder extends Seeder
         $profesor->telefono = '845825648';
         $profesor->disponibilidad = 'No Disponible';
         $departamento = Departamento::where('nombre', 'Matemáticas y informática')->first();
-        $profesor->curso()->associate($departamento);
+        $profesor->departamento()->associate($departamento);
         $profesor->save();
 
         $profesor = new Profesor();
-        $profesor->nombre = '';
-        $profesor->apellido1 = '';
-        $profesor->apellido2 = '';
-        $profesor->dni = '';
-        $profesor->email = '';
-        $profesor->telefono = '';
-        $profesor->disponibilidad = '';
-        $departamento = Departamento::where('nombre', 'Lengua y literatura')->first();
-        $profesor->curso()->associate($departamento);
+        $profesor->nombre = 'Lucia';
+        $profesor->apellido1 = 'Fuentes';
+        $profesor->apellido2 = 'Robles';
+        $profesor->dni = '83462845H';
+        $profesor->email = 'lucia.fuentes38@gmail.com';
+        $profesor->telefono = '482384670';
+        $profesor->disponibilidad = 'Disponible';
+        $departamento = Departamento::where('nombre', 'Educación y filosofía')->first();
+        $profesor->departamento()->associate($departamento);
         $profesor->save();
 
         $profesor = new Profesor();
-        $profesor->nombre = '';
-        $profesor->apellido1 = '';
-        $profesor->apellido2 = '';
-        $profesor->dni = '';
-        $profesor->email = '';
-        $profesor->telefono = '';
-        $profesor->disponibilidad = '';
-        $departamento = Departamento::where('nombre', 'Lengua y literatura')->first();
-        $profesor->curso()->associate($departamento);
+        $profesor->nombre = 'Carlos';
+        $profesor->apellido1 = 'Morán';
+        $profesor->apellido2 = 'Martínez';
+        $profesor->dni = '93483475L';
+        $profesor->email = 'carlos.martinez35@gmail.com';
+        $profesor->telefono = '078483925';
+        $profesor->disponibilidad = 'Disponible';
+        $departamento = Departamento::where('nombre', 'Ciencias y tecnologías')->first();
+        $profesor->departamento()->associate($departamento);
         $profesor->save();
 
         $profesor = new Profesor();
-        $profesor->nombre = '';
-        $profesor->apellido1 = '';
-        $profesor->apellido2 = '';
-        $profesor->dni = '';
-        $profesor->email = '';
-        $profesor->telefono = '';
-        $profesor->disponibilidad = '';
-        $departamento = Departamento::where('nombre', 'Lengua y literatura')->first();
-        $profesor->curso()->associate($departamento);
+        $profesor->nombre = 'María';
+        $profesor->apellido1 = 'Lopera';
+        $profesor->apellido2 = 'Velásquez';
+        $profesor->dni = '53975927F';
+        $profesor->email = 'maria.lopera34@gmai.com';
+        $profesor->telefono = '569346583';
+        $profesor->disponibilidad = 'Disponible';
+        $departamento = Departamento::where('nombre', 'Lengua extranjera y idiomas')->first();
+        $profesor->departamento()->associate($departamento);
         $profesor->save();
     }
 }

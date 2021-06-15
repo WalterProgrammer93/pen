@@ -41,7 +41,7 @@ class AlumnosSeeder extends Seeder
         $alumno->apellido1 = 'Contreras';
         $alumno->apellido2 = 'Zuloaga';
         $alumno->dni = '93482194U';
-        $alumno->fecha_nacimiento = '15/11/1995';
+        $alumno->fecha_nacimiento = '1995/11/15';
         $alumno->telefono = '934578294';
         $alumno->correo = 'julio.contreras95@gmail.com';
         $alumno->sexo = 'M';
@@ -64,7 +64,7 @@ class AlumnosSeeder extends Seeder
         $alumno->apellido1 = 'Zambrano';
         $alumno->apellido2 = 'López';
         $alumno->dni = '93472845I';
-        $alumno->fecha_nacimiento = '20/08/1999';
+        $alumno->fecha_nacimiento = '1999/08/20';
         $alumno->telefono = '562967485';
         $alumno->correo = 'oscar.lopez99@educantabria.es';
         $alumno->sexo = 'M';
@@ -87,7 +87,7 @@ class AlumnosSeeder extends Seeder
         $alumno->apellido1 = 'Donovan';
         $alumno->apellido2 = 'Jiménez';
         $alumno->dni = '17458245J';
-        $alumno->fecha_nacimiento = '17/04/2000';
+        $alumno->fecha_nacimiento = '2000/04/17';
         $alumno->telefono = '437295648';
         $alumno->correo = 'carlos.donovan@gmail.com';
         $alumno->sexo = 'M';
@@ -110,7 +110,7 @@ class AlumnosSeeder extends Seeder
         $alumno->apellido1 = 'Montés';
         $alumno->apellido2 = 'Velasco';
         $alumno->dni = '78382965H';
-        $alumno->fecha_nacimiento = '23/12/2001';
+        $alumno->fecha_nacimiento = '2001/12/23';
         $alumno->telefono = '945823564';
         $alumno->correo = 'gabriela.montes01@gmail.com';
         $alumno->sexo = 'F';

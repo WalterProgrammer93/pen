@@ -53,10 +53,15 @@ class TareaController extends Controller
         $tareas->fecha_envio = $request->fecha_envio;
         $tareas->fecha_entrega = $request->fecha_entrega;
         $tareas->hora_entrega = $request->hora_entrega;
-        if ($archivo = $request->file('archivo_tarea')) {
+        if ($archivo = $request->file('documento_tarea')) {
             $nombre  = $archivo->getClientOriginalName();
             $archivo->move("documentos", $nombre);
-            $tareas->archivo_tarea = $nombre;
+            $tareas->documento_tarea = $nombre;
+        }
+        if ($archivo_subido = $request->file('subir_documento')) {
+            $nombre_subido  = $archivo->getClientOriginalName();
+            $archivo_subido->move("documentos", $nombre_subido);
+            $tareas->subir_documento = $nombre_subido;
         }
         $tareas->calificacion = $request->calificacion;
         $tareas->asignatura()->associate($request->asignatura_id);
@@ -127,11 +132,7 @@ class TareaController extends Controller
     {
         $texto = $request->input('buscar');
         $tareas = Tarea::where('titulo','like','%'.$texto.'%')
-            ->orWhere('autor','like','%'.$texto.'%')
-            ->orWhere('fecha_envio','like','%'.$texto.'%')
-            ->orWhere('fecha_entrega','like','%'.$texto.'%')
-            ->orWhere('hora_entrega','like','%'.$texto.'%')
-            ->orWhere('calificacion','like','%'.$texto.'%')->paginate(5);
+            ->orWhere('autor','like','%'.$texto.'%')->paginate(5);
 
         if (!empty($tareas)) {
             return view('tareas.tareas', compact('texto', 'tareas'));
