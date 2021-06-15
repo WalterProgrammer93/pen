@@ -46,7 +46,7 @@ class TemaController extends Controller
         $temas->contenido = $request->contenido;
         if ($archivo = $request->file('documento_tema')) {
             $nombre  = $archivo->getClientOriginalName();
-            $archivo->move("archivos", $nombre);
+            $archivo->move("documentos", $nombre);
             $temas->documento_tema = $archivo;
         }
         $temas->save();

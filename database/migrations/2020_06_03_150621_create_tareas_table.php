@@ -21,8 +21,8 @@ class CreateTareasTable extends Migration
             $table->date('fecha_subida');
             $table->date('fecha_entrega');
             $table->time('hora_entrega');
-            $table->string('documento_tarea',255);
-            $table->string('subir_documento',255)->nullable();
+            $table->string('documento_tarea',255)->default();
+            $table->string('subir_documento',255)->nullable()->default();
             $table->integer('calificacion')->unsigned()->nullable();
             $table->integer('asignatura_id')->unsigned();
             $table->integer('tema_id')->unsigned();

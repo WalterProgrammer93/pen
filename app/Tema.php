@@ -8,7 +8,7 @@ use pen\Tarea;
 class Tema extends Model
 {
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'titulo', 'documento_tema'];
+    protected $fillable = ['nombre', 'contenido', 'documento_tema'];
 
     public function tarea() {
     	return $this->hasMany(Tarea::class);
