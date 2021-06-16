@@ -79,15 +79,15 @@ class CsvFile extends Controller
 
     public function indexAula()
     {
-        return view('alumno.importar');
+        return view('aulas.importar');
     }
 
-    public function ExportAlumno()
+    public function ExportAula()
     {
         return Excel::download(new CsvExport, 'alumnos.csv');
     }
 
-    public function ImportAlumno()
+    public function ImportAula()
     {
         Excel::import(new CsvImport, request()->file('file'));
         return back();
