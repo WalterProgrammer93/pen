@@ -22,15 +22,15 @@ class EventosSeeder extends Seeder
         $evento->save();
 
         $evento = new Evento();
-        $evento->nombre = 'Graduación de 2º Bachiller';
-        $evento->descripcion = 'Finalización de la etapa de los alumnos';
+        $evento->nombre = 'Charla de automoción';
+        $evento->descripcion = 'Charla para los alumnos de CFGS';
         $evento->disponibilidad = 'disponible';
         $aula = Aula::where('etiqueta', 'A1')->first();
         $evento->aula()->associate($aula);
         $evento->save();
 
         $evento = new Evento();
-        $evento->nombre = 'Olimpiadas de matemáticas';
+        $evento->nombre = 'Olimpiadas de mates';
         $evento->descripcion = 'Competición de los alumnos de la ESO';
         $evento->disponibilidad = 'disponible';
         $aula = Aula::where('etiqueta', 'B6')->first();
@@ -38,7 +38,7 @@ class EventosSeeder extends Seeder
         $evento->save();
 
         $evento = new Evento();
-        $evento->nombre = 'Charla de nuevas carreras tecnologias';
+        $evento->nombre = 'Charla de tecno';
         $evento->descripcion = 'Intervención de profesores para orientar a los alumnos a escoger carrera';
         $evento->disponibilidad = 'disponible';
         $aula = Aula::where('etiqueta', 'C4')->first();
@@ -46,7 +46,7 @@ class EventosSeeder extends Seeder
         $evento->save();
 
         $evento = new Evento();
-        $evento->nombre = 'Salida a descenso del sella';
+        $evento->nombre = 'Salida al sella';
         $evento->descripcion = 'Viaje de los alumnos de 4º ESO al descenso del sella';
         $evento->disponibilidad = 'disponible';
         $aula = Aula::where('etiqueta', 'A5')->first();

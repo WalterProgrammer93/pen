@@ -15,15 +15,15 @@ class CreateTareasTable extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo',20)->unique();
+            $table->string('titulo',30)->unique();
             $table->string('descripcion',100);
             $table->string('autor',20)->unique();
-            $table->date('fecha_subida');
+            $table->date('fecha_envio');
             $table->date('fecha_entrega');
             $table->time('hora_entrega');
             $table->string('documento_tarea',255)->default();
             $table->string('subir_documento',255)->nullable()->default();
-            $table->integer('calificacion')->unsigned()->nullable();
+            $table->integer('calificacion')->nullable();
             $table->integer('asignatura_id')->unsigned();
             $table->integer('tema_id')->unsigned();
             $table->foreign('asignatura_id')->references('id')->on('asignaturas');

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use pen\Roles;
+use pen\User;
+use pen\Perfil;
 
 class RoleSeeder extends Seeder
 {
