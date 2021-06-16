@@ -10,7 +10,7 @@ use pen\User;
 
 class CsvFile extends Controller
 {
-    public function index()
+    public function indexUser()
     {
         /*$data = User::latest()->paginate(5);
         return view('usuario.usuario', compact('data'))
@@ -18,12 +18,76 @@ class CsvFile extends Controller
         return view('usuarios.importar');
     }
 
-    public function Export()
+    public function ExportUser()
     {
-        return Excel::download(new CsvExport, 'usuario.csv');
+        return Excel::download(new CsvExport, 'usuarios.csv');
     }
 
-    public function Import()
+    public function ImportUser()
+    {
+        Excel::import(new CsvImport, request()->file('file'));
+        return back();
+    }
+
+    public function indexAlumno()
+    {
+        return view('alumno.importar');
+    }
+
+    public function ExportAlumno()
+    {
+        return Excel::download(new CsvExport, 'alumnos.csv');
+    }
+
+    public function ImportAlumno()
+    {
+        Excel::import(new CsvImport, request()->file('file'));
+        return back();
+    }
+
+    public function indexAsignatura()
+    {
+        return view('asignaturas.importar');
+    }
+
+    public function ExportAsignatura()
+    {
+        return Excel::download(new CsvExport, 'asignaturas.csv');
+    }
+
+    public function ImportAsignatura()
+    {
+        Excel::import(new CsvImport, request()->file('file'));
+        return back();
+    }
+
+    public function indexAsistencia()
+    {
+        return view('asistencias.importar');
+    }
+
+    public function ExportAsistencia()
+    {
+        return Excel::download(new CsvExport, 'asistencias.csv');
+    }
+
+    public function ImportAsistencia()
+    {
+        Excel::import(new CsvImport, request()->file('file'));
+        return back();
+    }
+
+    public function indexAula()
+    {
+        return view('alumno.importar');
+    }
+
+    public function ExportAlumno()
+    {
+        return Excel::download(new CsvExport, 'alumnos.csv');
+    }
+
+    public function ImportAlumno()
     {
         Excel::import(new CsvImport, request()->file('file'));
         return back();
