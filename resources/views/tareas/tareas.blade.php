@@ -60,8 +60,19 @@
                                 <td class="v-align-middle">{{ $tarea->autor }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
-                                <td class="v-align-middle"><img src="documentos/{{ $tarea->documento_tarea }}"  class="img-responsive" width="50"/>{{ $tarea->documento_tarea }}</td>
-                                <td class="v-align-middle"><img src="documentos/{{ $tarea->subir_documento }}" class="img-responsive" width="50"/>{{ $tarea->subir_documento }}</td>
+                                <td class="v-align-middle">
+                                  <a href="{{ Storage::url($tarea->documento_tarea) }}" class="btn-descargar" target="_blank">
+                                      <i class="fas fa-download">{{ $tarea->documento_tarea }}</i>
+                                      <img src="/imagenes/pdf.png"  class="img-responsive" width="50">
+                                  </a>
+                                </td>
+                                <td class="v-align-middle">
+                                  <a href="{{ Storage::url($tarea->subir_documento) }}" class="btn-descargar" target="_blank">
+                                      <i class="fas fa-download">{{ $tarea->subir_documento }}</i>
+                                      <img src="/imagenes/pdf.png"  class="img-responsive" width="50">
+                                  </a>
+                                  <!--<img src="documentos/{{ $tarea->subir_documento }}" class="img-responsive" width="50"/>{{ $tarea->subir_documento }}-->
+                                </td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
                                 <td class="v-align-middle">{{ $tarea->asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $tarea->tema->nombre }}</td>
