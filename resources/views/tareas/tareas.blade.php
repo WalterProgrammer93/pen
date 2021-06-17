@@ -45,10 +45,10 @@
                         <tr>
                             <th>Titulo</th>
                             <th>Autor</th>
-                            <th>Fecha envio</th>
                             <th>Fecha entrega</th>
                             <th>Hora entrega</th>
-                            <th>Archivo Tarea</th>
+                            <th>Documento Tarea</th>
+                            <th>Subir Documento</th>
                             <th>Calificacion</th>
                             <th>Asignatura</th>
                             <th>Tema</th>
@@ -58,10 +58,10 @@
                             <tr>
                                 <td class="v-align-middle">{{ $tarea->titulo }}</td>
                                 <td class="v-align-middle">{{ $tarea->autor }}</td>
-                                <td class="v-align-middle">{{ $tarea->fecha_envio }}</td>
                                 <td class="v-align-middle">{{ $tarea->fecha_entrega }}</td>
                                 <td class="v-align-middle">{{ $tarea->hora_entrega }}</td>
-                                <td class="v-align-middle"><img src="documentos/{{ $tarea->archivo_tarea }}"  class="img-responsive" width="50"/>{{ $tarea->archivo_tarea }}</td>
+                                <td class="v-align-middle"><img src="documentos/{{ $tarea->documento_tarea }}"  class="img-responsive" width="50"/>{{ $tarea->documento_tarea }}</td>
+                                <td class="v-align-middle"><img src="documentos/{{ $tarea->subir_documento }}" class="img-responsive" width="50"/>{{ $tarea->subir_documento }}</td>
                                 <td class="v-align-middle">{{ $tarea->calificacion }}</td>
                                 <td class="v-align-middle">{{ $tarea->asignatura->nombre }}</td>
                                 <td class="v-align-middle">{{ $tarea->tema->nombre }}</td>
@@ -73,23 +73,22 @@
                                         @if(Auth::user()->hasRole('admin'))
                                           <a href="{{ route('tareas/editar', $tarea->id) }}" class="btn btn-primary">Modificar</a>
                                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                          <a href="{{ route('tareas/ver', $tarea-archivo_tarea )}}" class="btn btn-warning">Ver</a>
                                           @include('alerts.dialogos')
                                         @else
                                           @if(Auth::user()->hasRole('student'))
                                             <a href="{{ route('tareas/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
-                                              <a href="{{ route('tareas/ver', $tarea-archivo_tarea )}}" class="btn btn-warning">Ver</a>
+                                            @include('alerts.dialogos')
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
                                               <a href="{{ route('tareas/editar', $alumno->id) }}" class="btn btn-primary">Modificar</a>
                                               <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                <a href="{{ route('tareas/ver', $tarea-archivo_tarea )}}" class="btn btn-warning">Ver</a>
+                                              @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('tareas/editar', $alumno->id) }}" class="btn btn-primary" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
-                                                  <a href="{{ route('tareas/ver', $tarea-archivo_tarea )}}" class="btn btn-warning" disabled>Ver</a>
+                                                @include('alerts.dialogos')
                                               @endif
                                             @endif
                                           @endif
