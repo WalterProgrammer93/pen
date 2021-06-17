@@ -72,14 +72,17 @@
                                             @if(Auth::user()->hasRole('student'))
                                               <a href="{{ route('alumnos/editar', $alumno->id) }}" id="modificar" class="btn btn-primary" disabled>Modificar</a>
                                               <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
+                                              @include('alerts.dialogos')
                                             @else
                                               @if(Auth::user()->hasRole('teacher'))
                                                 <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" id="modificar" disabled>Modificar</a>
                                                 <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
+                                                @include('alerts.dialogos')
                                               @else
                                                 @if(Auth::user()->hasRole('user'))
                                                   <a href="{{ route('alumnos/editar', $alumno->id) }}" class="btn btn-primary" id="modificar" disabled>Modificar</a>
                                                   <button type="submit" class="btn btn-danger" id="eliminar" disabled>Eliminar</button>
+                                                  @include('alerts.dialogos')
                                                 @endif
                                               @endif
                                             @endif
@@ -124,9 +127,24 @@
                                       @endif
                                     @endif
                                   @endif
-                                @endif
-                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
-                                <a href="{{ url('importar') }}" class="btn btn-warning">Importar CSV</a>
+                                  <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
+                                  <a href="{{ route('alumnos/exportar') }}" class="btn btn-danger">Exportar CSV</a>
+                                  @if (Auth::user()->hasRole('admin'))
+                                    <a href="{{ route('alumnos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                  @else
+                                    @if (Auth::user()->hasRole('student'))
+                                      <a href="{{ route('alumnos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                    @else
+                                      @if (Auth::user()->hasRole('teacher'))
+                                        <a href="{{ route('alumnos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                      @else
+                                        @if (Auth::user()->hasRole('user'))
+                                          <a href="{{ route('alumnos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                              @endif
                             </div>
                         </div>
                     </form>

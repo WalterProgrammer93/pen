@@ -4,6 +4,7 @@ namespace pen\Http\Controllers\Auth;
 
 use pen\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -57,4 +58,16 @@ class LoginController extends Controller
     		return back()->withErrors(['email' => trans('auth.failed')])->withInput(request(['email']));
     	}
     }*/
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        \Auth::logoutOtherDevices(\request('password'));
+    }
 }

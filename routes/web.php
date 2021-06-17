@@ -66,6 +66,21 @@ Route::post('alumnos/filtro', [
     'before' => 'crsf',
     'uses' => 'AlumnoController@filter'])->name('alumnos/filtro');
 
+    Route::get('alumnos/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexAlumno'])->name('alumnos/importacion');
+
+    Route::get('alumnos/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportAlumno'])->name('alumnos/exportar');
+
+    Route::put('usuarios/import', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importAlumno'])->name('alumnos/importar');
+
 // ACCESO A LAS RUTAS DE CURSOS
 /* Leer */
 Route::get('cursos', 'CursoController@index')->name('cursos');
@@ -109,6 +124,21 @@ Route::post('cursos/filtro', [
     'before' => 'crsf',
     'uses' => 'CursoController@filter'])->name('cursos/filtro');
 
+    Route::get('cursos/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexCurso'])->name('cursos/importacion');
+
+    Route::get('cursos/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportCurso'])->name('curso/exportar');
+
+    Route::put('cursos/import', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importCurso'])->name('curso/importar');
+
 // ACCESO A LAS RUTAS DE ASIGNATURAS
 /* Leer */
 Route::get('asignaturas', 'AsignaturaController@index')->name('asignaturas');
@@ -151,6 +181,21 @@ Route::post('asignaturas/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'AsignaturaController@filter'])->name('asignaturas/filtro');
+
+    Route::get('asignaturas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexAsignatura'])->name('asignaturas/importacion');
+
+    Route::get('asignaturas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportAsignatura'])->name('asignaturas/exportar');
+
+    Route::put('asignaturas/importAsignatura', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importAsignatura'])->name('asignaturas/importar');
 
 
 // ACCESO A LAS RUTAS DE ASISTENCIAS
@@ -196,6 +241,21 @@ Route::post('asistencias/filtro', [
     'before' => 'crsf',
     'uses' => 'AsistenciaController@filter'])->name('asistencias/filtro');
 
+    Route::get('asistencias/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexAsistencia'])->name('asistencias/importacion');
+
+    Route::get('asistencias/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportAsistencia'])->name('asistencias/exportar');
+
+    Route::put('asistencias/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importAsistencia'])->name('asistencias/importar');
+
 // ACCESO A LAS RUTAS DE PROFESORES
 /* Leer */
 Route::get('profesores', 'ProfesorController@index')->name('profesores');
@@ -238,6 +298,21 @@ Route::post('profesores/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'ProfesorController@filter'])->name('profesores/filtro');
+
+    Route::get('profesores/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexProfesor'])->name('profesores/importacion');
+
+    Route::get('profesores/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportProfesor'])->name('profesores/exportar');
+
+    Route::put('profesores/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importProfesor'])->name('profesores/importar');
 
 // ACCESO A LAS RUTAS DE USUARIOS
 
@@ -286,17 +361,17 @@ Route::post('usuarios/filtro', [
 Route::get('usuarios/importacion', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CsvFile@index'])->name('usuarios/importacion');
+    'uses' => 'CsvFile@indexUser'])->name('usuarios/importacion');
 
 Route::get('usuarios/exportar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CsvFile@export'])->name('usuarios/exportar');
+    'uses' => 'CsvFile@exportUser'])->name('usuarios/exportar');
 
-Route::put('usuarios/import', [
+Route::put('usuarios/importar', [
     'middleware' => 'auth',
     'before' => 'crsf',
-    'uses' => 'CsvFile@import'])->name('usuarios/importar');
+    'uses' => 'CsvFile@importUser'])->name('usuarios/importar');
 
 // ACCESSO A RUTAS DE NOTAS
 /* Leer */
@@ -346,6 +421,21 @@ Route::get('notas/ver/{id}', [
     'before' => 'crsf',
     'uses' => 'NotaController@ver'])->name('notas/ver');
 
+    Route::get('notas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexNota'])->name('notas/importacion');
+
+    Route::get('notas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportNota'])->name('notas/exportar');
+
+    Route::put('notas/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importNota'])->name('notas/importar');
+
 // ACCESO A LAS RUTAS DE DEPARTAMENTOS
 /* Leer */
 Route::get('departamentos', 'DepartamentoController@index')->name('departamentos');
@@ -388,6 +478,21 @@ Route::post('departamentos/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'DepartamentoController@filter'])->name('departamentos/filtro');
+
+    Route::get('departamentos/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexDepartamento'])->name('departamentos/importacion');
+
+    Route::get('departamentos/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportDepartamento'])->name('departamentos/exportar');
+
+    Route::put('departamentos/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importDepartamento'])->name('departamentos/importar');
 
 // ACCESO A LAS RUTAS DE AULAS
 /* Leer */
@@ -432,6 +537,21 @@ Route::post('aulas/filtro', [
     'before' => 'crsf',
     'uses' => 'AulaController@filter'])->name('aulas/filtro');
 
+    Route::get('aulas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexAula'])->name('aulas/importacion');
+
+    Route::get('aulas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportAula'])->name('aulas/exportar');
+
+    Route::put('aulas/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importAula'])->name('aulas/importar');
+
 // ACCESO A LAS RUTAS DE EVENTOS
 /* Leer */
 Route::get('eventos', 'EventoController@index')->name('eventos');
@@ -474,6 +594,21 @@ Route::post('eventos/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'EventoController@filter'])->name('eventos/filtro');
+
+    Route::get('eventos/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexEvento'])->name('eventos/importacion');
+
+    Route::get('eventos/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportEvento'])->name('eventos/exportar');
+
+    Route::put('eventos/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importEvento'])->name('eventos/importar');
 
 // ACCESO A LAS RUTAS DE TAREAS
 /* Leer */
@@ -518,10 +653,20 @@ Route::post('tareas/filtro', [
     'before' => 'crsf',
     'uses' => 'TareaController@filter'])->name('tareas/filtro');
 
-Route::get('tareas/ver/{documento_tarea}', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'TareaController@ver'])->name('tareas/ver');
+    Route::get('tareas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexTarea'])->name('tareas/importacion');
+
+    Route::get('tareas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportTarea'])->name('tareas/exportar');
+
+    Route::put('tareas/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importTarea'])->name('tareas/importar');
 
 // ACCESO A LAS RUTAS DE TEMAS
 /* Leer */
@@ -566,10 +711,20 @@ Route::post('temas/filtro', [
     'before' => 'crsf',
     'uses' => 'TemaController@filter'])->name('temas/filtro');
 
-Route::get('temas/ver/{documento_tema}', [
-    'middleware' => 'auth',
-    'before' => 'crsf',
-    'uses' => 'TemaController@ver'])->name('temas/ver');
+    Route::get('temas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexTema'])->name('temas/importacion');
+
+    Route::get('temas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportTema'])->name('temas/exportar');
+
+    Route::put('temas/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@import'])->name('usuarios/importar');
 
 // ACCESO A LAS RUTAS DE RESERVAS
 /* Leer */
@@ -613,6 +768,21 @@ Route::post('reservas/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'ReservaController@filter'])->name('reservas/filtro');
+
+    Route::get('reservas/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexReserva'])->name('reservas/importacion');
+
+    Route::get('reservas/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportReserva'])->name('reservas/exportar');
+
+    Route::put('reservas/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importReserva'])->name('reservas/importar');
 
 // RUTAS DE ACCESO A CLASES
 
@@ -658,6 +828,21 @@ Route::post('clases/filtro', [
     'before' => 'crsf',
     'uses' => 'ClaseController@filter'])->name('clases/filtro');
 
+    Route::get('clases/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexClase'])->name('clases/importacion');
+
+    Route::get('clases/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportClase'])->name('clases/exportar');
+
+    Route::put('usuarios/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importClase'])->name('clases/importar');
+
 // ACCESO A RUTAS DE PERFILES
 
 /* Leer */
@@ -702,6 +887,21 @@ Route::post('perfiles/filtro', [
     'before' => 'crsf',
     'uses' => 'PerfilController@filter'])->name('perfiles/filtro');
 
+    Route::get('perfiles/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexPerfil'])->name('perfiles/importacion');
+
+    Route::get('perfiles/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportPerfil'])->name('perfiles/exportar');
+
+    Route::put('perfiles/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importPerfil'])->name('perfiles/importar');
+
 // ACCESO A RUTAS DE ROLES
 
 /* Leer */
@@ -745,3 +945,18 @@ Route::post('roles/filtro', [
     'middleware' => 'auth',
     'before' => 'crsf',
     'uses' => 'RolController@filter'])->name('roles/filtro');
+
+    Route::get('roles/importacion', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@indexRol'])->name('roles/importacion');
+
+    Route::get('roles/exportar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@exportRol'])->name('roles/exportar');
+
+    Route::put('roles/importar', [
+        'middleware' => 'auth',
+        'before' => 'crsf',
+        'uses' => 'CsvFile@importRol'])->name('roles/importar');
