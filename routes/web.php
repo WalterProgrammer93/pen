@@ -132,12 +132,12 @@ Route::post('cursos/filtro', [
     Route::get('cursos/exportar', [
         'middleware' => 'auth',
         'before' => 'crsf',
-        'uses' => 'CsvFile@exportCurso'])->name('curso/exportar');
+        'uses' => 'CsvFile@exportCurso'])->name('cursos/exportar');
 
-    Route::put('cursos/import', [
+    Route::put('cursos/importar', [
         'middleware' => 'auth',
         'before' => 'crsf',
-        'uses' => 'CsvFile@importCurso'])->name('curso/importar');
+        'uses' => 'CsvFile@importCurso'])->name('cursos/importar');
 
 // ACCESO A LAS RUTAS DE ASIGNATURAS
 /* Leer */

@@ -93,7 +93,7 @@
                     <form action="{{ route('aulas/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-0">
+                            <div class="col-md-12 offset-md-0">
                                 @if (Auth::check())
                                   @if (Auth::user()->hasRole('admin'))
                                     <button type="submit" class="btn btn-success">
@@ -118,8 +118,24 @@
                                       @endif
                                     @endif
                                   @endif
-                                @endif
-                                <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
+                                  <a href="{{ url('home') }}" class="btn btn-primary">Volver a menu</a>
+                                  <a href="{{ route('aulas/exportar') }}" class="btn btn-danger">Exportar CSV</a>
+                                  @if (Auth::user()->hasRole('admin'))
+                                    <a href="{{ route('aulas/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                  @else
+                                    @if (Auth::user()->hasRole('student'))
+                                      <a href="{{ route('aulas/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                    @else
+                                      @if (Auth::user()->hasRole('teacher'))
+                                        <a href="{{ route('aulas/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                      @else
+                                        @if (Auth::user()->hasRole('user'))
+                                          <a href="{{ route('aulas/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                              @endif
                             </div>
                         </div>
                     </form>
