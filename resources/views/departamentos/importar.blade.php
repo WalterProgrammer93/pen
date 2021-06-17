@@ -41,19 +41,19 @@
                               @if (Auth::check())
                                   @if (Auth::user()->hasRole('admin'))
                                     <button class="btn btn-success">Importar</button>
-                                    <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                    <a href="{{ route('departamentos') }}" class="btn btn-primary">Cancelar</a>
                                   @else
                                     @if (Auth::user()->hasRole('student'))
                                       <button class="btn btn-success" disabled>Importar</button>
-                                      <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                      <a href="{{ route('departamentos') }}" class="btn btn-primary">Cancelar</a>
                                     @else
                                       @if (Auth::user()->hasRole('teacher'))
                                         <button class="btn btn-success" disabled>Importar</button>
-                                        <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                        <a href="{{ route('departamentos') }}" class="btn btn-primary">Cancelar</a>
                                       @else
                                         @if (Auth::user()->hasRole('user'))
                                           <button class="btn btn-success" disabled>Importar</button>
-                                          <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                          <a href="{{ route('departamentos') }}" class="btn btn-primary">Cancelar</a>
                                         @endif
                                       @endif
                                     @endif

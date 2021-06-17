@@ -102,7 +102,7 @@
                     <form action="{{ route('alumnos/crear') }}" method="POST">
                         @csrf
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-0">
+                            <div class="col-md-12 offset-md-0">
                                 @if (Auth::check())
                                   @if (Auth::user()->hasRole('admin'))
                                     <button type="submit" class="btn btn-success">

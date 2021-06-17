@@ -31,7 +31,7 @@ class CsvFile extends Controller
 
     public function indexAlumno()
     {
-        return view('alumno.importar');
+        return view('alumnos.importar');
     }
 
     public function ExportAlumno()

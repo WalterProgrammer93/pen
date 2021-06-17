@@ -7,12 +7,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ url('usuarios') }}">Usuarios</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('asistencias') }}">Asistencias</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Importar</li>
               </ol>
             </nav>
             <div class="card">
-                <div class="card-header">Importar datos usuarios</div>
+                <div class="card-header">Importar asistencias</div>
                 <div class="card-body">
                     <!-- Obtengo la sesión actual del usuario -->
                     @if (Session::has('message'))
@@ -41,19 +41,19 @@
                               @if (Auth::check())
                                   @if (Auth::user()->hasRole('admin'))
                                     <button class="btn btn-success">Importar</button>
-                                    <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                    <a href="{{ route('asistencias') }}" class="btn btn-primary">Cancelar</a>
                                   @else
                                     @if (Auth::user()->hasRole('student'))
                                       <button class="btn btn-success" disabled>Importar</button>
-                                      <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                      <a href="{{ route('asistencias') }}" class="btn btn-primary">Cancelar</a>
                                     @else
                                       @if (Auth::user()->hasRole('teacher'))
                                         <button class="btn btn-success" disabled>Importar</button>
-                                        <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                        <a href="{{ route('asistencias') }}" class="btn btn-primary">Cancelar</a>
                                       @else
                                         @if (Auth::user()->hasRole('user'))
                                           <button class="btn btn-success" disabled>Importar</button>
-                                          <a href="{{ route('usuarios') }}" class="btn btn-primary">Cancelar</a>
+                                          <a href="{{ route('asistencias') }}" class="btn btn-primary">Cancelar</a>
                                         @endif
                                       @endif
                                     @endif
