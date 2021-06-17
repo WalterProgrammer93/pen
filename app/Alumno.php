@@ -14,7 +14,7 @@ class Alumno extends Model
 		'direccion','portal','piso','letra','repite','foto','curso'];
 
 		public function curso() {
-			return $this->belongsTo(Curso::class, 'id');
+			return $this->belongsTo(Curso::class);
 		}
 
 		public function asistencia() {
