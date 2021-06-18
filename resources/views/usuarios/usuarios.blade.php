@@ -66,8 +66,8 @@
                                             <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                           @else
                                             @if(Auth::user()->hasRole('teacher'))
-                                              <a href="{{ route('usuarios/editar', $usuario->id) }}" class="btn btn-primary">Modificar</a>
-                                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                                              <a href="{{ route('usuarios/editar', $usuario->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                              <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('user'))
                                                 <a href="{{ route('usuarios/editar', $tema->id) }}" class="btn btn-primary" disabled>Modificar</a>

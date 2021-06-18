@@ -127,7 +127,7 @@
                                     </button>
                                   @else
                                     @if (Auth::user()->hasRole('student'))
-                                      <button type="submit" class="btn btn-success" disabled>
+                                      <button type="submit" class="btn btn-success">
                                           Crear Tarea
                                       </button>
                                     @else
@@ -156,7 +156,7 @@
                                         <a href="{{ route('tareas/importacion') }}" class="btn btn-warning">Importar CSV</a>
                                       @else
                                         @if (Auth::user()->hasRole('user'))
-                                          <a href="{{ route('tareas/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                          <a href="{{ route('tareas/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                         @endif
                                       @endif
                                     @endif

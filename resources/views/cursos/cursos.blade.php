@@ -123,13 +123,13 @@
                                     <a href="{{ route('cursos/importacion') }}" class="btn btn-warning">Importar CSV</a>
                                   @else
                                     @if (Auth::user()->hasRole('student'))
-                                      <a href="{{ route('cursos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                      <a href="{{ route('cursos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                     @else
                                       @if (Auth::user()->hasRole('teacher'))
-                                        <a href="{{ route('cursos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                        <a href="{{ route('cursos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                       @else
                                         @if (Auth::user()->hasRole('user'))
-                                          <a href="{{ route('cursos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                          <a href="{{ route('cursos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                         @endif
                                       @endif
                                     @endif

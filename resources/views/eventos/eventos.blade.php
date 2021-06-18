@@ -70,8 +70,8 @@
                                               <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                             @else
                                               @if(Auth::user()->hasRole('teacher'))
-                                                  <a href="{{ route('eventos/editar', $evento->id) }}" class="btn btn-primary">Modificar</a>
-                                                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                  <a href="{{ route('eventos/editar', $evento->id) }}" class="btn btn-primary" disabled>Modificar</a>
+                                                  <button type="submit" class="btn btn-danger" disabled>Eliminar</button>
                                               @else
                                                   if(Auth::user()->hasRole('user'))
                                                     <a href="{{ route('eventos/editar', $evento->id) }}" class="btn btn-primary" disabled>Modificar</a>
@@ -125,13 +125,13 @@
                                     <a href="{{ route('eventos/importacion') }}" class="btn btn-warning">Importar CSV</a>
                                   @else
                                     @if (Auth::user()->hasRole('student'))
-                                      <a href="{{ route('eventos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                      <a href="{{ route('eventos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                     @else
                                       @if (Auth::user()->hasRole('teacher'))
-                                        <a href="{{ route('eventos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                        <a href="{{ route('eventos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                       @else
                                         @if (Auth::user()->hasRole('user'))
-                                          <a href="{{ route('eventos/importacion') }}" class="btn btn-warning">Importar CSV</a>
+                                          <a href="{{ route('eventos/importacion') }}" class="btn btn-warning" disabled>Importar CSV</a>
                                         @endif
                                       @endif
                                     @endif
